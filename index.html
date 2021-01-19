@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta property="og:type" content="website">
@@ -99,6 +99,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -128,11 +129,38 @@
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -178,10 +206,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-01-18 09:18:45 / Modified: 18:46:00" itemprop="dateCreated datePublished" datetime="2021-01-18T09:18:45+08:00">2021-01-18</time>
+              <time title="Created: 2021-01-18 09:18:45" itemprop="dateCreated datePublished" datetime="2021-01-18T09:18:45+08:00">2021-01-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-01-19 12:11:39" itemprop="dateModified" datetime="2021-01-19T12:11:39+08:00">2021-01-19</time>
+              </span>
 
           
   
@@ -208,103 +242,25 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3>
-  1.前言
-</h3>
-     河北疫情导致圣诞与春节间的小假期无法返校，在家上网课而且空余时间没法打发，于是想着扩充下自己的技能树。再加上很久之前就有弄一个自己的博客的想法所以开始着手上网找教程了。不想自己花钱买服务器所以决定用github几番对比之后决定使用hexo。
-
-<p>​    网上的教程有些或多或少的bug。。。导致自己琢磨一些很弱智的问题浪费了很多时间我把自己参考多份方案后的内容总结下来做参考。</p>
-<p>主要内容：</p>
+          <p>主要内容：</p>
 <ul>
-<li>github注册与创建仓库</li>
-<li>安装git、nodejs、hexo</li>
-<li>初始化+创建hexo博客</li>
-<li>部署到github上+自动化 </li>
-<li>绑定域名、更换主题、设置评论区…（//TODO）           </li>
-</ul>
-<h3>
-2. github注册与创建仓库
-</h3>
-
-
-
-
-<ul>
-<li> 在<a target="_blank" rel="noopener" href="https://github.com/">github</a> 官网注册账号，可能需要🚀</li>
-</ul>
-<img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/join.png" alt="新建" style="zoom:30%;">
-
-
-
-<ul>
-<li>新建一个仓库</li>
-</ul>
-<img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/create1.png" alt="新建" style="zoom:30%;">
-
-<p>注意仓库的名字必须是 (username/ +) <strong>usrname.github.io</strong> (由于我之前注册过这个名字的仓库，所以github这里提示我名字重复)</p>
-<img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/create2.png" alt="新建" style="zoom:30%;">
-
-<h3>
-  3.安装nodejs、git、hexo
-</h3>
-
-<ul>
-<li><a target="_blank" rel="noopener" href="https://nodejs.org/en/">node.js</a>下载后安装</li>
-</ul>
-<img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/nodejs.png" alt="新建" style="zoom:50%;">
-
-<p>终端中输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ node -v <span class="comment">#是否出现安装版本信息，出现说明已经安装了</span></span><br></pre></td></tr></table></figure>
-
-
-<ul>
-<li><a target="_blank" rel="noopener" href="https://git-scm.com/downloads">Git下载</a>后安装</li>
-</ul>
-<img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/git.png" alt="新建" style="zoom:50%;">
-
-<p>终端中输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git --version <span class="comment">#是否出现安装版本信息，出现说明已经安装了</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>Hexo下载</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<p>安装成功后在你想要存储博客项目的位置创建你的文件夹，我这里将路径设为“PATH/blog”</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在你的家目录下创建一个blog文件夹</span></span><br><span class="line">mkdir PATH/blog</span><br><span class="line"><span class="comment"># 进入目录</span></span><br><span class="line"><span class="built_in">cd</span> PATH/blog</span><br><span class="line"><span class="comment"># 初始化目录</span></span><br><span class="line">hexo init</span><br><span class="line"><span class="comment">#安装必备组件</span></span><br><span class="line">npm install</span><br><span class="line"><span class="comment"># 开启本地服务 </span></span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p>此时打开<a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a> 就可以看到运行在本地的hexo页面</p>
-<img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/hello_world.png" alt="新建" style="zoom:50%;">
-
-<h3>
-  4. 部署到github
-</h3>
-
-<ul>
-<li><p>将博客关联到之前创建的github仓库上去，打开/blog文件夹下的“_config.yml”文件，这个文件存储的是博客的配置内容。</p>
+<li><p>github注册与创建仓库</p>
 </li>
-<li><p>打开这个文件后在最下找到配置相关的部分将deploy的内容替换为(注意将我repository中的用户名替换为自己的用户名)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;one-command-deployment</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https:&#x2F;&#x2F;github.com&#x2F;windskyshaoyu&#x2F;windskyshaoyu.github.io.git</span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure>
-<p>！ 注意这里有一个神坑，大部分教程最后branch给的是“master”因为github创建仓库时的默认分支是master。但受自由美利坚种族冲突的影响，自2020.10.1起，github取消“master”这一可能带有种族歧视的词汇，默认分支更名为main。所以在部署时应部署到main分支上，也可以在设置中设置其他分支为显示页面可自行摸索。</p>
+<li><p>安装git、nodejs、hexo</p>
 </li>
-</ul>
-<p>终端输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#部署插件</span></span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"></span><br><span class="line"><span class="comment">#清除之前的记录</span></span><br><span class="line">hexo clean</span><br><span class="line"></span><br><span class="line"><span class="comment"># g for generate 编译</span></span><br><span class="line">hexo g </span><br><span class="line"></span><br><span class="line"><span class="comment">#d for deploy 部署到github</span></span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>此时若运行正常网速正常的情况下，便可以在<a target="_blank" rel="noopener" href="https://your_user_name.github.io/%E4%B8%8B%E7%9C%8B%E5%88%B0%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A1%B5%E3%80%82">https://your_user_name.github.io/下看到自己的博客主页。</a></p>
-<ul>
-<li>每次输入账号密码过于繁琐——关联Github账号，免密提交。</li>
-</ul>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用你注册GitHub时的邮箱号，进行秘钥生成</span></span><br><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;xxxxxxx@gmail.com&quot;</span></span><br><span class="line"><span class="comment"># 系统就会生成一个隐藏文件夹.ssh</span></span><br><span class="line"><span class="built_in">cd</span> .ssh</span><br><span class="line"></span><br><span class="line"><span class="comment">#ls 应该能看到id_rsa.pub文件</span></span><br><span class="line">ls</span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制其中全部内容</span></span><br><span class="line">vim id_rsa.pub</span><br></pre></td></tr></table></figure>
-<p>  打开设置 –&gt; 选择SSH and GPG keys  –&gt; 新建一个ssh key将密钥复制进去，title可以随便填写</p>
-<img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/ssh1.png" alt="新建" style="zoom:30%;">
-
-<img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/ssh2.png" alt="新建" style="zoom:30%;">
-
-<img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/ssh3.png" alt="新建" style="zoom:25%;">
-
-<h3>
-  5. //TODO
-</h3>
-
-<p>关于更换主题，设置评论区等内容我也花了不小的精力探索，主要是评论区的运营商更新比较频繁。。。之前的教程与现在的版本间隔过远需要自己摸索，日后有时间将其整理出来。</p>
-
+<li><p>初始化+创建hexo博客</p>
+</li>
+<li><p>部署到github上+自动化 </p>
+</li>
+<li><p>绑定域名、更换主题、设置评论区…（//TODO）</p></li></ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -455,6 +411,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Windsky Wang"
+      src="/images/avatar.gif">
   <p class="site-author-name" itemprop="name">Windsky Wang</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -541,8 +499,60 @@
       } 
   setInterval("createtime()",250);
   </script>
+  
+  
+  
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset);
+            clearInterval(int);
+        }
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据
+            clearInterval(int); // 停止检测
+        }
+    }
+           
+});
+</script>
+
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 
@@ -556,6 +566,8 @@
   </div>
 
   
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
@@ -576,6 +588,10 @@
   
 
 
+
+
+  
+<script src="/js/local-search.js"></script>
 
 
 
