@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>MAB学习笔记</title>
+      <link href="2021/01/20/MAB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+      <url>2021/01/20/MAB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<img src="/2021/01/20/MAB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/sample.png" alt="新建" style="zoom:3=40%;"><a id="more"></a><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>​    多臂老虎机问题是经典的RL问题，玩家（决策者）在资源有限的情况下需要做出exploration–exploitation trade off。下面是摘自wiki的一段对<strong>M</strong>ulti <strong>A</strong>rmed <strong>B</strong>andit(<strong>MAB</strong>)的描述:</p><p>​    <em>In probability theory, the multi-armed bandit problem (sometimes called the K-or N-armed bandit problem) is a problem in which a fixed limited set of resources must be allocated between competing (alternative) choices in a way that maximizes their expected gain, when each choice’s properties are only partially known at the time of allocation, and may become better understood as time passes or by allocating resources to the choice.</em></p><p>​    通俗点讲，老虎机有多个选项可供选择，假设每个选项对应的收益分布是固定但未知的，玩家需要在有限次的次数下做出最合适的选择。那么极端地想，我们每次摇臂就有两种倾向：</p><ul><li>尝试新的“老虎臂”，也许会得到比之前更好的结果(Explore)</li><li>利用已知的老虎臂做最好的选择(Exploit)</li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 学术 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>mac下搭建hexo个人博客并部署到github</title>
       <link href="2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/"/>
       <url>2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/</url>
