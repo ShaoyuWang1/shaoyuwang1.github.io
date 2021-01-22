@@ -20,18 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="article">
+  <meta name="description" content="​    Multi Armed Bandit(MAB)即多臂老虎机问题是经典的RL问题，玩家（决策者）在资源有限的情况下需要做出exploration–exploitation trade off。">
+<meta property="og:type" content="article">
 <meta property="og:title" content="MAB学习笔记">
 <meta property="og:url" content="http://example.com/2021/01/20/MAB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Wind and Sky">
+<meta property="og:description" content="​    Multi Armed Bandit(MAB)即多臂老虎机问题是经典的RL问题，玩家（决策者）在资源有限的情况下需要做出exploration–exploitation trade off。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2021/01/20/MAB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/sample.png">
+<meta property="og:image" content="http://example.com/2021/01/20/MAB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/sample.jpeg">
 <meta property="article:published_time" content="2021-01-20T03:25:37.000Z">
-<meta property="article:modified_time" content="2021-01-20T07:21:49.917Z">
+<meta property="article:modified_time" content="2021-01-22T08:04:11.450Z">
 <meta property="article:author" content="Windsky Wang">
 <meta property="article:tag" content="学术">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/01/20/MAB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/sample.png">
+<meta name="twitter:image" content="http://example.com/2021/01/20/MAB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/sample.jpeg">
 
 <link rel="canonical" href="http://example.com/2021/01/20/MAB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
 
@@ -211,10 +213,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-01-20 11:25:37 / 修改时间：15:21:49" itemprop="dateCreated datePublished" datetime="2021-01-20T11:25:37+08:00">2021-01-20</time>
+              <time title="创建时间：2021-01-20 11:25:37" itemprop="dateCreated datePublished" datetime="2021-01-20T11:25:37+08:00">2021-01-20</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-22 16:04:11" itemprop="dateModified" datetime="2021-01-22T16:04:11+08:00">2021-01-22</time>
+              </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -248,20 +256,30 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <img src="/2021/01/20/MAB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/sample.png" alt="新建" style="zoom:3=40%;">
+        <img src="/2021/01/20/MAB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/sample.jpeg" alt="新建" style="zoom:3=20%;">
 
-
-
+<p>​    <strong>M</strong>ulti <strong>A</strong>rmed <strong>B</strong>andit(<strong>MAB</strong>)即多臂老虎机问题是经典的RL问题，玩家（决策者）在资源有限的情况下需要做出exploration–exploitation trade off。</p>
 <a id="more"></a>
 
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>​    多臂老虎机问题是经典的RL问题，玩家（决策者）在资源有限的情况下需要做出exploration–exploitation trade off。下面是摘自wiki的一段对<strong>M</strong>ulti <strong>A</strong>rmed <strong>B</strong>andit(<strong>MAB</strong>)的描述:</p>
-<p>​    <em>In probability theory, the multi-armed bandit problem (sometimes called the K-or N-armed bandit problem) is a problem in which a fixed limited set of resources must be allocated between competing (alternative) choices in a way that maximizes their expected gain, when each choice’s properties are only partially known at the time of allocation, and may become better understood as time passes or by allocating resources to the choice.</em></p>
-<p>​    通俗点讲，老虎机有多个选项可供选择，假设每个选项对应的收益分布是固定但未知的，玩家需要在有限次的次数下做出最合适的选择。那么极端地想，我们每次摇臂就有两种倾向：</p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>​    与多臂老虎机相类似的问题还有餐馆选择问题，当我们到达一个新地方不久，是每次去我们熟悉的最好吃的餐馆还是去探索新餐馆找可能更好吃的菜品。</p>
+<p>下面是摘自wiki的一段描述:</p>
+<p>​    In probability theory, the multi-armed bandit problem (sometimes called the K-or N-armed bandit problem) is a problem in which a fixed limited set of resources must be allocated between competing (alternative) choices in a way that maximizes their expected gain, when each choice’s properties are only partially known at the time of allocation, and may become better understood as time passes or by allocating resources to the choice.</p>
+<p>​    通俗点讲,当我们在玩老虎机时，老虎机有多个摇臂可供选择，每个摇臂对应的收益分布是固定但未知的，玩家需要在有限次的次数下做出最合适的选择。那么极端地想，我们每次摇臂就有两种倾向：</p>
 <ul>
 <li>尝试新的“老虎臂”，也许会得到比之前更好的结果(Explore)</li>
 </ul>
 <ul>
 <li>利用已知的老虎臂做最好的选择(Exploit)</li>
+</ul>
+<p>下面介绍一些基本的算法</p>
+<h1 id="Unioform-Exploration"><a href="#Unioform-Exploration" class="headerlink" title="Unioform Exploration"></a>Unioform Exploration</h1><h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>​    这个均匀探索算法的思想很简单，是一个 <em>Explore-first</em> 的算法。首先先确定好Exploration Phase 和 Exploitation Phase的大小，然后在Exploration Phase中均匀地探索每个摇臂，用期望来描述这个摇臂对应的收益，之后在Exploitation Phase中根据之前的最大收益选择进行游戏。</p>
+<ul>
+<li><p>Exploration Phase: try  each arm N times</p>
+</li>
+<li><p>Select the arm $\hat{\alpha}$ with the highest reward </p>
+</li>
+<li><p>Explotiation Phase: play arm $\hat{\alpha}$  in all remaining rounds</p>
+</li>
 </ul>
 
     </div>

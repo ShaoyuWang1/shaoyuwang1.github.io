@@ -4,14 +4,14 @@
   <url>
     <loc>http://example.com/2021/01/20/MAB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
     
-    <lastmod>2021-01-20</lastmod>
+    <lastmod>2021-01-22</lastmod>
     
   </url>
   
   <url>
     <loc>http://example.com/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/</loc>
     
-    <lastmod>2021-01-19</lastmod>
+    <lastmod>2021-01-22</lastmod>
     
   </url>
   
@@ -39,7 +39,7 @@
 
   <url>
     <loc>http://example.com/</loc>
-    <lastmod>2021-01-21</lastmod>
+    <lastmod>2021-01-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -47,14 +47,14 @@
   
   <url>
     <loc>http://example.com/tags/%E5%AD%A6%E6%9C%AF/</loc>
-    <lastmod>2021-01-21</lastmod>
+    <lastmod>2021-01-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/%E6%8A%80%E6%9C%AF/</loc>
-    <lastmod>2021-01-21</lastmod>
+    <lastmod>2021-01-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
