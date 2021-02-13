@@ -1,111 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-  
-    
-    <entry>
-      <title>排序算法总结</title>
-      <link href="2021/02/13/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
-      <url>2021/02/13/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 算法 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>LeetCode1588 所有奇数长度子数组之和</title>
-      <link href="2021/02/01/LeetCode1588-%E6%89%80%E6%9C%89%E5%A5%87%E6%95%B0%E9%95%BF%E5%BA%A6%E5%AD%90%E6%95%B0%E7%BB%84%E4%B9%8B%E5%92%8C/"/>
-      <url>2021/02/01/LeetCode1588-%E6%89%80%E6%9C%89%E5%A5%87%E6%95%B0%E9%95%BF%E5%BA%A6%E5%AD%90%E6%95%B0%E7%BB%84%E4%B9%8B%E5%92%8C/</url>
-      
-        <content type="html"><![CDATA[<p>​    给你一个正整数数组 arr ，请你计算所有可能的奇数长度子数组的和。<strong>子数组</strong> 定义为原数组中的一个连续子序列。请你返回 arr 中 所有奇数长度子数组的和</p><a id="more"></a><p>示例：</p><p><strong>输入</strong>：arr = [1,4,2,5,3]<br><strong>输出</strong>：58<br><strong>解释</strong>：所有奇数长度子数组和它们的和为：<br>[1] = 1<br>[4] = 4<br>[2] = 2<br>[5] = 5<br>[3] = 3<br>[1,4,2] = 7<br>[4,2,5] = 11<br>[2,5,3] = 10<br>[1,4,2,5,3] = 15<br>我们将所有值求和得到 1 + 4 + 2 + 5 + 3 + 7 + 11 + 10 + 15 = 58</p><h1 id="解法1-暴力求解"><a href="#解法1-暴力求解" class="headerlink" title="解法1 暴力求解"></a>解法1 暴力求解</h1><p>​    从index = 0 遍历整个数组，尝试所有可能的奇数size的数组，对其求和。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sumOddLengthSubarrays</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> answer = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;arr.size();i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> x = <span class="number">1</span> ; x + i &lt;=arr.size();x += <span class="number">2</span>)&#123;</span><br><span class="line">                answer += sum(arr,i,x+i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> answer;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><p>(sum求数组从i到x+i的部分的数字和)</p><p>算上外层的两次循环+sum的一次循环，时间复杂度为o($n^3$)，空间复杂度为o(1)</p><h1 id="算法2-前序数组和"><a href="#算法2-前序数组和" class="headerlink" title="算法2 前序数组和"></a>算法2 前序数组和</h1><p>​    牺牲部分的空间复杂度换取更优的时间复杂度。可以发现sum部分的求和很多计算是重复的，我们可以将数组的求和提前计算，sum部分只需要将arr[0:end] -arr[0:start]就可以得到arr[start:end]部分的求和。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sumOddLengthSubarrays</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> answer = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; presum;</span><br><span class="line">        presum.push_back(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num:arr)&#123;</span><br><span class="line">            presum.push_back(presum.back()+num);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;arr.size();i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> x = <span class="number">1</span> ; x + i &lt;=arr.size();x += <span class="number">2</span>)&#123;</span><br><span class="line">                answer += presum[x+i]-presum[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> answer;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><p>时间复杂度o($n^2$)空间复杂度o($n$)</p><h1 id="解法3-O-n"><a href="#解法3-O-n" class="headerlink" title="解法3 O(n)"></a>解法3 O(n)</h1><p>​    利用题目的奇偶性。在arr[i]我们只需要计算出arr[i]在计算中出现了几次即可，为了使arr[i]所在的子数列长度为奇数，我们只需要从前后取偶偶或从前后取奇奇长度的数列，这时题目变成了一个排列组合问题。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sumOddLengthSubarrays</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> answer = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;arr.size();i++)&#123;</span><br><span class="line">           <span class="keyword">int</span> count = (i+<span class="number">1</span>)/<span class="number">2</span> * ((arr.size()-i)/<span class="number">2</span>) + (i+<span class="number">2</span>)/<span class="number">2</span> * ((arr.size()-i+<span class="number">1</span>)/<span class="number">2</span>);</span><br><span class="line">           answer += count*arr[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> answer;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><p>​    由于我们只需要遍历一次整个数组，时间复杂度为o($n$)</p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> LeetCode </tag>
-            
-            <tag> 算法 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Thompson Sampling笔记</title>
-      <link href="2021/01/30/Thompson%20Sampling%E7%AC%94%E8%AE%B0/"/>
-      <url>2021/01/30/Thompson%20Sampling%E7%AC%94%E8%AE%B0/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>MAB学习笔记</title>
-      <link href="2021/01/20/MAB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-      <url>2021/01/20/MAB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-      
-        <content type="html"><![CDATA[<p><img src="/2021/01/20/MAB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/sample.png" alt="新建" style="zoom:=40%;"></p><p>​    <strong>M</strong>ulti <strong>A</strong>rmed <strong>B</strong>andit(<strong>MAB</strong>) is a simple but very powerful framework for algorithms that make decisions over time under uncertainty. An enormous body of work has accumulated over the years.</p><a id="more"></a><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>​    </p><p>​    与多臂老虎机相类似的问题还有餐馆选择问题，当我们到达一个新地方不久，是每次去我们熟悉的最好吃的餐馆还是去探索新餐馆找可能更好吃的菜品。</p><p>下面是摘自wiki的一段描述:</p><p>​    In probability theory, the multi-armed bandit problem (sometimes called the K-or N-armed bandit problem) is a problem in which a fixed limited set of resources must be allocated between competing (alternative) choices in a way that maximizes their expected gain, when each choice’s properties are only partially known at the time of allocation, and may become better understood as time passes or by allocating resources to the choice.</p><p>​    通俗点讲,当我们在玩老虎机时，老虎机有多个摇臂可供选择，每个摇臂对应的收益分布是固定但未知的，玩家需要在有限次的次数下做出最合适的选择。那么极端地想，我们每次摇臂就有两种倾向：</p><ul><li>尝试新的“老虎臂”，也许会得到比之前更好的结果(Explore)</li></ul><ul><li>利用已知的老虎臂做最好的选择(Exploit)</li></ul><p>下面介绍一些基本的算法</p><h1 id="1-Unioform-Exploration"><a href="#1-Unioform-Exploration" class="headerlink" title="1. Unioform Exploration"></a>1. Unioform Exploration</h1><h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>​    这个均匀探索算法的思想很简单，是一个 <em>Explore-first</em> 的算法。首先确定好Exploration Phase 和 Exploitation Phase的大小，然后在Exploration Phase中均匀地探索每个摇臂，用期望来描述这个摇臂对应的收益，之后在Exploitation Phase中根据之前的最大收益选择进行游戏。</p><p>​    大体流程如下:</p><ol><li>Exploration Phase: try  each arm N times</li><li>Select the arm $\hat{\alpha}$ with the highest reward </li><li>Explotiation Phase: play arm $\hat{\alpha}$  in all remaining rounds</li></ol><h2 id="Regret-analysis"><a href="#Regret-analysis" class="headerlink" title="Regret analysis"></a>Regret analysis</h2><p>​    在进行exploit的时候我们会用之前explore得到的收益的平均值$\bar{\mu}(\alpha)$ 作为对真实期望$\mu(\alpha)$的估计，如果想要最后分析得到的结果准确我们应使这两个结果之间的差值尽量小，我们这里使用Hoeffding inequality对其进行分析。</p><p>​    By defining the confidence radius $r(\alpha) = \sqrt{\frac{2logT}{N}}$ , using  Hoeffding inequality, we get :</p><script type="math/tex; mode=display">\operatorname{Pr}\{|\bar{\mu}(a)-\mu(a)| \leq r(a)\} \geq 1-\frac{2}{T^{4}}</script><p>​    我们定义$\bar{\mu}(\alpha)$ 在这个范围内为 <strong>clean event</strong>, 反之为 <strong>bad event</strong>.可以看到bad event的order 为 $T^{-4}$可以忽略不计，在后面的推导证明中，可以姑且不考虑bad event的影响。</p><p>​    后面的证明推导将采用英文QAQ。</p><p>​    For simplicity, let us start with the case of K = 2 arms. Consider the clean event. We will show that if we chose the worse arm, it is not so bad because the expected rewards for the two arms would be close.</p><p>​    Let the best arm be $\alpha^{✳️}$ and suppose the algorithm chooses the other arm $a \neq a^{✳️} .$ This must have been because its average reward was better than that of $a^{✳️} ;$ in other words, $\bar{\mu}(a)&gt;\bar{\mu}\left(a^{✳️}\right) .$ Since this is a clean event, we have:</p><script type="math/tex; mode=display">\mu(a)+r(a) \geq \bar{\mu}(a)>\bar{\mu}\left(a^{*}\right) \geq \mu\left(a^{*}\right)-r\left(a^{*}\right)</script><p>​    Re-arranging the terms, it follows that</p><script type="math/tex; mode=display">\mu\left(a^{*}\right)-\mu(a) \leq r(a)+r\left(a^{*}\right)=O\left(\sqrt{\frac{\log T}{N}}\right)</script><p>​    Thus, each round in the exploitation phase contributes at most $O\left(\sqrt{\frac{\log T}{N}}\right)$ to regret. And each round in exploration trivially contributes at most $1 .$ We derive an upper bound on the regret, which consists of two parts: for the first N rounds of exploration, and then for the remaining T - 2N rounds of exploitation:</p><p>​    Recall that we can select any value for $N,$ as long as it is known to the algorithm before the first round. So, we can choose $N$ so as to (approximately) minimize the right-hand side. Noting that the two summands are, resp., monotonically increasing and monotonically decreasing in $N,$ <strong>we set $N$ so that they are (approximately) equal</strong>. For $N=T^{2 / 3}(\log T)^{1 / 3},$ we obtain:</p><script type="math/tex; mode=display">R(T) \leq O\left(T^{2 / 3}(\log T)^{1 / 3}\right)</script><p>​    To complete the proof, we have to analyze the case of the “bad event”. Since regret can be at most T (because each round contributes at most 1), and the bad event happens with a very small probability (1/T 4), the (expected) regret from this case can be neglected. Formally,</p><script type="math/tex; mode=display">\begin{aligned}\mathbb{E}[R(T)] &=\mathbb{E}[R(T) \mid \text { clean event }] \times \operatorname{Pr}[\text { clean event }]+\mathbb{E}[R(T) \mid \text { bad event }] \times \operatorname{Pr}[\text { bad event }] \\& \leq \mathbb{E}[R(T) \mid \text { clean event }]+T \times O\left(T^{-4}\right) \\& \leq O\left(\sqrt{\log T} \times T^{2 / 3}\right)\end{aligned}</script><p>​    This complete the proff of K=2 arms.</p><p>​    For $K&gt;2$ arms, we have to apply the union bound for (1) over the $K$ arms, and then follow the same argument as above. Note that the value of $T$ is greater than $K,$ since we need to explore each arm at least once. For the final regret computation, we will need to take into account the dependence on $K$ :<br>specifically, regret accumulated in exploration phase is now upper-bounded by $K N .$ Working through the proof, we obtain $R(T) \leq N K+O\left(\sqrt{\frac{\log T}{N}} \times T\right) .$ As before, we approximately minimize it by approximately minimizing the two summands. Specifically, we plug in $N=(T / K)^{2 / 3} \cdot O(\log T)^{1 / 3} .$ Completing the proof same way as in $(5)$ we obtain:</p><p><strong><em>Explore First Algortihm achieves regret:</em></strong>$\mathbb{E}[R(T)] \leq T^{2 / 3} \times O(K \log T)^{1 / 3}$</p><h1 id="2-Adaptive-Exploration"><a href="#2-Adaptive-Exploration" class="headerlink" title="2 Adaptive Exploration"></a>2 Adaptive Exploration</h1><p>​    Both exploration-first and epsilon-greedy have a big flaw that the exploration schedule does not depend on the history of the observed rewards. Whereas it is usually better to adapt exploration to the observed rewards. Informally, we refer to this distinction as adaptive vs non-adaptive exploration. In the remainder of this article we present two algorithms that implement adaptive exploration and achieve better regret. </p><p>​    Let’s start with the case of $K=2$ arms. One natural idea is to alternate them until we find that one armi s much better than the other, at which time we abandon the inferior one. But how to define “one arm is much better” exactly?</p><h2 id="Clean-evnt-and-confidence-bounds"><a href="#Clean-evnt-and-confidence-bounds" class="headerlink" title="Clean evnt and confidence bounds"></a>Clean evnt and confidence bounds</h2><p>​    Let us flesh out the idea mentioned above; this would also set up the stage for some other algorithms. Fix round $t .$ Let $n<em>{t}(a)$ be the number of samples from $\operatorname{arm} a$ in round $1,2, \ldots, t . \bar{\mu}</em>{t}(a)$ be the average reward of arm $a$ so far. We would like to use Hoeffding Inequality to derive</p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 学术 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>mac下搭建hexo个人博客并部署到github</title>
-      <link href="2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/"/>
-      <url>2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/</url>
-      
-        <content type="html"><![CDATA[<p>主要内容：</p><ul><li><p>github注册与创建仓库</p></li><li><p>安装git、nodejs、hexo</p></li><li><p>初始化+创建hexo博客</p></li><li><p>部署到github上+自动化 </p></li><li><p>绑定域名、更换主题、设置评论区…（//TODO）</p> <a id="more"></a>     </li></ul><h3>  1.前言</h3>​    河北疫情导致圣诞与春节间的小假期无法返校，在家上网课而且空余时间没法打发，于是想着扩充下自己的技能树。再加上很久之前就有弄一个自己的博客的想法所以开始着手上网找教程了。不想自己花钱买服务器所以决定用github几番对比之后决定使用hexo。​    网上的教程有些或多或少的bug。。。导致自己琢磨一些很弱智的问题浪费了很多时间我把自己参考多份方案后的内容总结下来做参考。<h3>2. github注册与创建仓库</h3><ul><li>在<a href="https://github.com/">github</a> 官网注册账号，可能需要🚀</li></ul><p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/join.png" alt="新建" style="zoom:30%;"></p><ul><li>新建一个仓库</li></ul><p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/create1.png" alt="新建" style="zoom:30%;"></p><p>注意仓库的名字必须是 (username/ +) <strong>usrname.github.io</strong> (由于我之前注册过这个名字的仓库，所以github这里提示我名字重复)</p><p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/create2.png" alt="新建" style="zoom:30%;"></p><h3>  3.安装nodejs、git、hexo</h3><ul><li><a href="https://nodejs.org/en/">node.js</a>下载后安装</li></ul><p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/nodejs.png" alt="新建" style="zoom:50%;"></p><p>终端中输入：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ node -v <span class="comment">#是否出现安装版本信息，出现说明已经安装了</span></span><br></pre></td></tr></table></figure><ul><li><a href="https://git-scm.com/downloads">Git下载</a>后安装</li></ul><p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/git.png" alt="新建" style="zoom:50%;"></p><p>终端中输入：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git --version <span class="comment">#是否出现安装版本信息，出现说明已经安装了</span></span><br></pre></td></tr></table></figure><ul><li>Hexo下载</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure><p>安装成功后在你想要存储博客项目的位置创建你的文件夹，我这里将路径设为“PATH/blog”</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在你的家目录下创建一个blog文件夹</span></span><br><span class="line">mkdir PATH/blog</span><br><span class="line"><span class="comment"># 进入目录</span></span><br><span class="line"><span class="built_in">cd</span> PATH/blog</span><br><span class="line"><span class="comment"># 初始化目录</span></span><br><span class="line">hexo init</span><br><span class="line"><span class="comment">#安装必备组件</span></span><br><span class="line">npm install</span><br><span class="line"><span class="comment"># 开启本地服务 </span></span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure><p>此时打开<a href="http://localhost:4000/">http://localhost:4000/</a> 就可以看到运行在本地的hexo页面</p><p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/hello_world.png" alt="新建" style="zoom:50%;"></p><h3>  4. 部署到github</h3><ul><li><p>将博客关联到之前创建的github仓库上去，打开/blog文件夹下的“_config.yml”文件，这个文件存储的是博客的配置内容。</p></li><li><p>打开这个文件后在最下找到配置相关的部分将deploy的内容替换为(注意将我repository中的用户名替换为自己的用户名)</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;one-command-deployment</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https:&#x2F;&#x2F;github.com&#x2F;windskyshaoyu&#x2F;windskyshaoyu.github.io.git</span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure><p>！ 注意这里有一个神坑，大部分教程最后branch给的是“master”因为github创建仓库时的默认分支是master。但受自由美利坚种族冲突的影响，自2020.10.1起，github取消“master”这一可能带有种族歧视的词汇，默认分支更名为main。所以在部署时应部署到main分支上，也可以在设置中设置其他分支为显示页面可自行摸索。</p></li></ul><p>终端输入：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#部署插件</span></span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"></span><br><span class="line"><span class="comment">#清除之前的记录</span></span><br><span class="line">hexo clean</span><br><span class="line"></span><br><span class="line"><span class="comment"># g for generate 编译</span></span><br><span class="line">hexo g </span><br><span class="line"></span><br><span class="line"><span class="comment">#d for deploy 部署到github</span></span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure><p>此时若运行正常网速正常的情况下，便可以在<a href="https://your_user_name.github.io/下看到自己的博客主页。">https://your_user_name.github.io/下看到自己的博客主页。</a></p><ul><li>每次输入账号密码过于繁琐——关联Github账号，免密提交。</li></ul>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用你注册GitHub时的邮箱号，进行秘钥生成</span></span><br><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;xxxxxxx@gmail.com&quot;</span></span><br><span class="line"><span class="comment"># 系统就会生成一个隐藏文件夹.ssh</span></span><br><span class="line"><span class="built_in">cd</span> .ssh</span><br><span class="line"></span><br><span class="line"><span class="comment">#ls 应该能看到id_rsa.pub文件</span></span><br><span class="line">ls</span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制其中全部内容</span></span><br><span class="line">vim id_rsa.pub</span><br></pre></td></tr></table></figure><p>  打开设置 —&gt; 选择SSH and GPG keys  —&gt; 新建一个ssh key将密钥复制进去，title可以随便填写</p><p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/ssh1.png" alt="新建" style="zoom:30%;"></p><p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/ssh2.png" alt="新建" style="zoom:30%;"></p><p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/ssh3.png" alt="新建" style="zoom:25%;"></p><h3>  5. //TODO</h3><p>关于更换主题，设置评论区等内容我也花了不小的精力探索，主要是评论区的运营商更新比较频繁。。。之前的教程与现在的版本间隔过远需要自己摸索，日后有时间将其整理出来。</p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 技术 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>My New Post</title>
-      <link href="2021/01/17/My-New-Post/"/>
-      <url>2021/01/17/My-New-Post/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      
-    </entry>
-    
-    
-  
-  
+<search>
+  <entry>
+    <title>MAB学习笔记</title>
+    <url>/2021/01/20/MAB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p><img src="/2021/01/20/MAB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/sample.png" alt="新建" style="zoom:=40%;"></p>
+<p>​    <strong>M</strong>ulti <strong>A</strong>rmed <strong>B</strong>andit(<strong>MAB</strong>) is a simple but very powerful framework for algorithms that make decisions over time under uncertainty. An enormous body of work has accumulated over the years.</p>
+<a id="more"></a>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>​    </p>
+<p>​    与多臂老虎机相类似的问题还有餐馆选择问题，当我们到达一个新地方不久，是每次去我们熟悉的最好吃的餐馆还是去探索新餐馆找可能更好吃的菜品。</p>
+<p>下面是摘自wiki的一段描述:</p>
+<p>​    In probability theory, the multi-armed bandit problem (sometimes called the K-or N-armed bandit problem) is a problem in which a fixed limited set of resources must be allocated between competing (alternative) choices in a way that maximizes their expected gain, when each choice’s properties are only partially known at the time of allocation, and may become better understood as time passes or by allocating resources to the choice.</p>
+<p>​    通俗点讲,当我们在玩老虎机时，老虎机有多个摇臂可供选择，每个摇臂对应的收益分布是固定但未知的，玩家需要在有限次的次数下做出最合适的选择。那么极端地想，我们每次摇臂就有两种倾向：</p>
+<ul>
+<li>尝试新的“老虎臂”，也许会得到比之前更好的结果(Explore)</li>
+</ul>
+<ul>
+<li>利用已知的老虎臂做最好的选择(Exploit)</li>
+</ul>
+<p>下面介绍一些基本的算法</p>
+<h1 id="1-Unioform-Exploration"><a href="#1-Unioform-Exploration" class="headerlink" title="1. Unioform Exploration"></a>1. Unioform Exploration</h1><h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>​    这个均匀探索算法的思想很简单，是一个 <em>Explore-first</em> 的算法。首先确定好Exploration Phase 和 Exploitation Phase的大小，然后在Exploration Phase中均匀地探索每个摇臂，用期望来描述这个摇臂对应的收益，之后在Exploitation Phase中根据之前的最大收益选择进行游戏。</p>
+<p>​    大体流程如下:</p>
+<ol>
+<li>Exploration Phase: try  each arm N times</li>
+<li>Select the arm $\hat{\alpha}$ with the highest reward </li>
+<li>Explotiation Phase: play arm $\hat{\alpha}$  in all remaining rounds</li>
+</ol>
+<h2 id="Regret-analysis"><a href="#Regret-analysis" class="headerlink" title="Regret analysis"></a>Regret analysis</h2><p>​    在进行exploit的时候我们会用之前explore得到的收益的平均值$\bar{\mu}(\alpha)$ 作为对真实期望$\mu(\alpha)$的估计，如果想要最后分析得到的结果准确我们应使这两个结果之间的差值尽量小，我们这里使用Hoeffding inequality对其进行分析。</p>
+<p>​    By defining the confidence radius $r(\alpha) = \sqrt{\frac{2logT}{N}}$ , using  Hoeffding inequality, we get :</p>
+<script type="math/tex; mode=display">
+\operatorname{Pr}\{|\bar{\mu}(a)-\mu(a)| \leq r(a)\} \geq 1-\frac{2}{T^{4}}</script><p>​    我们定义$\bar{\mu}(\alpha)$ 在这个范围内为 <strong>clean event</strong>, 反之为 <strong>bad event</strong>.可以看到bad event的order 为 $T^{-4}$可以忽略不计，在后面的推导证明中，可以姑且不考虑bad event的影响。</p>
+<p>​    后面的证明推导将采用英文QAQ。</p>
+<p>​    For simplicity, let us start with the case of K = 2 arms. Consider the clean event. We will show that if we chose the worse arm, it is not so bad because the expected rewards for the two arms would be close.</p>
+<p>​    Let the best arm be $\alpha^{✳️}$ and suppose the algorithm chooses the other arm $a \neq a^{✳️} .$ This must have been because its average reward was better than that of $a^{✳️} ;$ in other words, $\bar{\mu}(a)&gt;\bar{\mu}\left(a^{✳️}\right) .$ Since this is a clean event, we have:</p>
+<script type="math/tex; mode=display">
+\mu(a)+r(a) \geq \bar{\mu}(a)>\bar{\mu}\left(a^{*}\right) \geq \mu\left(a^{*}\right)-r\left(a^{*}\right)</script><p>​    Re-arranging the terms, it follows that</p>
+<script type="math/tex; mode=display">
+\mu\left(a^{*}\right)-\mu(a) \leq r(a)+r\left(a^{*}\right)=O\left(\sqrt{\frac{\log T}{N}}\right)</script><p>​    Thus, each round in the exploitation phase contributes at most $O\left(\sqrt{\frac{\log T}{N}}\right)$ to regret. And each round in exploration trivially contributes at most $1 .$ We derive an upper bound on the regret, which consists of two parts: for the first N rounds of exploration, and then for the remaining T - 2N rounds of exploitation:</p>
+<p>​    Recall that we can select any value for $N,$ as long as it is known to the algorithm before the first round. So, we can choose $N$ so as to (approximately) minimize the right-hand side. Noting that the two summands are, resp., monotonically increasing and monotonically decreasing in $N,$ <strong>we set $N$ so that they are (approximately) equal</strong>. For $N=T^{2 / 3}(\log T)^{1 / 3},$ we obtain:</p>
+<script type="math/tex; mode=display">
+R(T) \leq O\left(T^{2 / 3}(\log T)^{1 / 3}\right)</script><p>​    To complete the proof, we have to analyze the case of the “bad event”. Since regret can be at most T (because each round contributes at most 1), and the bad event happens with a very small probability (1/T 4), the (expected) regret from this case can be neglected. Formally,</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathbb{E}[R(T)] &=\mathbb{E}[R(T) \mid \text { clean event }] \times \operatorname{Pr}[\text { clean event }]+\mathbb{E}[R(T) \mid \text { bad event }] \times \operatorname{Pr}[\text { bad event }] \\
+& \leq \mathbb{E}[R(T) \mid \text { clean event }]+T \times O\left(T^{-4}\right) \\
+& \leq O\left(\sqrt{\log T} \times T^{2 / 3}\right)
+\end{aligned}</script><p>​    This complete the proff of K=2 arms.</p>
+<p>​    For $K&gt;2$ arms, we have to apply the union bound for (1) over the $K$ arms, and then follow the same argument as above. Note that the value of $T$ is greater than $K,$ since we need to explore each arm at least once. For the final regret computation, we will need to take into account the dependence on $K$ :<br>specifically, regret accumulated in exploration phase is now upper-bounded by $K N .$ Working through the proof, we obtain $R(T) \leq N K+O\left(\sqrt{\frac{\log T}{N}} \times T\right) .$ As before, we approximately minimize it by approximately minimizing the two summands. Specifically, we plug in $N=(T / K)^{2 / 3} \cdot O(\log T)^{1 / 3} .$ Completing the proof same way as in $(5)$ we obtain:</p>
+<p><strong><em>Explore First Algortihm achieves regret:</em></strong>$\mathbb{E}[R(T)] \leq T^{2 / 3} \times O(K \log T)^{1 / 3}$</p>
+<h1 id="2-Adaptive-Exploration"><a href="#2-Adaptive-Exploration" class="headerlink" title="2 Adaptive Exploration"></a>2 Adaptive Exploration</h1><p>​    Both exploration-first and epsilon-greedy have a big flaw that the exploration schedule does not depend on the history of the observed rewards. Whereas it is usually better to adapt exploration to the observed rewards. Informally, we refer to this distinction as adaptive vs non-adaptive exploration. In the remainder of this article we present two algorithms that implement adaptive exploration and achieve better regret. </p>
+<p>​    Let’s start with the case of $K=2$ arms. One natural idea is to alternate them until we find that one armi s much better than the other, at which time we abandon the inferior one. But how to define “one arm is much better” exactly?</p>
+<h2 id="Clean-evnt-and-confidence-bounds"><a href="#Clean-evnt-and-confidence-bounds" class="headerlink" title="Clean evnt and confidence bounds"></a>Clean evnt and confidence bounds</h2><p>​    Let us flesh out the idea mentioned above; this would also set up the stage for some other algorithms. Fix round $t .$ Let $n<em>{t}(a)$ be the number of samples from $\operatorname{arm} a$ in round $1,2, \ldots, t . \bar{\mu}</em>{t}(a)$ be the average reward of arm $a$ so far. We would like to use Hoeffding Inequality to derive</p>
+]]></content>
+      <tags>
+        <tag>学术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>My New Post</title>
+    <url>/2021/01/17/My-New-Post/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>mac下搭建hexo个人博客并部署到github</title>
+    <url>/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/</url>
+    <content><![CDATA[<p>主要内容：</p>
+<ul>
+<li><p>github注册与创建仓库</p>
+</li>
+<li><p>安装git、nodejs、hexo</p>
+</li>
+<li><p>初始化+创建hexo博客</p>
+</li>
+<li><p>部署到github上+自动化 </p>
+</li>
+<li><p>绑定域名、更换主题、设置评论区…（//TODO）</p>
+ <a id="more"></a>     
+</li>
+</ul>
+<h3>
+  1.前言
+</h3>
+​    河北疫情导致圣诞与春节间的小假期无法返校，在家上网课而且空余时间没法打发，于是想着扩充下自己的技能树。再加上很久之前就有弄一个自己的博客的想法所以开始着手上网找教程了。不想自己花钱买服务器所以决定用github几番对比之后决定使用hexo。
+
+​    网上的教程有些或多或少的bug。。。导致自己琢磨一些很弱智的问题浪费了很多时间我把自己参考多份方案后的内容总结下来做参考。
+
+
+
+
+
+<h3>
+2. github注册与创建仓库
+</h3>
+
+
+
+
+<ul>
+<li>在<a href="https://github.com/">github</a> 官网注册账号，可能需要🚀</li>
+</ul>
+<p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/join.png" alt="新建" style="zoom:30%;"></p>
+<ul>
+<li>新建一个仓库</li>
+</ul>
+<p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/create1.png" alt="新建" style="zoom:30%;"></p>
+<p>注意仓库的名字必须是 (username/ +) <strong>usrname.github.io</strong> (由于我之前注册过这个名字的仓库，所以github这里提示我名字重复)</p>
+<p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/create2.png" alt="新建" style="zoom:30%;"></p>
+<h3>
+  3.安装nodejs、git、hexo
+</h3>
+
+<ul>
+<li><a href="https://nodejs.org/en/">node.js</a>下载后安装</li>
+</ul>
+<p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/nodejs.png" alt="新建" style="zoom:50%;"></p>
+<p>终端中输入：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ node -v <span class="comment">#是否出现安装版本信息，出现说明已经安装了</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><a href="https://git-scm.com/downloads">Git下载</a>后安装</li>
+</ul>
+<p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/git.png" alt="新建" style="zoom:50%;"></p>
+<p>终端中输入：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git --version <span class="comment">#是否出现安装版本信息，出现说明已经安装了</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Hexo下载</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<p>安装成功后在你想要存储博客项目的位置创建你的文件夹，我这里将路径设为“PATH/blog”</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在你的家目录下创建一个blog文件夹</span></span><br><span class="line">mkdir PATH/blog</span><br><span class="line"><span class="comment"># 进入目录</span></span><br><span class="line"><span class="built_in">cd</span> PATH/blog</span><br><span class="line"><span class="comment"># 初始化目录</span></span><br><span class="line">hexo init</span><br><span class="line"><span class="comment">#安装必备组件</span></span><br><span class="line">npm install</span><br><span class="line"><span class="comment"># 开启本地服务 </span></span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<p>此时打开<a href="http://localhost:4000/">http://localhost:4000/</a> 就可以看到运行在本地的hexo页面</p>
+<p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/hello_world.png" alt="新建" style="zoom:50%;"></p>
+<h3>
+  4. 部署到github
+</h3>
+
+<ul>
+<li><p>将博客关联到之前创建的github仓库上去，打开/blog文件夹下的“_config.yml”文件，这个文件存储的是博客的配置内容。</p>
+</li>
+<li><p>打开这个文件后在最下找到配置相关的部分将deploy的内容替换为(注意将我repository中的用户名替换为自己的用户名)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;one-command-deployment</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https:&#x2F;&#x2F;github.com&#x2F;windskyshaoyu&#x2F;windskyshaoyu.github.io.git</span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure>
+<p>！ 注意这里有一个神坑，大部分教程最后branch给的是“master”因为github创建仓库时的默认分支是master。但受自由美利坚种族冲突的影响，自2020.10.1起，github取消“master”这一可能带有种族歧视的词汇，默认分支更名为main。所以在部署时应部署到main分支上，也可以在设置中设置其他分支为显示页面可自行摸索。</p>
+</li>
+</ul>
+<p>终端输入：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#部署插件</span></span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"></span><br><span class="line"><span class="comment">#清除之前的记录</span></span><br><span class="line">hexo clean</span><br><span class="line"></span><br><span class="line"><span class="comment"># g for generate 编译</span></span><br><span class="line">hexo g </span><br><span class="line"></span><br><span class="line"><span class="comment">#d for deploy 部署到github</span></span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>此时若运行正常网速正常的情况下，便可以在<a href="https://your_user_name.github.io/下看到自己的博客主页。">https://your_user_name.github.io/下看到自己的博客主页。</a></p>
+<ul>
+<li>每次输入账号密码过于繁琐——关联Github账号，免密提交。</li>
+</ul>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 用你注册GitHub时的邮箱号，进行秘钥生成</span></span><br><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;xxxxxxx@gmail.com&quot;</span></span><br><span class="line"><span class="comment"># 系统就会生成一个隐藏文件夹.ssh</span></span><br><span class="line"><span class="built_in">cd</span> .ssh</span><br><span class="line"></span><br><span class="line"><span class="comment">#ls 应该能看到id_rsa.pub文件</span></span><br><span class="line">ls</span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制其中全部内容</span></span><br><span class="line">vim id_rsa.pub</span><br></pre></td></tr></table></figure>
+<p>  打开设置 —&gt; 选择SSH and GPG keys  —&gt; 新建一个ssh key将密钥复制进去，title可以随便填写</p>
+<p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/ssh1.png" alt="新建" style="zoom:30%;"></p>
+<p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/ssh2.png" alt="新建" style="zoom:30%;"></p>
+<p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/ssh3.png" alt="新建" style="zoom:25%;"></p>
+<h3>
+  5. //TODO
+</h3>
+
+<p>关于更换主题，设置评论区等内容我也花了不小的精力探索，主要是评论区的运营商更新比较频繁。。。之前的教程与现在的版本间隔过远需要自己摸索，日后有时间将其整理出来。</p>
+]]></content>
+      <tags>
+        <tag>技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Thompson Sampling笔记</title>
+    <url>/2021/01/30/Thompson%20Sampling%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>LeetCode1588 所有奇数长度子数组之和</title>
+    <url>/2021/02/01/LeetCode1588-%E6%89%80%E6%9C%89%E5%A5%87%E6%95%B0%E9%95%BF%E5%BA%A6%E5%AD%90%E6%95%B0%E7%BB%84%E4%B9%8B%E5%92%8C/</url>
+    <content><![CDATA[<p>​    给你一个正整数数组 arr ，请你计算所有可能的奇数长度子数组的和。<strong>子数组</strong> 定义为原数组中的一个连续子序列。请你返回 arr 中 所有奇数长度子数组的和</p>
+<a id="more"></a>
+<p>示例：</p>
+<p><strong>输入</strong>：arr = [1,4,2,5,3]<br><strong>输出</strong>：58<br><strong>解释</strong>：所有奇数长度子数组和它们的和为：<br>[1] = 1<br>[4] = 4<br>[2] = 2<br>[5] = 5<br>[3] = 3<br>[1,4,2] = 7<br>[4,2,5] = 11<br>[2,5,3] = 10<br>[1,4,2,5,3] = 15<br>我们将所有值求和得到 1 + 4 + 2 + 5 + 3 + 7 + 11 + 10 + 15 = 58</p>
+<h1 id="解法1-暴力求解"><a href="#解法1-暴力求解" class="headerlink" title="解法1 暴力求解"></a>解法1 暴力求解</h1><p>​    从index = 0 遍历整个数组，尝试所有可能的奇数size的数组，对其求和。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sumOddLengthSubarrays</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> answer = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;arr.size();i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> x = <span class="number">1</span> ; x + i &lt;=arr.size();x += <span class="number">2</span>)&#123;</span><br><span class="line">                answer += sum(arr,i,x+i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> answer;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>(sum求数组从i到x+i的部分的数字和)</p>
+<p>算上外层的两次循环+sum的一次循环，时间复杂度为o($n^3$)，空间复杂度为o(1)</p>
+<h1 id="算法2-前序数组和"><a href="#算法2-前序数组和" class="headerlink" title="算法2 前序数组和"></a>算法2 前序数组和</h1><p>​    牺牲部分的空间复杂度换取更优的时间复杂度。可以发现sum部分的求和很多计算是重复的，我们可以将数组的求和提前计算，sum部分只需要将arr[0:end] -arr[0:start]就可以得到arr[start:end]部分的求和。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sumOddLengthSubarrays</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> answer = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; presum;</span><br><span class="line">        presum.push_back(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num:arr)&#123;</span><br><span class="line">            presum.push_back(presum.back()+num);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;arr.size();i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> x = <span class="number">1</span> ; x + i &lt;=arr.size();x += <span class="number">2</span>)&#123;</span><br><span class="line">                answer += presum[x+i]-presum[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> answer;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度o($n^2$)空间复杂度o($n$)</p>
+<h1 id="解法3-O-n"><a href="#解法3-O-n" class="headerlink" title="解法3 O(n)"></a>解法3 O(n)</h1><p>​    利用题目的奇偶性。在arr[i]我们只需要计算出arr[i]在计算中出现了几次即可，为了使arr[i]所在的子数列长度为奇数，我们只需要从前后取偶偶或从前后取奇奇长度的数列，这时题目变成了一个排列组合问题。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sumOddLengthSubarrays</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> answer = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;arr.size();i++)&#123;</span><br><span class="line">           <span class="keyword">int</span> count = (i+<span class="number">1</span>)/<span class="number">2</span> * ((arr.size()-i)/<span class="number">2</span>) + (i+<span class="number">2</span>)/<span class="number">2</span> * ((arr.size()-i+<span class="number">1</span>)/<span class="number">2</span>);</span><br><span class="line">           answer += count*arr[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> answer;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>​    由于我们只需要遍历一次整个数组，时间复杂度为o($n$)</p>
+]]></content>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>排序算法总结</title>
+    <url>/2021/02/13/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
 </search>
