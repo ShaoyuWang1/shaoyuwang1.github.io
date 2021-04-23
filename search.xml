@@ -56,17 +56,17 @@ R(T) \leq O\left(T^{2 / 3}(\log T)^{1 / 3}\right)</script><p>​    To complete 
       </tags>
   </entry>
   <entry>
-    <title>My New Post</title>
-    <url>/2021/01/17/My-New-Post/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>Thompson Sampling笔记</title>
     <url>/2021/01/30/Thompson%20Sampling%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[]]></content>
       <tags>
         <tag>学术</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>My New Post</title>
+    <url>/2021/01/17/My-New-Post/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>mac下搭建hexo个人博客并部署到github</title>
@@ -171,10 +171,18 @@ R(T) \leq O\left(T^{2 / 3}(\log T)^{1 / 3}\right)</script><p>​    To complete 
       </tags>
   </entry>
   <entry>
-    <title>《只狼》游戏回顾</title>
-    <url>/2021/03/21/%E3%80%8A%E5%8F%AA%E7%8B%BC%E3%80%8B%E6%B8%B8%E6%88%8F%E5%9B%9E%E9%A1%BE/</url>
-    <content><![CDATA[<p><img src="/Users/windsky/blog/source/_posts/《只狼》游戏回顾/index.jpeg" alt></p>
-<a id="more"></a>]]></content>
+    <title>只狼-影逝二度</title>
+    <url>/2021/03/13/%E5%8F%AA%E7%8B%BC-%E5%BD%B1%E9%80%9D%E4%BA%8C%E5%BA%A6/</url>
+    <content><![CDATA[<p><img src="/2021/03/13/%E5%8F%AA%E7%8B%BC-%E5%BD%B1%E9%80%9D%E4%BA%8C%E5%BA%A6/index.jpeg" style="zoom:33%;"></p>
+<center> 有死之荣，无生之辱</center>
+
+<p>​    只狼打通之后回来补一个只狼的通关感受，这个游戏是我目前为止游玩时间最长的单机游戏，也是我第一个肝到全成就的游戏。跟舍友一起打的剑圣，犹记得剑圣跪地时舍友的欢呼和我把手柄一甩的仰天长啸。</p>
+<p>​    宫崎英高，yyds。</p>
+<a id="more"></a>
+]]></content>
+      <tags>
+        <tag>游戏</tag>
+      </tags>
   </entry>
   <entry>
     <title>宿舍内挖矿体验及收益情况</title>
