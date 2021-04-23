@@ -1,216 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title>My New Post</title>
-    <url>/2021/01/17/My-New-Post/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>MAB学习笔记</title>
-    <url>/2021/01/20/MAB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<p><img src="/2021/01/20/MAB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/sample.png" alt="新建" style="zoom:=40%;"></p>
-<p>​    <strong>M</strong>ulti <strong>A</strong>rmed <strong>B</strong>andit(<strong>MAB</strong>) is a simple but very powerful framework for algorithms that make decisions over time under uncertainty. An enormous body of work has accumulated over the years.</p>
-<a id="more"></a>
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>​    </p>
-<p>​    与多臂老虎机相类似的问题还有餐馆选择问题，当我们到达一个新地方不久，是每次去我们熟悉的最好吃的餐馆还是去探索新餐馆找可能更好吃的菜品。</p>
-<p>下面是摘自wiki的一段描述:</p>
-<p>​    In probability theory, the multi-armed bandit problem (sometimes called the K-or N-armed bandit problem) is a problem in which a fixed limited set of resources must be allocated between competing (alternative) choices in a way that maximizes their expected gain, when each choice’s properties are only partially known at the time of allocation, and may become better understood as time passes or by allocating resources to the choice.</p>
-<p>​    通俗点讲,当我们在玩老虎机时，老虎机有多个摇臂可供选择，每个摇臂对应的收益分布是固定但未知的，玩家需要在有限次的次数下做出最合适的选择。那么极端地想，我们每次摇臂就有两种倾向：</p>
-<ul>
-<li>尝试新的“老虎臂”，也许会得到比之前更好的结果(Explore)</li>
-</ul>
-<ul>
-<li>利用已知的老虎臂做最好的选择(Exploit)</li>
-</ul>
-<p>下面介绍一些基本的算法</p>
-<h1 id="1-Unioform-Exploration"><a href="#1-Unioform-Exploration" class="headerlink" title="1. Unioform Exploration"></a>1. Unioform Exploration</h1><h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>​    这个均匀探索算法的思想很简单，是一个 <em>Explore-first</em> 的算法。首先确定好Exploration Phase 和 Exploitation Phase的大小，然后在Exploration Phase中均匀地探索每个摇臂，用期望来描述这个摇臂对应的收益，之后在Exploitation Phase中根据之前的最大收益选择进行游戏。</p>
-<p>​    大体流程如下:</p>
-<ol>
-<li>Exploration Phase: try  each arm N times</li>
-<li>Select the arm $\hat{\alpha}$ with the highest reward </li>
-<li>Explotiation Phase: play arm $\hat{\alpha}$  in all remaining rounds</li>
-</ol>
-<h2 id="Regret-analysis"><a href="#Regret-analysis" class="headerlink" title="Regret analysis"></a>Regret analysis</h2><p>​    在进行exploit的时候我们会用之前explore得到的收益的平均值$\bar{\mu}(\alpha)$ 作为对真实期望$\mu(\alpha)$的估计，如果想要最后分析得到的结果准确我们应使这两个结果之间的差值尽量小，我们这里使用Hoeffding inequality对其进行分析。</p>
-<p>​    By defining the confidence radius $r(\alpha) = \sqrt{\frac{2logT}{N}}$ , using  Hoeffding inequality, we get :</p>
-<script type="math/tex; mode=display">
-\operatorname{Pr}\{|\bar{\mu}(a)-\mu(a)| \leq r(a)\} \geq 1-\frac{2}{T^{4}}</script><p>​    我们定义$\bar{\mu}(\alpha)$ 在这个范围内为 <strong>clean event</strong>, 反之为 <strong>bad event</strong>.可以看到bad event的order 为 $T^{-4}$可以忽略不计，在后面的推导证明中，可以姑且不考虑bad event的影响。</p>
-<p>​    后面的证明推导将采用英文QAQ。</p>
-<p>​    For simplicity, let us start with the case of K = 2 arms. Consider the clean event. We will show that if we chose the worse arm, it is not so bad because the expected rewards for the two arms would be close.</p>
-<p>​    Let the best arm be $\alpha^{✳️}$ and suppose the algorithm chooses the other arm $a \neq a^{✳️} .$ This must have been because its average reward was better than that of $a^{✳️} ;$ in other words, $\bar{\mu}(a)&gt;\bar{\mu}\left(a^{✳️}\right) .$ Since this is a clean event, we have:</p>
-<script type="math/tex; mode=display">
-\mu(a)+r(a) \geq \bar{\mu}(a)>\bar{\mu}\left(a^{*}\right) \geq \mu\left(a^{*}\right)-r\left(a^{*}\right)</script><p>​    Re-arranging the terms, it follows that</p>
-<script type="math/tex; mode=display">
-\mu\left(a^{*}\right)-\mu(a) \leq r(a)+r\left(a^{*}\right)=O\left(\sqrt{\frac{\log T}{N}}\right)</script><p>​    Thus, each round in the exploitation phase contributes at most $O\left(\sqrt{\frac{\log T}{N}}\right)$ to regret. And each round in exploration trivially contributes at most $1 .$ We derive an upper bound on the regret, which consists of two parts: for the first N rounds of exploration, and then for the remaining T - 2N rounds of exploitation:</p>
-<p>​    Recall that we can select any value for $N,$ as long as it is known to the algorithm before the first round. So, we can choose $N$ so as to (approximately) minimize the right-hand side. Noting that the two summands are, resp., monotonically increasing and monotonically decreasing in $N,$ <strong>we set $N$ so that they are (approximately) equal</strong>. For $N=T^{2 / 3}(\log T)^{1 / 3},$ we obtain:</p>
-<script type="math/tex; mode=display">
-R(T) \leq O\left(T^{2 / 3}(\log T)^{1 / 3}\right)</script><p>​    To complete the proof, we have to analyze the case of the “bad event”. Since regret can be at most T (because each round contributes at most 1), and the bad event happens with a very small probability (1/T 4), the (expected) regret from this case can be neglected. Formally,</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\mathbb{E}[R(T)] &=\mathbb{E}[R(T) \mid \text { clean event }] \times \operatorname{Pr}[\text { clean event }]+\mathbb{E}[R(T) \mid \text { bad event }] \times \operatorname{Pr}[\text { bad event }] \\
-& \leq \mathbb{E}[R(T) \mid \text { clean event }]+T \times O\left(T^{-4}\right) \\
-& \leq O\left(\sqrt{\log T} \times T^{2 / 3}\right)
-\end{aligned}</script><p>​    This complete the proff of K=2 arms.</p>
-<p>​    For $K&gt;2$ arms, we have to apply the union bound for (1) over the $K$ arms, and then follow the same argument as above. Note that the value of $T$ is greater than $K,$ since we need to explore each arm at least once. For the final regret computation, we will need to take into account the dependence on $K$ :<br>specifically, regret accumulated in exploration phase is now upper-bounded by $K N .$ Working through the proof, we obtain $R(T) \leq N K+O\left(\sqrt{\frac{\log T}{N}} \times T\right) .$ As before, we approximately minimize it by approximately minimizing the two summands. Specifically, we plug in $N=(T / K)^{2 / 3} \cdot O(\log T)^{1 / 3} .$ Completing the proof same way as in $(5)$ we obtain:</p>
-<p><strong><em>Explore First Algortihm achieves regret:</em></strong>$\mathbb{E}[R(T)] \leq T^{2 / 3} \times O(K \log T)^{1 / 3}$</p>
-<h1 id="2-Adaptive-Exploration"><a href="#2-Adaptive-Exploration" class="headerlink" title="2 Adaptive Exploration"></a>2 Adaptive Exploration</h1><p>​    Both exploration-first and epsilon-greedy have a big flaw that the exploration schedule does not depend on the history of the observed rewards. Whereas it is usually better to adapt exploration to the observed rewards. Informally, we refer to this distinction as adaptive vs non-adaptive exploration. In the remainder of this article we present two algorithms that implement adaptive exploration and achieve better regret. </p>
-<p>​    Let’s start with the case of $K=2$ arms. One natural idea is to alternate them until we find that one armi s much better than the other, at which time we abandon the inferior one. But how to define “one arm is much better” exactly?</p>
-<h2 id="Clean-evnt-and-confidence-bounds"><a href="#Clean-evnt-and-confidence-bounds" class="headerlink" title="Clean evnt and confidence bounds"></a>Clean evnt and confidence bounds</h2><p>​    Let us flesh out the idea mentioned above; this would also set up the stage for some other algorithms. Fix round $t .$ Let $n<em>{t}(a)$ be the number of samples from $\operatorname{arm} a$ in round $1,2, \ldots, t . \bar{\mu}</em>{t}(a)$ be the average reward of arm $a$ so far. We would like to use Hoeffding Inequality to derive</p>
-]]></content>
-      <tags>
-        <tag>学术</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Thompson Sampling笔记</title>
-    <url>/2021/01/30/Thompson%20Sampling%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>学术</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac下搭建hexo个人博客并部署到github</title>
-    <url>/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/</url>
-    <content><![CDATA[<p>主要内容：</p>
-<ul>
-<li><p>github注册与创建仓库</p>
-</li>
-<li><p>安装git、nodejs、hexo</p>
-</li>
-<li><p>初始化+创建hexo博客</p>
-</li>
-<li><p>部署到github上+自动化 </p>
-</li>
-<li><p>绑定域名、更换主题、设置评论区…（//TODO）</p>
- <a id="more"></a>     
-</li>
-</ul>
-<h3>
-  1.前言
-</h3>
-​    河北疫情导致圣诞与春节间的小假期无法返校，在家上网课而且空余时间没法打发，于是想着扩充下自己的技能树。再加上很久之前就有弄一个自己的博客的想法所以开始着手上网找教程了。不想自己花钱买服务器所以决定用github几番对比之后决定使用hexo。
-
-​    网上的教程有些或多或少的bug。。。导致自己琢磨一些很弱智的问题浪费了很多时间我把自己参考多份方案后的内容总结下来做参考。
-
-
-
-
-
-<h3>
-2. github注册与创建仓库
-</h3>
-
-
-
-
-<ul>
-<li>在<a href="https://github.com/">github</a> 官网注册账号，可能需要🚀</li>
-</ul>
-<p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/join.png" alt="新建" style="zoom:30%;"></p>
-<ul>
-<li>新建一个仓库</li>
-</ul>
-<p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/create1.png" alt="新建" style="zoom:30%;"></p>
-<p>注意仓库的名字必须是 (username/ +) <strong>usrname.github.io</strong> (由于我之前注册过这个名字的仓库，所以github这里提示我名字重复)</p>
-<p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/create2.png" alt="新建" style="zoom:30%;"></p>
-<h3>
-  3.安装nodejs、git、hexo
-</h3>
-
-<ul>
-<li><a href="https://nodejs.org/en/">node.js</a>下载后安装</li>
-</ul>
-<p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/nodejs.png" alt="新建" style="zoom:50%;"></p>
-<p>终端中输入：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ node -v <span class="comment">#是否出现安装版本信息，出现说明已经安装了</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><a href="https://git-scm.com/downloads">Git下载</a>后安装</li>
-</ul>
-<p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/git.png" alt="新建" style="zoom:50%;"></p>
-<p>终端中输入：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git --version <span class="comment">#是否出现安装版本信息，出现说明已经安装了</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>Hexo下载</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<p>安装成功后在你想要存储博客项目的位置创建你的文件夹，我这里将路径设为“PATH/blog”</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在你的家目录下创建一个blog文件夹</span></span><br><span class="line">mkdir PATH/blog</span><br><span class="line"><span class="comment"># 进入目录</span></span><br><span class="line"><span class="built_in">cd</span> PATH/blog</span><br><span class="line"><span class="comment"># 初始化目录</span></span><br><span class="line">hexo init</span><br><span class="line"><span class="comment">#安装必备组件</span></span><br><span class="line">npm install</span><br><span class="line"><span class="comment"># 开启本地服务 </span></span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p>此时打开<a href="http://localhost:4000/">http://localhost:4000/</a> 就可以看到运行在本地的hexo页面</p>
-<p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/hello_world.png" alt="新建" style="zoom:50%;"></p>
-<h3>
-  4. 部署到github
-</h3>
-
-<ul>
-<li><p>将博客关联到之前创建的github仓库上去，打开/blog文件夹下的“_config.yml”文件，这个文件存储的是博客的配置内容。</p>
-</li>
-<li><p>打开这个文件后在最下找到配置相关的部分将deploy的内容替换为(注意将我repository中的用户名替换为自己的用户名)</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;one-command-deployment</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https:&#x2F;&#x2F;github.com&#x2F;windskyshaoyu&#x2F;windskyshaoyu.github.io.git</span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure>
-<p>！ 注意这里有一个神坑，大部分教程最后branch给的是“master”因为github创建仓库时的默认分支是master。但受自由美利坚种族冲突的影响，自2020.10.1起，github取消“master”这一可能带有种族歧视的词汇，默认分支更名为main。所以在部署时应部署到main分支上，也可以在设置中设置其他分支为显示页面可自行摸索。</p>
-</li>
-</ul>
-<p>终端输入：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#部署插件</span></span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"></span><br><span class="line"><span class="comment">#清除之前的记录</span></span><br><span class="line">hexo clean</span><br><span class="line"></span><br><span class="line"><span class="comment"># g for generate 编译</span></span><br><span class="line">hexo g </span><br><span class="line"></span><br><span class="line"><span class="comment">#d for deploy 部署到github</span></span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>此时若运行正常网速正常的情况下，便可以在<a href="https://your_user_name.github.io/下看到自己的博客主页。">https://your_user_name.github.io/下看到自己的博客主页。</a></p>
-<ul>
-<li>每次输入账号密码过于繁琐——关联Github账号，免密提交。</li>
-</ul>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 用你注册GitHub时的邮箱号，进行秘钥生成</span></span><br><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;xxxxxxx@gmail.com&quot;</span></span><br><span class="line"><span class="comment"># 系统就会生成一个隐藏文件夹.ssh</span></span><br><span class="line"><span class="built_in">cd</span> .ssh</span><br><span class="line"></span><br><span class="line"><span class="comment">#ls 应该能看到id_rsa.pub文件</span></span><br><span class="line">ls</span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制其中全部内容</span></span><br><span class="line">vim id_rsa.pub</span><br></pre></td></tr></table></figure>
-<p>  打开设置 —&gt; 选择SSH and GPG keys  —&gt; 新建一个ssh key将密钥复制进去，title可以随便填写</p>
-<p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/ssh1.png" alt="新建" style="zoom:30%;"></p>
-<p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/ssh2.png" alt="新建" style="zoom:30%;"></p>
-<p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/ssh3.png" alt="新建" style="zoom:25%;"></p>
-<h3>
-  5. //TODO
-</h3>
-
-<p>关于更换主题，设置评论区等内容我也花了不小的精力探索，主要是评论区的运营商更新比较频繁。。。之前的教程与现在的版本间隔过远需要自己摸索，日后有时间将其整理出来。</p>
-]]></content>
-      <tags>
-        <tag>技术</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>排序算法总结</title>
-    <url>/2021/02/13/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<p><img src="/2021/02/13/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/index.png" alt="新建" style="zoom: 33%;"></p>
-<a id="more"></a>
-<p>​    分类</p>
-<ul>
-<li>比较类排序：</li>
-<li>非比较类排序：</li>
-</ul>
-<p>​    基本概念介绍</p>
-<h1 id="1-冒泡排序-Bubble-Sort"><a href="#1-冒泡排序-Bubble-Sort" class="headerlink" title="1 冒泡排序 Bubble Sort"></a>1 冒泡排序 Bubble Sort</h1><h2 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h2><p>​    比较基本的排序算法，在每次循环开始时从一端的元素开始向另一端循环，遇到右&gt;左则换位，这样在第一遍循环之后 我们可以保证数组的最右端是最大元素。依次重复n此后可保证数组按顺序排列完毕。</p>
-<h2 id="动图演示"><a href="#动图演示" class="headerlink" title="动图演示"></a>动图演示</h2><p><img src="/2021/02/13/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/bubble.gif" alt></p>
-<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span>* arr,<span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> value;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;len<span class="number">-1</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span>* pivot = &amp;arr[i];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> index = i+<span class="number">1</span>;index &lt;len ;index++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[index]&lt;*pivot)&#123;</span><br><span class="line">                value = *pivot;</span><br><span class="line">                *pivot = arr[index];</span><br><span class="line">                pivot = &amp; arr[index];</span><br><span class="line">                *pivot = value;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><h1 id="2-选择排序-Selection-Sort"><a href="#2-选择排序-Selection-Sort" class="headerlink" title="2  选择排序 Selection Sort"></a>2  选择排序 Selection Sort</h1><h2 id="算法描述-1"><a href="#算法描述-1" class="headerlink" title="算法描述"></a>算法描述</h2><p>​    也是一个比较基本的排序算法，每次循环时找到数组中最小的元素将其放在数组最左端。循环n次后得到排序完成的数组。</p>
-<h2 id="动图演示-1"><a href="#动图演示-1" class="headerlink" title="动图演示"></a>动图演示</h2><p><img src="/2021/02/13/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/selection.gif" alt></p>
-<h2 id="代码示例-1"><a href="#代码示例-1" class="headerlink" title="代码示例"></a>代码示例</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">selectionSort</span><span class="params">(<span class="keyword">int</span>* arr,<span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> value;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;len<span class="number">-1</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span>* pivot = &amp; arr[i];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> index = i+<span class="number">1</span>;index&lt;len;index++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[index]&lt;*pivot)&#123;</span><br><span class="line">                pivot = &amp;arr[index]; <span class="comment">//指向新的最小值</span></span><br><span class="line">            &#125;</span><br><span class="line">           </span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//与未排序部分的第一位进行替换</span></span><br><span class="line">        value = *pivot;</span><br><span class="line">        *pivot = arr[i];</span><br><span class="line">        arr[i] = value;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h2><h1 id="3-插入排序-Insertion-Sort"><a href="#3-插入排序-Insertion-Sort" class="headerlink" title="3 插入排序 Insertion Sort"></a>3 插入排序 Insertion Sort</h1><h2 id="算法描述-2"><a href="#算法描述-2" class="headerlink" title="算法描述"></a>算法描述</h2><p>​    大体思想为，循环i次时，保证数组的前i位元素都为已经排序好的，每次到i元素</p>
-<h2 id="动图演示-2"><a href="#动图演示-2" class="headerlink" title="动图演示"></a>动图演示</h2><p><img src="/2021/02/13/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/insertion.gif" alt></p>
-<h2 id="代码示例-2"><a href="#代码示例-2" class="headerlink" title="代码示例"></a>代码示例</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">selectionSort</span><span class="params">(<span class="keyword">int</span>* arr,<span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> value;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;len<span class="number">-1</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span>* pivot = &amp; arr[i];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> index = i+<span class="number">1</span>;index&lt;len;index++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[index]&lt;*pivot)&#123;</span><br><span class="line">                pivot = &amp;arr[index]; <span class="comment">//指向新的最小值</span></span><br><span class="line">            &#125;</span><br><span class="line">           </span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//与未排序部分的第一位进行替换</span></span><br><span class="line">        value = *pivot;</span><br><span class="line">        *pivot = arr[i];</span><br><span class="line">        arr[i] = value;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h2><h1 id="4-希尔排序-Shell-Sort"><a href="#4-希尔排序-Shell-Sort" class="headerlink" title="4 希尔排序 Shell Sort"></a>4 希尔排序 Shell Sort</h1><h1 id="5-归并排序-Merge-Sort"><a href="#5-归并排序-Merge-Sort" class="headerlink" title="5 归并排序 Merge Sort"></a>5 归并排序 Merge Sort</h1><p><a href="https://www.cnblogs.com/onepixel/articles/7674659.html">参考博客</a></p>
-]]></content>
-      <tags>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>提利昂·兰尼斯特是龙还是狮的一些猜想</title>
-    <url>/2021/01/20/%E5%B0%8F%E6%81%B6%E9%AD%94%E6%8F%90%E5%88%A9%E6%98%82%C2%B7%E5%85%B0%E5%B0%BC%E6%96%AF%E7%89%B9%E6%98%AF%E5%90%A6%E4%B8%BA%E9%BE%99%E7%A7%8D%E7%9A%84%E4%B8%80%E4%BA%9B%E7%8C%9C%E6%83%B3/</url>
-    <content><![CDATA[<p><img src="/2021/01/20/%E5%B0%8F%E6%81%B6%E9%AD%94%E6%8F%90%E5%88%A9%E6%98%82%C2%B7%E5%85%B0%E5%B0%BC%E6%96%AF%E7%89%B9%E6%98%AF%E5%90%A6%E4%B8%BA%E9%BE%99%E7%A7%8D%E7%9A%84%E4%B8%80%E4%BA%9B%E7%8C%9C%E6%83%B3/提利昂插画.png" alt="提利昂插画"></p>
-<p>​    提利昂·兰尼斯特斯特的出身问题一直是冰火论坛里争论不休的热点话题。附庸风雅地来总结下我看到的观点和论据。</p>
-<a id="more"></a>
-]]></content>
-      <tags>
-        <tag>冰火</tag>
-        <tag>闲谈</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>猫咪12分类</title>
-    <url>/2021/04/23/%E7%8C%AB%E5%92%AA12%E5%88%86%E7%B1%BB/</url>
-    <content><![CDATA[]]></content>
-  </entry>
+<search> 
+  
+  
+    
+    <entry>
+      <title>猫咪12分类</title>
+      <link href="2021/04/23/%E7%8C%AB%E5%92%AA12%E5%88%86%E7%B1%BB/"/>
+      <url>2021/04/23/%E7%8C%AB%E5%92%AA12%E5%88%86%E7%B1%BB/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>排序算法总结</title>
+      <link href="2021/02/13/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
+      <url>2021/02/13/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/</url>
+      
+        <content type="html"><![CDATA[<p><img src="/2021/02/13/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/index.png" alt="新建" style="zoom: 33%;"></p><a id="more"></a><p>​    分类</p><ul><li>比较类排序：</li><li>非比较类排序：</li></ul><p>​    基本概念介绍</p><h1 id="1-冒泡排序-Bubble-Sort"><a href="#1-冒泡排序-Bubble-Sort" class="headerlink" title="1 冒泡排序 Bubble Sort"></a>1 冒泡排序 Bubble Sort</h1><h2 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h2><p>​    比较基本的排序算法，在每次循环开始时从一端的元素开始向另一端循环，遇到右&gt;左则换位，这样在第一遍循环之后 我们可以保证数组的最右端是最大元素。依次重复n此后可保证数组按顺序排列完毕。</p><h2 id="动图演示"><a href="#动图演示" class="headerlink" title="动图演示"></a>动图演示</h2><p><img src="/2021/02/13/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/bubble.gif" alt></p><h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span>* arr,<span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> value;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;len<span class="number">-1</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span>* pivot = &amp;arr[i];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> index = i+<span class="number">1</span>;index &lt;len ;index++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[index]&lt;*pivot)&#123;</span><br><span class="line">                value = *pivot;</span><br><span class="line">                *pivot = arr[index];</span><br><span class="line">                pivot = &amp; arr[index];</span><br><span class="line">                *pivot = value;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><h1 id="2-选择排序-Selection-Sort"><a href="#2-选择排序-Selection-Sort" class="headerlink" title="2  选择排序 Selection Sort"></a>2  选择排序 Selection Sort</h1><h2 id="算法描述-1"><a href="#算法描述-1" class="headerlink" title="算法描述"></a>算法描述</h2><p>​    也是一个比较基本的排序算法，每次循环时找到数组中最小的元素将其放在数组最左端。循环n次后得到排序完成的数组。</p><h2 id="动图演示-1"><a href="#动图演示-1" class="headerlink" title="动图演示"></a>动图演示</h2><p><img src="/2021/02/13/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/selection.gif" alt></p><h2 id="代码示例-1"><a href="#代码示例-1" class="headerlink" title="代码示例"></a>代码示例</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">selectionSort</span><span class="params">(<span class="keyword">int</span>* arr,<span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> value;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;len<span class="number">-1</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span>* pivot = &amp; arr[i];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> index = i+<span class="number">1</span>;index&lt;len;index++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[index]&lt;*pivot)&#123;</span><br><span class="line">                pivot = &amp;arr[index]; <span class="comment">//指向新的最小值</span></span><br><span class="line">            &#125;</span><br><span class="line">           </span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//与未排序部分的第一位进行替换</span></span><br><span class="line">        value = *pivot;</span><br><span class="line">        *pivot = arr[i];</span><br><span class="line">        arr[i] = value;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h2><h1 id="3-插入排序-Insertion-Sort"><a href="#3-插入排序-Insertion-Sort" class="headerlink" title="3 插入排序 Insertion Sort"></a>3 插入排序 Insertion Sort</h1><h2 id="算法描述-2"><a href="#算法描述-2" class="headerlink" title="算法描述"></a>算法描述</h2><p>​    大体思想为，循环i次时，保证数组的前i位元素都为已经排序好的，每次到i元素</p><h2 id="动图演示-2"><a href="#动图演示-2" class="headerlink" title="动图演示"></a>动图演示</h2><p><img src="/2021/02/13/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/insertion.gif" alt></p><h2 id="代码示例-2"><a href="#代码示例-2" class="headerlink" title="代码示例"></a>代码示例</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">selectionSort</span><span class="params">(<span class="keyword">int</span>* arr,<span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> value;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;len<span class="number">-1</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span>* pivot = &amp; arr[i];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> index = i+<span class="number">1</span>;index&lt;len;index++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[index]&lt;*pivot)&#123;</span><br><span class="line">                pivot = &amp;arr[index]; <span class="comment">//指向新的最小值</span></span><br><span class="line">            &#125;</span><br><span class="line">           </span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//与未排序部分的第一位进行替换</span></span><br><span class="line">        value = *pivot;</span><br><span class="line">        *pivot = arr[i];</span><br><span class="line">        arr[i] = value;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h2><h1 id="4-希尔排序-Shell-Sort"><a href="#4-希尔排序-Shell-Sort" class="headerlink" title="4 希尔排序 Shell Sort"></a>4 希尔排序 Shell Sort</h1><h1 id="5-归并排序-Merge-Sort"><a href="#5-归并排序-Merge-Sort" class="headerlink" title="5 归并排序 Merge Sort"></a>5 归并排序 Merge Sort</h1><p><a href="https://www.cnblogs.com/onepixel/articles/7674659.html">参考博客</a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Thompson Sampling笔记</title>
+      <link href="2021/01/30/Thompson%20Sampling%E7%AC%94%E8%AE%B0/"/>
+      <url>2021/01/30/Thompson%20Sampling%E7%AC%94%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 学术 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>提利昂·兰尼斯特是龙还是狮的一些猜想</title>
+      <link href="2021/01/20/%E5%B0%8F%E6%81%B6%E9%AD%94%E6%8F%90%E5%88%A9%E6%98%82%C2%B7%E5%85%B0%E5%B0%BC%E6%96%AF%E7%89%B9%E6%98%AF%E5%90%A6%E4%B8%BA%E9%BE%99%E7%A7%8D%E7%9A%84%E4%B8%80%E4%BA%9B%E7%8C%9C%E6%83%B3/"/>
+      <url>2021/01/20/%E5%B0%8F%E6%81%B6%E9%AD%94%E6%8F%90%E5%88%A9%E6%98%82%C2%B7%E5%85%B0%E5%B0%BC%E6%96%AF%E7%89%B9%E6%98%AF%E5%90%A6%E4%B8%BA%E9%BE%99%E7%A7%8D%E7%9A%84%E4%B8%80%E4%BA%9B%E7%8C%9C%E6%83%B3/</url>
+      
+        <content type="html"><![CDATA[<p><img src="/2021/01/20/%E5%B0%8F%E6%81%B6%E9%AD%94%E6%8F%90%E5%88%A9%E6%98%82%C2%B7%E5%85%B0%E5%B0%BC%E6%96%AF%E7%89%B9%E6%98%AF%E5%90%A6%E4%B8%BA%E9%BE%99%E7%A7%8D%E7%9A%84%E4%B8%80%E4%BA%9B%E7%8C%9C%E6%83%B3/提利昂插画.png" alt="提利昂插画"></p><p>​    提利昂·兰尼斯特斯特的出身问题一直是冰火论坛里争论不休的热点话题。附庸风雅地来总结下我看到的双方观点论据。</p><a id="more"></a><p>​    在开始讲两派观点之前先声明下我的观点，我认为小恶魔是龙家，主观上纯粹因为爽，一个如此讨喜的人物配拥有一身龙血，并且可以规避弑亲必死的因果律武器。客观原因在以下的论据中体现，我按我认为的可信度强弱将证据进行了排序。</p><h1 id="观点1：小恶魔是龙家的"><a href="#观点1：小恶魔是龙家的" class="headerlink" title="观点1：小恶魔是龙家的"></a>观点1：小恶魔是龙家的</h1><h2 id="证据1-发色与异色瞳（难以辩驳的铁证）"><a href="#证据1-发色与异色瞳（难以辩驳的铁证）" class="headerlink" title="证据1 发色与异色瞳（难以辩驳的铁证）"></a>证据1 发色与异色瞳（难以辩驳的铁证）</h2><pre><code> 马丁在人的发色和身材外貌描写上是很注重细节的，无论是私生子还是嫡子都可以看到很多关于父子或一个家族中相近的特点存在，如狮子家的金发、龙家的白化病（笑）、大小剥皮的瞳孔，这些细节是让冰火世界充满味道的源泉。</code></pre><p>​    说回重点，这是小恶魔在卷一出场时的描写：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">琼恩发觉自己几乎无法将视线从他身上抽离，他暗想，这才是王者应有的风范。接着他望向兰尼斯特雄狮的弟弟，小恶魔提利昂，此人正摇摇摆摆走在哥哥身边，他是个身高只有哥哥一半的侏儒，鼓动着畸形的双腿努力追上哥哥的脚步，他的头大得不成比例，鼓胀额头下是一张扭曲的怪脸，双眼一碧一黑，从满头长直金发下面向外窥视，他头发的颜色几乎金亮成白。</span><br></pre></td></tr></table></figure><p>​    重点在 <strong>一碧一黑 </strong>与 <strong>金亮成白</strong>，先说异色瞳这一点，这在冰火世界中目前提到的还有两例分别为<strong>西蕊洋星</strong>与<strong>阿莱莎·坦格利安</strong>，这两人都是龙血。</p><p>​    西蕊洋星是庸王伊耿四世的私生女，寒铁血鸭都在追求的大美女，她的瞳色是一蓝一绿。（TheMico的西蕊洋星插画👇）</p><p><img src="/2021/01/20/%E5%B0%8F%E6%81%B6%E9%AD%94%E6%8F%90%E5%88%A9%E6%98%82%C2%B7%E5%85%B0%E5%B0%BC%E6%96%AF%E7%89%B9%E6%98%AF%E5%90%A6%E4%B8%BA%E9%BE%99%E7%A7%8D%E7%9A%84%E4%B8%80%E4%BA%9B%E7%8C%9C%E6%83%B3/西蕊洋星.png" alt></p><p>​    阿莱莎·坦格利安是外传血与火中出场的人物，是国王杰赫里斯一世与王后亚莉珊·坦格利安的第二个孩子，一名御龙者，她的龙是红龙梅利亚斯。她天生异瞳，一只是紫罗兰色，另一只是绿色。</p><p>「它和我都曾是紅色處女，現在我們都被騎了。</p><p>​                                            —— 阿萊莎在駕馭她的龍後，評價她自己和梅麗亞斯」</p><p>「我壓在<a href="http://asoiaf.huijiwiki.com/wiki/贝尔隆·坦格利安(杰赫里斯一世之子">他</a>)身上，反覆騎他。今晚我還要再好好享受，我喜歡騎他。</p><p>​                                            —— 阿萊莎在她的新婚之夜次日清晨宣稱    」</p><p>​    还有发色金的发白，我个人认为这是几乎明示龙血的证据了如果提利昂父亲是泰温，母亲是乔安娜，两只狮子血脉的孩子发色应该是纯正的金色（参考瑟曦与詹姆）但这里描写金地发白就很微妙了。</p><h2 id="证据2-病态地迷恋龙"><a href="#证据2-病态地迷恋龙" class="headerlink" title="证据2 病态地迷恋龙"></a>证据2 病态地迷恋龙</h2><p>​    提利昂从小便对龙很痴迷，在他的命名仪式上，他的叔叔吉利安问他：想要什么东西？幼小的半人说，他想要一条未成年的龙。众人听罢纷纷讪笑，因为最后的龙已经死了一个多世纪——再也没有龙了。甚少哭泣的提利昂知道后，哭了很久。</p><p>​    他熟读《龙、蜥龙和长翼龙：龙族的非自然演化史》、《血龙狂舞真史》等各类有关于龙的书籍。他也因此掌握了许多有关魔龙的知识，例如什么龙骨含铁量极高啊、龙口散播死亡啊、龙的唯一弱点是眼睛blabla，都是马丁老爷子借他的口告诉我们的。</p><p>​    很久以后，提利昂告诉雪诺，他小时候曾经非常认真地想要一条幼龙。雪诺表示难以置信，毕竟这种违反常识的愿望，跟现实睿智的半人联系不到一起。但提利昂却说：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">……只要能骑在龙背上，即便是发育不良，畸形扭曲的丑陋小男孩也可以睥睨全世界。”提利昂推开熊皮，站起身来。“以前我常躲在凯岩城深处的地道，燃起火堆，望着熊熊烈焰，一望就是好几个钟头，一边幻想那是魔龙吐出的烈火。有时候我会幻想我老爸被火烧死，有时候则是我老姐。</span><br></pre></td></tr></table></figure><h2 id="证据3-出生害死母亲与龙的三首"><a href="#证据3-出生害死母亲与龙的三首" class="headerlink" title="证据3 出生害死母亲与龙的三首"></a>证据3 出生害死母亲与龙的三首</h2><p>​    这个证据我个人是很推崇的，因为这样的话文章会对仗工整顺畅。</p><p>​    首先说回龙家的族徽:黑底红色三头龙，龙有三个头，这并不是说一条龙长着三个头，而是指三这个数字与龙家割舍不了的关系。</p><p><img src="/2021/01/20/%E5%B0%8F%E6%81%B6%E9%AD%94%E6%8F%90%E5%88%A9%E6%98%82%C2%B7%E5%85%B0%E5%B0%BC%E6%96%AF%E7%89%B9%E6%98%AF%E5%90%A6%E4%B8%BA%E9%BE%99%E7%A7%8D%E7%9A%84%E4%B8%80%E4%BA%9B%E7%8C%9C%E6%83%B3/坦格利安族徽.png" alt></p><p>​    三百多年前，伊耿·坦格利安与他的一个姐姐和一个妹妹，三个人分别骑着三头巨龙，征服了整个维斯特洛大陆，开启了坦格利安王朝。如今，丹妮莉丝带着三条龙再次杀回，龙有了，人呢？如今，我们知道了琼恩·雪诺也是龙家人（书里还是没实锤不过要是囧都不是龙家我就弃坑了）。只剩下最后一个名额，而纵观全局，剩下的那个巨头，就是提利昂。</p><p>​    并且这三人还有一个巧合就是诞生时害死了母亲， 囧、龙妈和小恶魔都是出生时母亲去世，也能从某种程度上构成巧合。</p><h2 id="证据4-疯王痴迷乔安娜"><a href="#证据4-疯王痴迷乔安娜" class="headerlink" title="证据4 疯王痴迷乔安娜"></a>证据4 疯王痴迷乔安娜</h2><p>​    疯王对泰温的老婆乔安娜的迷恋有很多的描写。伊里斯在泰温结婚时闹洞房十分积极，有学士隐晦的记载，伊里斯<strong>“获得了过分的自由”</strong>，伊里斯甚至表示<strong>要是初夜权没废除就好了</strong>，可以说下流猥琐至极。</p><p>​    在泰温当国王之手初期，乔安娜也是随自己丈夫住在君临的，但没多久就被当时的雷拉王后赶回凯岩城，这俩人可是好闺蜜。这之后，乔安娜在凯岩城生下了金色双胞胎。伊里斯听说了乔安娜的生产后曾说<strong>“我娶了错误的女人。”</strong>他派人送去礼金，要求泰温在双胞胎长大后把他们带来君临，并要求乔安娜同往，因为他“太久没瞧见那张俏丽的脸了”。</p><p>​    272AC，伊里斯加冕十年庆典的比武大会上，乔安娜带着两个孩子拜见了伊里斯，醉酒的伊里斯问乔安娜给孩子们喂奶是不是“毁了你那对儿坚挺又骄傲的奶子”。这句话让乔安娜遭到了极大羞辱。273AC，乔安娜在凯岩城生下提利昂并难产而死。这个时间上的设置给了疯王侮辱乔安娜的机会。</p><h2 id><a href="#" class="headerlink" title=" "></a> </h2><h1 id="观点2：小恶魔不是龙家的"><a href="#观点2：小恶魔不是龙家的" class="headerlink" title="观点2：小恶魔不是龙家的"></a>观点2：小恶魔不是龙家的</h1><h2 id="证据1-泰温太骄傲了，不可能吃别人的残羹剩饭"><a href="#证据1-泰温太骄傲了，不可能吃别人的残羹剩饭" class="headerlink" title="证据1 泰温太骄傲了，不可能吃别人的残羹剩饭"></a>证据1 泰温太骄傲了，不可能吃别人的残羹剩饭</h2><p>​    泰温对乔安娜的爱可以从书中很多细节中看出，据说他们结婚当日泰温露出了笑容，对于泰温来说这是极其少见的情绪外露。各方面的线索都显示他们的婚姻非常幸福，乔安娜深受泰温的信任，不止作为他的妻子，还是他的参谋和朋友。许多人都知道一句俗语描述她对丈夫的影响“泰温大人统治七国”（作为国王之手）但是“乔安娜夫人统治着泰温大人。并且乔安娜死后，泰温再也没有笑过（也受他父亲，笑狮泰陀斯的影响）。</p><p>​    这样一个人物，如此爱自己的妻子，更不可能容许自己的妻子被玷污的。有谣言称乔安娜的初夜在杰赫里斯加冕的当晚就给了伊里斯，并且在伊里斯称王之后还当过一段疯王的情妇。这种说法被派席尔国师否定。在他的信中，他声称“骄傲的泰温伯爵绝不可能吃别人的残羹剩饭”。</p><p><img src="/2021/01/20/%E5%B0%8F%E6%81%B6%E9%AD%94%E6%8F%90%E5%88%A9%E6%98%82%C2%B7%E5%85%B0%E5%B0%BC%E6%96%AF%E7%89%B9%E6%98%AF%E5%90%A6%E4%B8%BA%E9%BE%99%E7%A7%8D%E7%9A%84%E4%B8%80%E4%BA%9B%E7%8C%9C%E6%83%B3/乔安娜.png" alt></p><h2 id="证据2-泰温对伊里斯挑衅的反应"><a href="#证据2-泰温对伊里斯挑衅的反应" class="headerlink" title="证据2 泰温对伊里斯挑衅的反应"></a>证据2 泰温对伊里斯挑衅的反应</h2><p>​    疯王和泰温在年轻时（疯王未疯时）是挚友，也因此疯王力排众议将当时尚且年轻的泰温扶上国王之手的位置。但是随着时间的推移，疯王对泰温的感情逐渐转为了嫉妒。也因此支持提利昂非龙的人们认为疯王对乔安娜的轻浮言论只是为了挑衅和激怒泰温。</p><p>​    初次之外更要提的是，疯王三番五次出言挑逗乔安娜泰温都能忍下来，如果疯王真的与乔安娜有染泰温不可能再给他继续兢兢业业地做国王之手（龙血党认为这只是因为疯王与乔安娜有染这一事未被泰文知晓）。让泰温卸下国王之手位置的居然是疯王给詹姆披上白袍（削去了詹姆继承权，迫使泰温传凯岩城给小恶魔），这对骄傲的泰温来说是很不合理的。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 冰火 </tag>
+            
+            <tag> 闲谈 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>MAB学习笔记</title>
+      <link href="2021/01/20/MAB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+      <url>2021/01/20/MAB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<p><img src="/2021/01/20/MAB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/sample.png" alt="新建" style="zoom:=40%;"></p><p>​    <strong>M</strong>ulti <strong>A</strong>rmed <strong>B</strong>andit(<strong>MAB</strong>) is a simple but very powerful framework for algorithms that make decisions over time under uncertainty. An enormous body of work has accumulated over the years.</p><a id="more"></a><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>​    </p><p>​    与多臂老虎机相类似的问题还有餐馆选择问题，当我们到达一个新地方不久，是每次去我们熟悉的最好吃的餐馆还是去探索新餐馆找可能更好吃的菜品。</p><p>下面是摘自wiki的一段描述:</p><p>​    In probability theory, the multi-armed bandit problem (sometimes called the K-or N-armed bandit problem) is a problem in which a fixed limited set of resources must be allocated between competing (alternative) choices in a way that maximizes their expected gain, when each choice’s properties are only partially known at the time of allocation, and may become better understood as time passes or by allocating resources to the choice.</p><p>​    通俗点讲,当我们在玩老虎机时，老虎机有多个摇臂可供选择，每个摇臂对应的收益分布是固定但未知的，玩家需要在有限次的次数下做出最合适的选择。那么极端地想，我们每次摇臂就有两种倾向：</p><ul><li>尝试新的“老虎臂”，也许会得到比之前更好的结果(Explore)</li></ul><ul><li>利用已知的老虎臂做最好的选择(Exploit)</li></ul><p>下面介绍一些基本的算法</p><h1 id="1-Unioform-Exploration"><a href="#1-Unioform-Exploration" class="headerlink" title="1. Unioform Exploration"></a>1. Unioform Exploration</h1><h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>​    这个均匀探索算法的思想很简单，是一个 <em>Explore-first</em> 的算法。首先确定好Exploration Phase 和 Exploitation Phase的大小，然后在Exploration Phase中均匀地探索每个摇臂，用期望来描述这个摇臂对应的收益，之后在Exploitation Phase中根据之前的最大收益选择进行游戏。</p><p>​    大体流程如下:</p><ol><li>Exploration Phase: try  each arm N times</li><li>Select the arm $\hat{\alpha}$ with the highest reward </li><li>Explotiation Phase: play arm $\hat{\alpha}$  in all remaining rounds</li></ol><h2 id="Regret-analysis"><a href="#Regret-analysis" class="headerlink" title="Regret analysis"></a>Regret analysis</h2><p>​    在进行exploit的时候我们会用之前explore得到的收益的平均值$\bar{\mu}(\alpha)$ 作为对真实期望$\mu(\alpha)$的估计，如果想要最后分析得到的结果准确我们应使这两个结果之间的差值尽量小，我们这里使用Hoeffding inequality对其进行分析。</p><p>​    By defining the confidence radius $r(\alpha) = \sqrt{\frac{2logT}{N}}$ , using  Hoeffding inequality, we get :</p><script type="math/tex; mode=display">\operatorname{Pr}\{|\bar{\mu}(a)-\mu(a)| \leq r(a)\} \geq 1-\frac{2}{T^{4}}</script><p>​    我们定义$\bar{\mu}(\alpha)$ 在这个范围内为 <strong>clean event</strong>, 反之为 <strong>bad event</strong>.可以看到bad event的order 为 $T^{-4}$可以忽略不计，在后面的推导证明中，可以姑且不考虑bad event的影响。</p><p>​    后面的证明推导将采用英文QAQ。</p><p>​    For simplicity, let us start with the case of K = 2 arms. Consider the clean event. We will show that if we chose the worse arm, it is not so bad because the expected rewards for the two arms would be close.</p><p>​    Let the best arm be $\alpha^{✳️}$ and suppose the algorithm chooses the other arm $a \neq a^{✳️} .$ This must have been because its average reward was better than that of $a^{✳️} ;$ in other words, $\bar{\mu}(a)&gt;\bar{\mu}\left(a^{✳️}\right) .$ Since this is a clean event, we have:</p><script type="math/tex; mode=display">\mu(a)+r(a) \geq \bar{\mu}(a)>\bar{\mu}\left(a^{*}\right) \geq \mu\left(a^{*}\right)-r\left(a^{*}\right)</script><p>​    Re-arranging the terms, it follows that</p><script type="math/tex; mode=display">\mu\left(a^{*}\right)-\mu(a) \leq r(a)+r\left(a^{*}\right)=O\left(\sqrt{\frac{\log T}{N}}\right)</script><p>​    Thus, each round in the exploitation phase contributes at most $O\left(\sqrt{\frac{\log T}{N}}\right)$ to regret. And each round in exploration trivially contributes at most $1 .$ We derive an upper bound on the regret, which consists of two parts: for the first N rounds of exploration, and then for the remaining T - 2N rounds of exploitation:</p><p>​    Recall that we can select any value for $N,$ as long as it is known to the algorithm before the first round. So, we can choose $N$ so as to (approximately) minimize the right-hand side. Noting that the two summands are, resp., monotonically increasing and monotonically decreasing in $N,$ <strong>we set $N$ so that they are (approximately) equal</strong>. For $N=T^{2 / 3}(\log T)^{1 / 3},$ we obtain:</p><script type="math/tex; mode=display">R(T) \leq O\left(T^{2 / 3}(\log T)^{1 / 3}\right)</script><p>​    To complete the proof, we have to analyze the case of the “bad event”. Since regret can be at most T (because each round contributes at most 1), and the bad event happens with a very small probability (1/T 4), the (expected) regret from this case can be neglected. Formally,</p><script type="math/tex; mode=display">\begin{aligned}\mathbb{E}[R(T)] &=\mathbb{E}[R(T) \mid \text { clean event }] \times \operatorname{Pr}[\text { clean event }]+\mathbb{E}[R(T) \mid \text { bad event }] \times \operatorname{Pr}[\text { bad event }] \\& \leq \mathbb{E}[R(T) \mid \text { clean event }]+T \times O\left(T^{-4}\right) \\& \leq O\left(\sqrt{\log T} \times T^{2 / 3}\right)\end{aligned}</script><p>​    This complete the proff of K=2 arms.</p><p>​    For $K&gt;2$ arms, we have to apply the union bound for (1) over the $K$ arms, and then follow the same argument as above. Note that the value of $T$ is greater than $K,$ since we need to explore each arm at least once. For the final regret computation, we will need to take into account the dependence on $K$ :<br>specifically, regret accumulated in exploration phase is now upper-bounded by $K N .$ Working through the proof, we obtain $R(T) \leq N K+O\left(\sqrt{\frac{\log T}{N}} \times T\right) .$ As before, we approximately minimize it by approximately minimizing the two summands. Specifically, we plug in $N=(T / K)^{2 / 3} \cdot O(\log T)^{1 / 3} .$ Completing the proof same way as in $(5)$ we obtain:</p><p><strong><em>Explore First Algortihm achieves regret:</em></strong>$\mathbb{E}[R(T)] \leq T^{2 / 3} \times O(K \log T)^{1 / 3}$</p><h1 id="2-Adaptive-Exploration"><a href="#2-Adaptive-Exploration" class="headerlink" title="2 Adaptive Exploration"></a>2 Adaptive Exploration</h1><p>​    Both exploration-first and epsilon-greedy have a big flaw that the exploration schedule does not depend on the history of the observed rewards. Whereas it is usually better to adapt exploration to the observed rewards. Informally, we refer to this distinction as adaptive vs non-adaptive exploration. In the remainder of this article we present two algorithms that implement adaptive exploration and achieve better regret. </p><p>​    Let’s start with the case of $K=2$ arms. One natural idea is to alternate them until we find that one armi s much better than the other, at which time we abandon the inferior one. But how to define “one arm is much better” exactly?</p><h2 id="Clean-evnt-and-confidence-bounds"><a href="#Clean-evnt-and-confidence-bounds" class="headerlink" title="Clean evnt and confidence bounds"></a>Clean evnt and confidence bounds</h2><p>​    Let us flesh out the idea mentioned above; this would also set up the stage for some other algorithms. Fix round $t .$ Let $n<em>{t}(a)$ be the number of samples from $\operatorname{arm} a$ in round $1,2, \ldots, t . \bar{\mu}</em>{t}(a)$ be the average reward of arm $a$ so far. We would like to use Hoeffding Inequality to derive</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 学术 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>mac下搭建hexo个人博客并部署到github</title>
+      <link href="2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/"/>
+      <url>2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/</url>
+      
+        <content type="html"><![CDATA[<p>主要内容：</p><ul><li><p>github注册与创建仓库</p></li><li><p>安装git、nodejs、hexo</p></li><li><p>初始化+创建hexo博客</p></li><li><p>部署到github上+自动化 </p></li><li><p>绑定域名、更换主题、设置评论区…（//TODO）</p> <a id="more"></a>     </li></ul><h3>  1.前言</h3>​    河北疫情导致圣诞与春节间的小假期无法返校，在家上网课而且空余时间没法打发，于是想着扩充下自己的技能树。再加上很久之前就有弄一个自己的博客的想法所以开始着手上网找教程了。不想自己花钱买服务器所以决定用github几番对比之后决定使用hexo。​    网上的教程有些或多或少的bug。。。导致自己琢磨一些很弱智的问题浪费了很多时间我把自己参考多份方案后的内容总结下来做参考。<h3>2. github注册与创建仓库</h3><ul><li>在<a href="https://github.com/">github</a> 官网注册账号，可能需要🚀</li></ul><p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/join.png" alt="新建" style="zoom:30%;"></p><ul><li>新建一个仓库</li></ul><p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/create1.png" alt="新建" style="zoom:30%;"></p><p>注意仓库的名字必须是 (username/ +) <strong>usrname.github.io</strong> (由于我之前注册过这个名字的仓库，所以github这里提示我名字重复)</p><p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/create2.png" alt="新建" style="zoom:30%;"></p><h3>  3.安装nodejs、git、hexo</h3><ul><li><a href="https://nodejs.org/en/">node.js</a>下载后安装</li></ul><p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/nodejs.png" alt="新建" style="zoom:50%;"></p><p>终端中输入：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ node -v <span class="comment">#是否出现安装版本信息，出现说明已经安装了</span></span><br></pre></td></tr></table></figure><ul><li><a href="https://git-scm.com/downloads">Git下载</a>后安装</li></ul><p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/git.png" alt="新建" style="zoom:50%;"></p><p>终端中输入：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git --version <span class="comment">#是否出现安装版本信息，出现说明已经安装了</span></span><br></pre></td></tr></table></figure><ul><li>Hexo下载</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure><p>安装成功后在你想要存储博客项目的位置创建你的文件夹，我这里将路径设为“PATH/blog”</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在你的家目录下创建一个blog文件夹</span></span><br><span class="line">mkdir PATH/blog</span><br><span class="line"><span class="comment"># 进入目录</span></span><br><span class="line"><span class="built_in">cd</span> PATH/blog</span><br><span class="line"><span class="comment"># 初始化目录</span></span><br><span class="line">hexo init</span><br><span class="line"><span class="comment">#安装必备组件</span></span><br><span class="line">npm install</span><br><span class="line"><span class="comment"># 开启本地服务 </span></span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure><p>此时打开<a href="http://localhost:4000/">http://localhost:4000/</a> 就可以看到运行在本地的hexo页面</p><p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/hello_world.png" alt="新建" style="zoom:50%;"></p><h3>  4. 部署到github</h3><ul><li><p>将博客关联到之前创建的github仓库上去，打开/blog文件夹下的“_config.yml”文件，这个文件存储的是博客的配置内容。</p></li><li><p>打开这个文件后在最下找到配置相关的部分将deploy的内容替换为(注意将我repository中的用户名替换为自己的用户名)</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;one-command-deployment</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https:&#x2F;&#x2F;github.com&#x2F;windskyshaoyu&#x2F;windskyshaoyu.github.io.git</span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure><p>！ 注意这里有一个神坑，大部分教程最后branch给的是“master”因为github创建仓库时的默认分支是master。但受自由美利坚种族冲突的影响，自2020.10.1起，github取消“master”这一可能带有种族歧视的词汇，默认分支更名为main。所以在部署时应部署到main分支上，也可以在设置中设置其他分支为显示页面可自行摸索。</p></li></ul><p>终端输入：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#部署插件</span></span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"></span><br><span class="line"><span class="comment">#清除之前的记录</span></span><br><span class="line">hexo clean</span><br><span class="line"></span><br><span class="line"><span class="comment"># g for generate 编译</span></span><br><span class="line">hexo g </span><br><span class="line"></span><br><span class="line"><span class="comment">#d for deploy 部署到github</span></span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure><p>此时若运行正常网速正常的情况下，便可以在<a href="https://your_user_name.github.io/下看到自己的博客主页。">https://your_user_name.github.io/下看到自己的博客主页。</a></p><ul><li>每次输入账号密码过于繁琐——关联Github账号，免密提交。</li></ul>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用你注册GitHub时的邮箱号，进行秘钥生成</span></span><br><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;xxxxxxx@gmail.com&quot;</span></span><br><span class="line"><span class="comment"># 系统就会生成一个隐藏文件夹.ssh</span></span><br><span class="line"><span class="built_in">cd</span> .ssh</span><br><span class="line"></span><br><span class="line"><span class="comment">#ls 应该能看到id_rsa.pub文件</span></span><br><span class="line">ls</span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制其中全部内容</span></span><br><span class="line">vim id_rsa.pub</span><br></pre></td></tr></table></figure><p>  打开设置 —&gt; 选择SSH and GPG keys  —&gt; 新建一个ssh key将密钥复制进去，title可以随便填写</p><p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/ssh1.png" alt="新建" style="zoom:30%;"></p><p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/ssh2.png" alt="新建" style="zoom:30%;"></p><p><img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/ssh3.png" alt="新建" style="zoom:25%;"></p><h3>  5. //TODO</h3><p>关于更换主题，设置评论区等内容我也花了不小的精力探索，主要是评论区的运营商更新比较频繁。。。之前的教程与现在的版本间隔过远需要自己摸索，日后有时间将其整理出来。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 技术 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>My New Post</title>
+      <link href="2021/01/17/My-New-Post/"/>
+      <url>2021/01/17/My-New-Post/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+  
+  
 </search>
