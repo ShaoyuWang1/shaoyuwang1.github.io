@@ -173,7 +173,10 @@ R(T) \leq O\left(T^{2 / 3}(\log T)^{1 / 3}\right)</script><p>​    To complete 
   <entry>
     <title>提利昂·兰尼斯特是龙还是狮的一些猜想</title>
     <url>/2021/01/20/%E5%B0%8F%E6%81%B6%E9%AD%94%E6%8F%90%E5%88%A9%E6%98%82%C2%B7%E5%85%B0%E5%B0%BC%E6%96%AF%E7%89%B9%E6%98%AF%E5%90%A6%E4%B8%BA%E9%BE%99%E7%A7%8D%E7%9A%84%E4%B8%80%E4%BA%9B%E7%8C%9C%E6%83%B3/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<p>​    提利昂·兰尼斯特斯特的出身问题一直是冰火论坛里争论不休的热点话题。我想就这个焦点话题谈谈我的想法。</p>
+<p><img src="/Users/windsky/blog/source/_posts/小恶魔提利昂·兰尼斯特是否为龙种的一些猜想/u=2916956410,4154779554&amp;fm=26&amp;gp=0.jpeg" alt></p>
+<a id="more"></a>
+]]></content>
       <tags>
         <tag>冰火</tag>
         <tag>闲谈</tag>
@@ -190,7 +193,6 @@ R(T) \leq O\left(T^{2 / 3}(\log T)^{1 / 3}\right)</script><p>​    To complete 
 <li>非比较类排序：</li>
 </ul>
 <p>​    基本概念介绍</p>
-<p><a href="https://www.cnblogs.com/onepixel/articles/7674659.html">参考博客</a></p>
 <h1 id="1-冒泡排序-Bubble-Sort"><a href="#1-冒泡排序-Bubble-Sort" class="headerlink" title="1 冒泡排序 Bubble Sort"></a>1 冒泡排序 Bubble Sort</h1><h2 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h2><p>​    比较基本的排序算法，在每次循环开始时从一端的元素开始向另一端循环，遇到右&gt;左则换位，这样在第一遍循环之后 我们可以保证数组的最右端是最大元素。依次重复n此后可保证数组按顺序排列完毕。</p>
 <h2 id="动图演示"><a href="#动图演示" class="headerlink" title="动图演示"></a>动图演示</h2><p><img src="/2021/02/13/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/bubble.gif" alt></p>
 <h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span>* arr,<span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> value;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;len<span class="number">-1</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span>* pivot = &amp;arr[i];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> index = i+<span class="number">1</span>;index &lt;len ;index++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[index]&lt;*pivot)&#123;</span><br><span class="line">                value = *pivot;</span><br><span class="line">                *pivot = arr[index];</span><br><span class="line">                pivot = &amp; arr[index];</span><br><span class="line">                *pivot = value;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -200,9 +202,15 @@ R(T) \leq O\left(T^{2 / 3}(\log T)^{1 / 3}\right)</script><p>​    To complete 
 <h2 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h2><h1 id="3-插入排序-Insertion-Sort"><a href="#3-插入排序-Insertion-Sort" class="headerlink" title="3 插入排序 Insertion Sort"></a>3 插入排序 Insertion Sort</h1><h2 id="算法描述-2"><a href="#算法描述-2" class="headerlink" title="算法描述"></a>算法描述</h2><p>​    大体思想为，循环i次时，保证数组的前i位元素都为已经排序好的，每次到i元素</p>
 <h2 id="动图演示-2"><a href="#动图演示-2" class="headerlink" title="动图演示"></a>动图演示</h2><p><img src="/2021/02/13/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/insertion.gif" alt></p>
 <h2 id="代码示例-2"><a href="#代码示例-2" class="headerlink" title="代码示例"></a>代码示例</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">selectionSort</span><span class="params">(<span class="keyword">int</span>* arr,<span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> value;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;len<span class="number">-1</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span>* pivot = &amp; arr[i];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> index = i+<span class="number">1</span>;index&lt;len;index++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[index]&lt;*pivot)&#123;</span><br><span class="line">                pivot = &amp;arr[index]; <span class="comment">//指向新的最小值</span></span><br><span class="line">            &#125;</span><br><span class="line">           </span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//与未排序部分的第一位进行替换</span></span><br><span class="line">        value = *pivot;</span><br><span class="line">        *pivot = arr[i];</span><br><span class="line">        arr[i] = value;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h2><h1 id="4-希尔排序-Shell-Sort"><a href="#4-希尔排序-Shell-Sort" class="headerlink" title="4 希尔排序 Shell Sort"></a>4 希尔排序 Shell Sort</h1><h1 id="5-归并排序-Merge-Sort"><a href="#5-归并排序-Merge-Sort" class="headerlink" title="5 归并排序 Merge Sort"></a>5 归并排序 Merge Sort</h1>]]></content>
+<h2 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h2><h1 id="4-希尔排序-Shell-Sort"><a href="#4-希尔排序-Shell-Sort" class="headerlink" title="4 希尔排序 Shell Sort"></a>4 希尔排序 Shell Sort</h1><h1 id="5-归并排序-Merge-Sort"><a href="#5-归并排序-Merge-Sort" class="headerlink" title="5 归并排序 Merge Sort"></a>5 归并排序 Merge Sort</h1><p><a href="https://www.cnblogs.com/onepixel/articles/7674659.html">参考博客</a></p>
+]]></content>
       <tags>
         <tag>算法</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>猫咪12分类</title>
+    <url>/2021/04/23/%E7%8C%AB%E5%92%AA12%E5%88%86%E7%B1%BB/</url>
+    <content><![CDATA[]]></content>
   </entry>
 </search>
