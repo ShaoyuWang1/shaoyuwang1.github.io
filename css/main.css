@@ -1169,7 +1169,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #e93430;
+  background: #87b628;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2253,7 +2253,6 @@ mjx-container + br {
   }
 }
 .main-inner {
-  Opacity: 0.8;
   align-items: flex-start;
   display: flex;
   justify-content: space-between;
@@ -2499,9 +2498,21 @@ mjx-container + br {
   padding: 0;
 }
 body {
-  background: url("/images/wlop.jpg");
+  background: url("/images/wlop2.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;
   background-size: cover;
+}
+.content-wrap {
+  opacity: 0.9;
+}
+.sidebar {
+  opacity: 0.9;
+}
+.header-inner {
+  background: rgba(255,255,255,0.9);
+}
+.popup {
+  opacity: 0.9;
 }
