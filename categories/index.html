@@ -480,7 +480,7 @@ $(document).ready(function() {
 NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
   NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
     var GUEST = ['nick', 'mail', 'link'];
-    var guest = 'nick,mail# Custom comment header';
+    var guest = 'nick,mail,link# Custom comment header';
     guest = guest.split(',').filter(item => {
       return GUEST.includes(item);
     });
