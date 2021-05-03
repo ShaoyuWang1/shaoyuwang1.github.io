@@ -28,7 +28,7 @@
 <meta property="og:description" content="简单学习了下gurobi 在python中的应用，日后估计会经常使用，在此做个记录方便以后掌握。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-04-30T05:39:48.000Z">
-<meta property="article:modified_time" content="2021-05-03T07:05:18.167Z">
+<meta property="article:modified_time" content="2021-05-03T07:18:18.966Z">
 <meta property="article:author" content="Windsky Wang">
 <meta property="article:tag" content="技术">
 <meta name="twitter:card" content="summary">
@@ -218,7 +218,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-03 15:05:18" itemprop="dateModified" datetime="2021-05-03T15:05:18+08:00">2021-05-03</time>
+                <time title="修改时间：2021-05-03 15:18:18" itemprop="dateModified" datetime="2021-05-03T15:18:18+08:00">2021-05-03</time>
               </span>
 
           
@@ -258,7 +258,9 @@
 <h1 id="Gurobi-配置"><a href="#Gurobi-配置" class="headerlink" title="Gurobi 配置"></a>Gurobi 配置</h1><p>在<a target="_blank" rel="noopener" href="http://www.gurobi.cn/NewsView1.Asp?id=4">gurobi中国</a>按照要求填写一份pdf文档，然后需要去学信网搞一份学生身份验证。发给指定的邮箱地址后不久会有工作人员发来激活码。一个学生账户最多同时持有2份cd key，绑定机器，在激活前确定机器是否是你的常用机器。</p>
 <p>收到回复邮件后，按邮件指示下载并激活。（gurobi.lic 许可文件要保存在相应目录下。）</p>
 <p>可以配合anaconda在jupyter lab上使用，conda install gurobi需要加source，建议直接上网找。</p>
-<h1 id="Gurobi-基本使用"><a href="#Gurobi-基本使用" class="headerlink" title="Gurobi 基本使用"></a>Gurobi 基本使用</h1><p>可以参考<a href>文档</a></p>
+<h1 id="Gurobi-基本使用"><a href="#Gurobi-基本使用" class="headerlink" title="Gurobi 基本使用"></a>Gurobi 基本使用</h1><p>基本的使用范例为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 创建模型对象</span></span><br><span class="line">m=Model(name = <span class="string">&#x27;modelname&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#添加自变量，创建了一个长度为10的整型向量</span></span><br><span class="line">x = m.addVars(<span class="number">10</span>, lb=<span class="number">0</span>, vtype=GRB.INTEGER, name=<span class="string">&#x27;price&#x27;</span>) <span class="comment"># </span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>写着写着发现官方是有资源的。。建议参考<a href="http://www.vvindsky.xyz/resources/Gurobi_tutorial.pdf">文档</a>与<a target="_blank" rel="noopener" href="http://www.gurobi.cn/picexhview.asp?id=90">视频</a></p>
 
     </div>
 
