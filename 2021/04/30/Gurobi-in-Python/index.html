@@ -20,17 +20,20 @@
     var CONFIG = {"hostname":"www.vvindsky.xyz","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="Gurobi in Python使用">
-<meta property="og:url" content="http://www.vvindsky.xyz/2021/04/30/Gurobi-in-Python%E4%BD%BF%E7%94%A8/index.html">
+  <meta name="description" content="简单学习了下gurobi 在python中的应用，日后估计会经常使用，在此做个记录方便以后掌握。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gurobi在python中的使用">
+<meta property="og:url" content="http://www.vvindsky.xyz/2021/04/30/Gurobi-in-Python/index.html">
 <meta property="og:site_name" content="Wind and Sky">
+<meta property="og:description" content="简单学习了下gurobi 在python中的应用，日后估计会经常使用，在此做个记录方便以后掌握。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-04-30T05:39:48.000Z">
-<meta property="article:modified_time" content="2021-04-30T05:39:48.617Z">
+<meta property="article:modified_time" content="2021-05-03T07:05:18.167Z">
 <meta property="article:author" content="Windsky Wang">
+<meta property="article:tag" content="技术">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://www.vvindsky.xyz/2021/04/30/Gurobi-in-Python%E4%BD%BF%E7%94%A8/">
+<link rel="canonical" href="http://www.vvindsky.xyz/2021/04/30/Gurobi-in-Python/">
 
 
 <script id="page-configurations">
@@ -43,7 +46,7 @@
   };
 </script>
 
-  <title>Gurobi in Python使用 | Wind and Sky</title>
+  <title>Gurobi在python中的使用 | Wind and Sky</title>
   
 
 
@@ -185,7 +188,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.vvindsky.xyz/2021/04/30/Gurobi-in-Python%E4%BD%BF%E7%94%A8/">
+    <link itemprop="mainEntityOfPage" href="http://www.vvindsky.xyz/2021/04/30/Gurobi-in-Python/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -198,7 +201,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Gurobi in Python使用
+          Gurobi在python中的使用
         </h1>
 
         <div class="post-meta">
@@ -210,6 +213,13 @@
 
               <time title="创建时间：2021-04-30 13:39:48" itemprop="dateCreated datePublished" datetime="2021-04-30T13:39:48+08:00">2021-04-30</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-03 15:05:18" itemprop="dateModified" datetime="2021-05-03T15:05:18+08:00">2021-05-03</time>
+              </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -227,8 +237,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/04/30/Gurobi-in-Python%E4%BD%BF%E7%94%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/04/30/Gurobi-in-Python%E4%BD%BF%E7%94%A8/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/04/30/Gurobi-in-Python/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/04/30/Gurobi-in-Python/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -243,7 +253,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <p>简单学习了下gurobi 在python中的应用，日后估计会经常使用，在此做个记录方便以后掌握。</p>
+<a id="more"></a>
+<h1 id="Gurobi-配置"><a href="#Gurobi-配置" class="headerlink" title="Gurobi 配置"></a>Gurobi 配置</h1><p>在<a target="_blank" rel="noopener" href="http://www.gurobi.cn/NewsView1.Asp?id=4">gurobi中国</a>按照要求填写一份pdf文档，然后需要去学信网搞一份学生身份验证。发给指定的邮箱地址后不久会有工作人员发来激活码。一个学生账户最多同时持有2份cd key，绑定机器，在激活前确定机器是否是你的常用机器。</p>
+<p>收到回复邮件后，按邮件指示下载并激活。（gurobi.lic 许可文件要保存在相应目录下。）</p>
+<p>可以配合anaconda在jupyter lab上使用，conda install gurobi需要加source，建议直接上网找。</p>
+<h1 id="Gurobi-基本使用"><a href="#Gurobi-基本使用" class="headerlink" title="Gurobi 基本使用"></a>Gurobi 基本使用</h1><p>可以参考<a href>文档</a></p>
+
     </div>
 
     
@@ -258,7 +274,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://www.vvindsky.xyz/2021/04/30/Gurobi-in-Python%E4%BD%BF%E7%94%A8/" title="Gurobi in Python使用">http://www.vvindsky.xyz/2021/04/30/Gurobi-in-Python使用/</a>
+    <a href="http://www.vvindsky.xyz/2021/04/30/Gurobi-in-Python/" title="Gurobi在python中的使用">http://www.vvindsky.xyz/2021/04/30/Gurobi-in-Python/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -268,6 +284,9 @@
 
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag"># 技术</a>
+          </div>
 
         
 

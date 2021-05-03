@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.vvindsky.xyz/2021/04/30/Gurobi-in-Python/</loc>
+    
+    <lastmod>2021-05-03</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.vvindsky.xyz/404.html</loc>
     
     <lastmod>2021-05-03</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://www.vvindsky.xyz/2021/04/28/blog/</loc>
     
     <lastmod>2021-05-03</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.vvindsky.xyz/2021/04/30/Gurobi-in-Python%E4%BD%BF%E7%94%A8/</loc>
-    
-    <lastmod>2021-04-30</lastmod>
     
   </url>
   
