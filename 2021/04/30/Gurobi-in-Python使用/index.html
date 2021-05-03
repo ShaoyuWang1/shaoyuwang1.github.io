@@ -20,19 +20,17 @@
     var CONFIG = {"hostname":"www.vvindsky.xyz","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="意识到自己快要毕业这个事，是在球场上。     盯着对面运球的人、嘴里喷着垃圾话的时候突然想到，1个月后大概就再也不会在这个场上跟对面这b打球了。 大学四年做了些什么？思来想去大概也就是写在CV上的那一页，多少觉得有些失败。TA楼顶的天台，坐着就能让目光越过丛树，望见行政楼背后的土坡卖力模仿着山脉起伏，弯下去的弧线轻托起一轮紫色的凤凰。本想着是个适合恋爱的好去处，但似乎四年也没能去上几次。 高考前">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Wind and Sky">
-<meta property="og:url" content="http://www.vvindsky.xyz/home/%E7%9C%9F%E6%AD%A3%E6%84%8F%E8%AF%86%E5%88%B0%E6%AF%95%E4%B8%9A%E6%98%AF%E5%9C%A8%E7%90%83%E5%9C%BA%E4%B8%8A%E3%80%82.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="Gurobi in Python使用">
+<meta property="og:url" content="http://www.vvindsky.xyz/2021/04/30/Gurobi-in-Python%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="Wind and Sky">
-<meta property="og:description" content="意识到自己快要毕业这个事，是在球场上。     盯着对面运球的人、嘴里喷着垃圾话的时候突然想到，1个月后大概就再也不会在这个场上跟对面这b打球了。 大学四年做了些什么？思来想去大概也就是写在CV上的那一页，多少觉得有些失败。TA楼顶的天台，坐着就能让目光越过丛树，望见行政楼背后的土坡卖力模仿着山脉起伏，弯下去的弧线轻托起一轮紫色的凤凰。本想着是个适合恋爱的好去处，但似乎四年也没能去上几次。 高考前">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-04-28T08:55:49.765Z">
-<meta property="article:modified_time" content="2021-04-28T08:55:49.760Z">
+<meta property="article:published_time" content="2021-04-30T05:39:48.000Z">
+<meta property="article:modified_time" content="2021-04-30T05:39:48.617Z">
 <meta property="article:author" content="Windsky Wang">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://www.vvindsky.xyz/home/%E7%9C%9F%E6%AD%A3%E6%84%8F%E8%AF%86%E5%88%B0%E6%AF%95%E4%B8%9A%E6%98%AF%E5%9C%A8%E7%90%83%E5%9C%BA%E4%B8%8A%E3%80%82">
+<link rel="canonical" href="http://www.vvindsky.xyz/2021/04/30/Gurobi-in-Python%E4%BD%BF%E7%94%A8/">
 
 
 <script id="page-configurations">
@@ -40,13 +38,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title> | Wind and Sky
-</title>
+  <title>Gurobi in Python使用 | Wind and Sky</title>
   
 
 
@@ -180,75 +177,116 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-CN">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.vvindsky.xyz/2021/04/30/Gurobi-in-Python%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Windsky Wang">
+      <meta itemprop="description" content="false">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wind and Sky">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Gurobi in Python使用
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-<div class="post-meta">
+              <time title="创建时间：2021-04-30 13:39:48" itemprop="dateCreated datePublished" datetime="2021-04-30T13:39:48+08:00">2021-04-30</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/04/30/Gurobi-in-Python%E4%BD%BF%E7%94%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/04/30/Gurobi-in-Python%E4%BD%BF%E7%94%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
   
 
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Windsky Wang
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.vvindsky.xyz/2021/04/30/Gurobi-in-Python%E4%BD%BF%E7%94%A8/" title="Gurobi in Python使用">http://www.vvindsky.xyz/2021/04/30/Gurobi-in-Python使用/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
 </div>
 
-</header>
 
-      
-      
-      
-      <div class="post-body">
-          <p>意识到自己快要毕业这个事，是在球场上。    </p>
-<p>盯着对面运球的人、嘴里喷着垃圾话的时候突然想到，1个月后大概就再也不会在这个场上跟对面这b打球了。</p>
-<p>大学四年做了些什么？思来想去大概也就是写在CV上的那一页，多少觉得有些失败。TA楼顶的天台，坐着就能让目光越过丛树，望见行政楼背后的土坡卖力模仿着山脉起伏，弯下去的弧线轻托起一轮紫色的凤凰。本想着是个适合恋爱的好去处，但似乎四年也没能去上几次。</p>
-<p>高考前对大学的期望是诗、酒与自由，料不到的是为了GPA的苟且。这个学校可以称得上是师范学院，在这里不断地上课、上课、上课，完全没有研究的时间，也没有思考的时间，更没有参加校外活动的时间。只是不断地上课、上课、上课，一直上到你的心灵枯竭，创造力也消失了。你成为了一部机器，不断地对那些如潮水般涌来的天真学生重复同样枯燥乏味的教材。</p>
-<p>他们不了解为什么你变得这样乏味，因而对你失去了尊敬。大家也受了你的传染。不断上课、上课，上课的原因是，这是经营一所学校最经济的方法，让外界的人误以为学生得到了完整的教育。我们日复一日地过着无聊的生活，单调乏味的日子让人几年后想起来不禁怀疑，究竟自己是怎么过的，而时间已悄悄溜走了。</p>
-<p>寻思着，除了课堂，9w5大概是花在了认识身边这群人上。半潇石、牛夹、莱昂诺·暴风no_nick_name_pls、舒服喷子、活肌肉、批话王里的一群b…无论是research、打球、lol或rush b，总有一伙人一起。</p>
-<p>毕业与分别的氛围总不可遏制地从身边传来。10:40起床遇到赶去上10:30课的蝗鸣儿：“没几节课可上了，去教室坐坐。”路过a316听到陶一舟在和家里商量什么时候先寄一批东西回家。和层小姐吃海底捞也被揶揄以后的大学生优惠只能蹭她的。</p>
-<p>有次跟吱吱在if三楼闲聊，从代餐的佳格麦片聊到10年后功成名就了，她就请我去京基100.如果泯然众人了，我就请她吃潘。转身回宿舍的时候想，以后八成不会再有她敷着面膜、我踹着拖鞋油头在三楼平台东一句、西一句扯淡的机会。</p>
-<p>今早被闹铃吵地迷糊时，走廊里随着淋浴声传来龙大黑人的歌：</p>
-<p><center>我怕我 没有机会</center></p>
-<p><center> 跟你说一声再见</center></p>
-<p><center>因为也许就再也见不到你</center></p>
-<p><center>明天我要离开</center></p>
-<p><center>熟悉的地方和你</center></p>
-<p><center>要分离</center></p>
-<p><center>我眼泪就掉下去</center></p>
-<p align="center"><font face="STKaiti ">
-  </font></p>
+      <footer class="post-footer">
+
+        
 
 
-
-
-<p>相遇与分别是无法分离的，一如海盗与朗姆酒。</p>
-<p>大学四年都不是个爱去教室上课的主，但最近喜欢赶早去会饮点杯咖啡，猫在诚道教室的最后一排刷手机发呆。偶尔在前排遇到个很久没见的熟人，摆摆手打个招呼之后总感觉有些怅然若失。他们就这样在某一天突然消失。没有解释，甚至连个像样的告别也没有，就像用一把锋锐无声的大砍刀，将温暖的血液奔流不息、脉搏还在静静跳动的纽带，一刀斩断。</p>
-<p>村上春树在《海边的卡夫卡》里说：</p>
-<p align="left"><font face="STKaiti "> &nbsp&nbsp&nbsp&nbsp 我们大家都在持续失去宝贵的东西。宝贵的机会和可能性，无法挽回的感情。这是生存的一个意义。
-  </font></p>
-
-
-
-<p>隔三差五写上两句,慢慢攒出了这些话。一直没能想好要起一个什么标题。if的毕业晚宴合唱了一首今年夏天，好像是个不错的标题。</p>
-<p>在夏天遇见的就在夏天告别吧。</p>
-
-      </div>
-      
-      
-      
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/28/%E4%BB%8A%E5%B9%B4%E5%A4%8F%E5%A4%A9/" rel="prev" title="今年夏天">
+      <i class="fa fa-chevron-left"></i> 今年夏天
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
+      </footer>
     
+  </article>
+  
+  
+  
 
-    
-    
-    
 
 
           </div>
