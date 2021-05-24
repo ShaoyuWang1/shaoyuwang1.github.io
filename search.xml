@@ -54,7 +54,7 @@
 <ul>
 <li>Bidders $i=1, \ldots, n$</li>
 <li>One object to be sold</li>
-<li>Bidder $i$ observes a “signal” $S<em>{i} \sim F(\cdot)$, with typical realization $s</em>{i} \in$ $[\underline{s}, \bar{s}]$, and assume $F$ is continuous.</li>
+<li>Bidder $i$ observes a “signal” <script type="math/tex">S_{i} \sim F(\cdot)</script>, with typical realization $s_{i} \in$ <script type="math/tex">[\underline{s}, \bar{s}]</script>, and assume $F$ is continuous.</li>
 <li>Bidders’ signals $S<em>{1}, \ldots, S</em>{n}$ are independent.</li>
 <li>Bidder $i$ ‘s value <script type="math/tex">v_{i}\left(s_{i}\right)=s_{i}</script></li>
 </ul>
