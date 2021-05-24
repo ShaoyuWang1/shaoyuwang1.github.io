@@ -71,7 +71,7 @@ U\left(b_{i}, s_{i}\right)=\left(s_{i}-b_{i}\right) \cdot \operatorname{Pr}\left
 <script type="math/tex; mode=display">
 \max _{b_{i}}\left(s_{i}-b_{i}\right) F^{n-1}\left(b^{-1}\left(b_{i}\right)\right)</script><p>The first order condition is:</p>
 <script type="math/tex; mode=display">
-\left(s_{i}-b_{i}\right)(n-1) F^{n-2}\left(b^{-1}\left(b_{i}\right)\right) f\left(b^{-1}\left(b_{i}\right)\right) \frac{1}{b^{\prime}\left(b^{-1}\left(b_{i}\right)\right)}-F^{n-1}\left(b^{-1}\left(b_{i}\right)\right)=0</script><p>At a symmetric equilibrium, $b<em>{i}=b\left(s</em>{i}\right)$, so the first order condition reduces to a differential equation (here I’ll drop the $i$ subscript):</p>
+\left(s_{i}-b_{i}\right)(n-1) F^{n-2}\left(b^{-1}\left(b_{i}\right)\right) f\left(b^{-1}\left(b_{i}\right)\right) \frac{1}{b^{\prime}\left(b^{-1}\left(b_{i}\right)\right)}-F^{n-1}\left(b^{-1}\left(b_{i}\right)\right)=0</script><p>At a symmetric equilibrium, <script type="math/tex">b_{i}=b\left(s_{i}\right)</script>, so the first order condition reduces to a differential equation (here I’ll drop the $i$ subscript):</p>
 <script type="math/tex; mode=display">
 b^{\prime}(s)=(s-b(s))(n-1) \frac{f(s)}{F(s)}</script><p>This can be solved, using the boundary condition that $b(\underline{s})=\underline{s}$, to obtain:</p>
 <script type="math/tex; mode=display">
