@@ -76,7 +76,7 @@ U\left(b_{i}, s_{i}\right)=\left(s_{i}-b_{i}\right) \cdot \operatorname{Pr}\left
 b^{\prime}(s)=(s-b(s))(n-1) \frac{f(s)}{F(s)}</script><p>This can be solved, using the boundary condition that $b(\underline{s})=\underline{s}$, to obtain:</p>
 <script type="math/tex; mode=display">
 b(s)=s-\frac{\int_{\underline{s}}^{s_{i}} F^{n-1}(\tilde{s}) d \tilde{s}}{F^{n-1}(s)}</script><p>It is easy to check that b(s) is increasing and differentiable. So any symmetric equilibrium with these properties must involve bidders using the strategy  b(s).</p>
-]]></content>
+<h1 id="Vickery-auction"><a href="#Vickery-auction" class="headerlink" title="Vickery auction"></a>Vickery auction</h1>]]></content>
       <tags>
         <tag>学术</tag>
       </tags>
