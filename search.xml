@@ -43,9 +43,42 @@
       </tags>
   </entry>
   <entry>
-    <title>Auction</title>
+    <title>Auction Problem</title>
     <url>/2021/05/23/Auction/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="/2021/05/23/Auction/index.jpeg" style="zoom:50%;"></p>
+<p><center>Basic Auction theory</center></p>
+<a id="more"></a>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>​    Auction theory can be approached from different angles – from the perspective of game theory (auctions are bayesian games of incomplete information), contract or mechanism design theory (auctions are allocation mechanisms), market microstructure (auctions are models of price formation), as well as in the context of different applications (procurement, patent licensing, public finance, etc.).</p>
+<p>​    Generally speaking, the higher the bidder offer the higher chance he will get the good but also he will get less profit, vice versa.</p>
+<p>The basic auction environment consists of:</p>
+<ul>
+<li>Bidders $i=1, \ldots, n$</li>
+<li>One object to be sold</li>
+<li>Bidder $i$ observes a “signal” $S<em>{i} \sim F(\cdot)$, with typical realization $s</em>{i} \in$ $[\underline{s}, \bar{s}]$, and assume $F$ is continuous.</li>
+<li>Bidders’ signals $S<em>{1}, \ldots, S</em>{n}$ are independent.</li>
+<li>Bidder $i$ ‘s value $v<em>{i}\left(s</em>{i}\right)=s_{i}$</li>
+</ul>
+<h1 id="Different-Auction-Forms"><a href="#Different-Auction-Forms" class="headerlink" title="Different Auction Forms"></a>Different Auction Forms</h1><p>1） English auction:</p>
+<ul>
+<li>The auctioneer opens the auction by announcing a suggested opening bid, a starting price or reserve for the item on sale.</li>
+<li>Then, the auctioneer accepts increasingly higher bids from the floor, consisting of buyers with an interest in the item. The auctioneer usually determines the minimum increment of bids, often raising it when bidding goes high.</li>
+<li>The highest bidder at any given moment is considered to have the standing bid, which can only be displaced by a higher bid from a competing buyer.</li>
+<li>If no competing bidder challenges the standing bid within a given time frame, the standing bid becomes the winner, and the item is sold to the highest bidder at a price equal to their bid.</li>
+<li>If no bidder accepts the starting price, the auctioneer either begins to lower the starting price in increments, bidders are allowed to bid prices lower than the starting price, or the item is not sold at all, according to the wishes of the seller or protocols of the auction house</li>
+</ul>
+<p>2)Dutch Auction</p>
+<p>A Dutch auction is one of several similar types of auctions for buying or selling goods.Most commonly, it means an auction in which the auctioneer begins with a high asking price in the case of selling, and lowers it until some participant accepts the price, or it reaches a predetermined reserve price. This type of price auction is most commonly used for goods that are required to be sold quickly such as flowers, fresh produce or  tobacco.</p>
+<p>3)  First-price sealed-bid auction</p>
+<p>​    Also known as blind bid all bidders simultaneously submit sealed bids so that no bidder knows the bid of any other participant. The highest bidder pays the price that was submitted.</p>
+<p>4) Second-price sealed-bid auction</p>
+<h1 id="First-price-sealed-bid-auction-FPSD"><a href="#First-price-sealed-bid-auction-FPSD" class="headerlink" title="First-price sealed-bid auction(FPSD)"></a>First-price sealed-bid auction(FPSD)</h1><p>In a FPSD auction the bidders sealed bids $b_1,b_2\dots b_n$ the bidders who submits the highest bid is awarded the object and pays his bid.</p>
+<p>Under these rules the bidder will not bid higher than their values, by doing so they may get negative profit. By bidding lower than their true value they may make profit some time.</p>
+<p>We will look for an equilibrium where each bidder uses a bid strategy that is a strictly increasing, continuous, and differentiable function of his value. To do this we assume that different bidders use the same bid function $bj = b(s_j)$ for different j. </p>
+<p>Bidder i’s expected profit as a  function of his bid $b_i$ and signal $s_i$</p>
+<script type="math/tex; mode=display">U\left(b_{i}, s_{i}\right)=\left(s_{i}-b_{i}\right) \cdot \operatorname{Pr}\left[b_{j}=b\left(S_{j}\right) \leq b_{i}, \forall j \neq i\right]</script>]]></content>
+      <tags>
+        <tag>学术</tag>
+      </tags>
   </entry>
   <entry>
     <title>Gurobi在python中的使用</title>
