@@ -28,9 +28,8 @@
 <meta property="og:description" content="Basic Auction theory">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://www.vvindsky.xyz/2021/05/24/auction/index.jpeg">
-<meta property="og:image" content="http://www.vvindsky.xyz/Users/windsky/blog/source/_posts/Auction/index.jpeg">
 <meta property="article:published_time" content="2021-05-24T08:34:51.000Z">
-<meta property="article:modified_time" content="2021-05-24T08:36:46.826Z">
+<meta property="article:modified_time" content="2021-05-24T08:37:29.492Z">
 <meta property="article:author" content="Windsky Wang">
 <meta property="article:tag" content="学术">
 <meta name="twitter:card" content="summary">
@@ -215,7 +214,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-05-24 16:34:51 / 修改时间：16:36:46" itemprop="dateCreated datePublished" datetime="2021-05-24T16:34:51+08:00">2021-05-24</time>
+              <time title="创建时间：2021-05-24 16:34:51 / 修改时间：16:37:29" itemprop="dateCreated datePublished" datetime="2021-05-24T16:34:51+08:00">2021-05-24</time>
             </span>
 
           
@@ -299,56 +298,9 @@ b(s)=s-\frac{\int_{\underline{s}}^{s} F^{n-1}(\tilde{s}) d \tilde{s}}{F^{n-1}(s)
 \begin{aligned}
 x_{i} &: B_{1} \times \ldots \times B_{n} \rightarrow[0,1] \\
 t_{i} &: B_{1} \times \ldots \times B_{n} \rightarrow \mathbb{R}
-\end{aligned}</script><p><img src="/Users/windsky/blog/source/_posts/Auction/index.jpeg" style="zoom:90%;"></p>
-<p><center>Basic Auction theory</center></p>
-<!--more-->
-<h1 id="1-Introduction-1"><a href="#1-Introduction-1" class="headerlink" title="1 Introduction"></a>1 Introduction</h1><p>​    Auction theory can be approached from different angles – from the perspective of game theory (auctions are bayesian games of incomplete information), contract or mechanism design theory (auctions are allocation mechanisms), market microstructure (auctions are models of price formation), as well as in the context of different applications (procurement, patent licensing, public finance, etc.).</p>
-<p>​    Generally speaking, the higher the bidder offer the higher chance he will get the good but also he will get less profit, vice versa.</p>
-<p>The basic auction environment consists of:</p>
-<ul>
-<li>Bidders <script type="math/tex">i=1, \ldots, n</script></li>
-<li>One object to be sold</li>
-<li>Bidder <script type="math/tex">i</script> observes a “signal” <script type="math/tex">S_{i} \sim F(\cdot)</script>, with typical realization <script type="math/tex">s_{i} \in</script> <script type="math/tex">[\underline{s}, \bar{s}]</script>, and assume <script type="math/tex">F</script> is continuous.</li>
-<li>Bidders’ signals <script type="math/tex">S_{1}, \ldots, S_{n}</script> are independent.</li>
-<li>Bidder $i$ ‘s value <script type="math/tex">v_{i}\left(s_{i}\right)=s_{i}</script></li>
-</ul>
-<h1 id="2-Different-Auction-Forms-1"><a href="#2-Different-Auction-Forms-1" class="headerlink" title="2 Different Auction Forms"></a>2 Different Auction Forms</h1><h2 id="1-English-auction-oral-ascending-1"><a href="#1-English-auction-oral-ascending-1" class="headerlink" title="1) English auction(oral ascending):"></a>1) English auction(oral ascending):</h2><p>All bidders start in the auction with a price of zero. The price rises continuously, and bidders may drop out at any point in time. Once they drop out, they cannot reenter. The auction ends when only one bidder is left, and this bidder pays the price at which the second-to-last bidder dropped out.</p>
-<h2 id="2-Dutch-Auction-descending-price-1"><a href="#2-Dutch-Auction-descending-price-1" class="headerlink" title="2) Dutch Auction(descending price)"></a>2) Dutch Auction(descending price)</h2><p>A Dutch auction is one of several similar types of auctions for buying or selling goods.Most commonly, it means an auction in which the auctioneer begins with a high asking price in the case of selling, and lowers it until some participant accepts the price, or it reaches a predetermined reserve price. This type of price auction is most commonly used for goods that are required to be sold quickly such as flowers, fresh produce or  tobacco.</p>
-<h2 id="3-First-price-sealed-bid-auction-1"><a href="#3-First-price-sealed-bid-auction-1" class="headerlink" title="3) First-price sealed-bid auction"></a>3) First-price sealed-bid auction</h2><p>Also known as blind bid all bidders simultaneously submit sealed bids so that no bidder knows the bid of any other participant. The highest bidder pays the price that was submitted.</p>
-<h2 id="4-Second-price-sealed-bid-auction-vickery-auction-1"><a href="#4-Second-price-sealed-bid-auction-vickery-auction-1" class="headerlink" title="4) Second-price sealed-bid auction(vickery auction)"></a>4) Second-price sealed-bid auction(vickery auction)</h2><p>In a Vickrey, or second price, auction, bidders are asked to submit sealed bids <script type="math/tex">b_{1}, \ldots, b_{n}</script>. The bidder who submits the highest bid is awarded the object, and pays the amount of the second highest bid.</p>
-<h1 id="3-First-price-sealed-bid-auction-FPSD-1"><a href="#3-First-price-sealed-bid-auction-FPSD-1" class="headerlink" title="3 First-price sealed-bid auction(FPSD)"></a>3 First-price sealed-bid auction(FPSD)</h1><p>In a FPSD auction the bidders sealed bids <script type="math/tex">b_1,b_2\dots b_n</script> the bidders who submits the highest bid is awarded the object and pays his bid.</p>
-<p>Under these rules the bidder will not bid higher than their values, by doing so they may get negative profit. By bidding lower than their true value they may make profit some time.</p>
-<p>We will look for an equilibrium where each bidder uses a bid strategy that is a strictly increasing, continuous, and differentiable function of his value. To do this we assume that different bidders use the same bid function <script type="math/tex">b_j = b(s_j)</script> for different j. </p>
-<p>Bidder i’s expected profit as a  function of his bid <script type="math/tex">b_i</script> and signal <script type="math/tex">s_i</script></p>
+\end{aligned}</script><p>bidders submit bids <script type="math/tex">b_1,\dots,b_n</script>. An auction rule specifies for all i,</p>
 <script type="math/tex; mode=display">
-U\left(b_{i}, s_{i}\right)=\left(s_{i}-b_{i}\right) \cdot \operatorname{Pr}\left[b_{j}=b\left(S_{j}\right) \leq b_{i}, \forall j \neq i\right]</script><p>Thus, bidder i chooses b to solve:</p>
-<script type="math/tex; mode=display">
-\max _{b_{i}}\left(s_{i}-b_{i}\right) F^{n-1}\left(b^{-1}\left(b_{i}\right)\right)</script><p>The first order condition is:</p>
-<script type="math/tex; mode=display">
-\left(s_{i}-b_{i}\right)(n-1) F^{n-2}\left(b^{-1}\left(b_{i}\right)\right) f\left(b^{-1}\left(b_{i}\right)\right) \frac{1}{b^{\prime}\left(b^{-1}\left(b_{i}\right)\right)}-F^{n-1}\left(b^{-1}\left(b_{i}\right)\right)=0</script><p>At a symmetric equilibrium, <script type="math/tex">b_{i}=b\left(s_{i}\right)</script>, so the first order condition reduces to a differential equation (here I’ll drop the $i$ subscript):</p>
-<script type="math/tex; mode=display">
-b^{\prime}(s)=(s-b(s))(n-1) \frac{f(s)}{F(s)}</script><p>This can be solved, using the boundary condition that <script type="math/tex">b(\underline{s})=\underline{s}</script>, to obtain:</p>
-<script type="math/tex; mode=display">
-b(s)=s-\frac{\int_{\underline{s}}^{s_{i}} F^{n-1}(\tilde{s}) d \tilde{s}}{F^{n-1}(s)}</script><p>It is easy to check that b(s) is increasing and differentiable. So any symmetric equilibrium with these properties must involve bidders using the strategy  b(s).</p>
-<h1 id="4-Vickery-auction-1"><a href="#4-Vickery-auction-1" class="headerlink" title="4 Vickery auction"></a>4 Vickery auction</h1><p>In a Vickrey, or second price, auction, bidders are asked to submit sealed bids <script type="math/tex">b_{1}, \ldots, b_{n}</script>. The bidder who submits the highest bid is awarded the object, and pays the amount of the second highest bid.</p>
-<p><strong>Proposition 1</strong> <em>In a second price auction, it is a weakly dominant strategy to bid one’s value <script type="math/tex">b_i(s_i) = s_i</script></em></p>
-<p>(Easy to be proved, omitted here)</p>
-<p>Since each bidder will bid their value, the seller’s revenue (the amount paid in equilibrium) will be equal to the second highest value. Let <script type="math/tex">S^{i: n}</script> denote the $i$ th highest of $n$ draws from distribution <script type="math/tex">F</script> (so <script type="math/tex">S^{i: n}</script> is a random variable with typical realization <script type="math/tex">\left.s^{i: n}\right)</script>. Then the seller’s expected revenue is <script type="math/tex">\mathbb{E}\left[S^{2: n}\right] .</script></p>
-<h1 id="5-Revenue-equivalence-1"><a href="#5-Revenue-equivalence-1" class="headerlink" title="5 Revenue equivalence"></a>5 Revenue equivalence</h1><p>What is the revenue from the first price auction? It is the expected winning bid, or the expected bid of the bidder with the highest signal, <script type="math/tex">E[b(S^{1:n})]</script> To sharpen this, define <script type="math/tex">G(s)=F^{n-1}(s) .</script>Then <script type="math/tex">G</script> is the probability that if you take <script type="math/tex">n-1</script> draws from <script type="math/tex">F</script>, all will be below <script type="math/tex">s</script> (i.e. it is the cdf of <script type="math/tex">S^{1: n-1}</script> ). Then,</p>
-<script type="math/tex; mode=display">
-b(s)=s-\frac{\int_{\underline{s}}^{s} F^{n-1}(\tilde{s}) d \tilde{s}}{F^{n-1}(s)}=\frac{1}{F^{n-1}(s)} \int_{\underline{s}}^{s} \tilde{s} d F^{n-1}(\tilde{s})=\mathbb{E}\left[S^{1: n-1} \mid S^{1: n-1} \leq s\right]</script><p>That is, if a bidder has signal s, he sets his bid equal to the expectation of the highest of the other n-1​ values, conditional on all those values being less than his own. Using this fact, the expected revenue is:</p>
-<script type="math/tex; mode=display">
-\mathbb{E}\left[b\left(S^{1: n}\right)\right]=\mathbb{E}\left[S^{1: n-1} \mid S^{1: n-1} \leq S^{1: n}\right]=\mathbb{E}\left[S^{2: n}\right]</script><p>equal to the expectation of the second highest value. We have shown: </p>
-<p><strong>Proposition 2</strong> <em>The first and second price auction yield the same revenue in expectation.</em></p>
-<p>The result above is a special case of the celebrated “revenue equivalence theorem” .</p>
-<p><strong>Revenue Equivalence Theorem</strong> :<em>Suppose n bidders have values</em> <script type="math/tex">s_{1}, \ldots, s_{n}</script> <em>identically and independently distributed with cdf <script type="math/tex">F(\cdot) .</script> Then all auction mechanisms that (i) always award the object to the bidder with highest value in equilibrium, and (ii) give a bidder with valuation <script type="math/tex">\underline{s}</script> zero profits, generates the same revenue in expectation.</em></p>
-<p><strong>proof:</strong></p>
-<p>We consider the general class of auctions where bidders submit bids <script type="math/tex">b_1,\dots,b_n</script>. An auction rule specifies for all i,</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-x_{i} &: B_{1} \times \ldots \times B_{n} \rightarrow[0,1] \\
-t_{i} &: B_{1} \times \ldots \times B_{n} \rightarrow \mathbb{R}
-\end{aligned}</script>
+</script>
     </div>
 
     
