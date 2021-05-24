@@ -56,7 +56,7 @@
 <li>One object to be sold</li>
 <li>Bidder $i$ observes a “signal” $S<em>{i} \sim F(\cdot)$, with typical realization $s</em>{i} \in$ $[\underline{s}, \bar{s}]$, and assume $F$ is continuous.</li>
 <li>Bidders’ signals $S<em>{1}, \ldots, S</em>{n}$ are independent.</li>
-<li>Bidder $i$ ‘s value $v<em>{i}\left(s</em>{i}\right)=s_{i}$</li>
+<li>Bidder $i$ ‘s value <script type="math/tex">v_{i}\left(s_{i}\right)=s_{i}</script></li>
 </ul>
 <h1 id="Different-Auction-Forms"><a href="#Different-Auction-Forms" class="headerlink" title="Different Auction Forms"></a>Different Auction Forms</h1><p>1） English auction:</p>
 <ul>
