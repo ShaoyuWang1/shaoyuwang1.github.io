@@ -129,7 +129,7 @@ R(T) \leq O\left(T^{2 / 3}(\log T)^{1 / 3}\right)</script><p>​    To complete 
   <entry>
     <title>auction</title>
     <url>/2021/05/24/auction/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="/Users/windsky/blog/source/_posts/Auction/index.jpeg" style="zoom:90%;"></p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="/2021/05/24/auction/index.jpeg" style="zoom:90%;"></p>
 <p><center>Basic Auction theory</center></p>
 <a id="more"></a>
 <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h1><p>​    Auction theory can be approached from different angles – from the perspective of game theory (auctions are bayesian games of incomplete information), contract or mechanism design theory (auctions are allocation mechanisms), market microstructure (auctions are models of price formation), as well as in the context of different applications (procurement, patent licensing, public finance, etc.).</p>
