@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.vvindsky.xyz/home/index.html</loc>
+    
+    <lastmod>2021-11-18</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.vvindsky.xyz/2021/11/18/%E6%B7%B1%E5%8C%97%E8%8E%AB%E7%AE%97%E6%B3%95%E4%B8%8EQuasi-Newton/</loc>
     
     <lastmod>2021-11-18</lastmod>
@@ -73,13 +80,6 @@
   
   <url>
     <loc>http://www.vvindsky.xyz/tags/index.html</loc>
-    
-    <lastmod>2021-04-27</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.vvindsky.xyz/home/index.html</loc>
     
     <lastmod>2021-04-27</lastmod>
     
