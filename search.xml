@@ -831,9 +831,10 @@ cat_kind  项目文件名
 ]]></content>
   </entry>
   <entry>
-    <title>Paper Reading</title>
+    <title>Paper Reading--Robust Mono Regulate</title>
     <url>/2021/11/24/Regulation/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Robust-Monopoly-Regulation-AER-RR"><a href="#Robust-Monopoly-Regulation-AER-RR" class="headerlink" title="Robust Monopoly Regulation(AER RR)"></a>Robust Monopoly Regulation(AER RR)</h1><p>Yingni Guo ，Eran Shmaya</p>
+<a id="more"></a>
 <h2 id="1-Introduction-amp-Environment"><a href="#1-Introduction-amp-Environment" class="headerlink" title="1 Introduction &amp; Environment"></a>1 Introduction &amp; Environment</h2><p>There is a monopolistic firm and a mass one of consumers.</p>
 <p> <strong>Inverse-demand function:</strong> </p>
 <p>​        $V:[0,1] \rightarrow[0, \bar{v}]$    </p>
