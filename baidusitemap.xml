@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.vvindsky.xyz/2021/05/24/auction/</loc>
+    <lastmod>2021-11-30</lastmod>
+  </url>
+  <url>
     <loc>http://www.vvindsky.xyz/2021/11/18/%E6%B7%B1%E5%8C%97%E8%8E%AB%E7%AE%97%E6%B3%95%E4%B8%8EQuasi-Newton/</loc>
     <lastmod>2021-11-20</lastmod>
   </url>
@@ -19,10 +23,6 @@
   <url>
     <loc>http://www.vvindsky.xyz/2021/06/08/Data-privacy/</loc>
     <lastmod>2021-07-01</lastmod>
-  </url>
-  <url>
-    <loc>http://www.vvindsky.xyz/2021/05/24/auction/</loc>
-    <lastmod>2021-06-02</lastmod>
   </url>
   <url>
     <loc>http://www.vvindsky.xyz/2021/04/28/blog/</loc>
