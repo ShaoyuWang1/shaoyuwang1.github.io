@@ -946,7 +946,7 @@ s_{\alpha}=\sup \left\{q\left(k_{\alpha}-p\right): q \in[0,1], p \in\left[0, k_{
 </ol>
 <h3 id="Improving-the-labeling"><a href="#Improving-the-labeling" class="headerlink" title="Improving the labeling"></a>Improving the labeling</h3><ol>
 <li>$S \subseteq X$ and $T \subseteq Y$, where $S$ and $T$ represent the candidate augmenting alternating path between the matching and the edges not in the matching.</li>
-<li>Let $N_l(S)$ be the neighbors to each node that is in $S$ along edges in $E_l$ such that $N_l(S)=\left{v \mid \forall u \in S:(u, v) \in E_l\right}$.</li>
+<li>Let $N_l(S)$ be the neighbors to each node that is in $S$ along edges in $E_l$ such that $N_l(S)={v \mid \forall u \in S:(u, v) \in E_l}$.</li>
 <li>If $N_{l}(S)=T$, then we cannot increase the size of the alternating path (and therefore can’t further augment), so we need to improve the labeling.</li>
 <li>Let $\delta_{l}$ be the minimum of $l(u)+l(v)-w(u, v)$ over all of the $u \in S$ and $v \notin T$.</li>
 <li>Improve the labeling $l$ to $l^{\prime}$ :</li>
