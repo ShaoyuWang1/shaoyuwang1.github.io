@@ -974,4 +974,57 @@ cat_kind  项目文件名
         <tag>学术</tag>
       </tags>
   </entry>
+  <entry>
+    <title>匈牙利算法</title>
+    <url>/2021/12/05/Parallel%20Lottery/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Parallel-Lottery"><a href="#Parallel-Lottery" class="headerlink" title="Parallel Lottery"></a>Parallel Lottery</h1><p><a href="https://pubsonline.informs.org/doi/10.1287/mnsc.2021.4120">Parallel Lotteries: Insights from Alaskan Hunting Permit Allocation</a></p>
+<p><a href="https://pubsonline.informs.org/action/doSearch?text1=Arnosti%2C+Nick&amp;field1=Contrib">Nick Arnosti</a>, <a href="https://pubsonline.informs.org/action/doSearch?text1=Randolph%2C+Tim&amp;field1=Contrib">Tim Randolph</a></p>
+<a id="more"></a>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction:"></a>Introduction:</h1><p>Analyze the parallel lottery that is used to allocate <strong>heterogeneous resources to unit-demand agents.</strong></p>
+<p><img src="/2021/12/05/Parallel%20Lottery/Untitled.png" alt="Untitled" style="zoom:50%;"></p>
+<h1 id="Notation-and-Preliminary"><a href="#Notation-and-Preliminary" class="headerlink" title="Notation and Preliminary"></a>Notation and Preliminary</h1><ol>
+<li>$n$ types of items with quantities $\mu=\left(\mu<em>{1}, \mu</em>{2}\right.\left.\ldots, \mu<em>{n}\right) \in \mathbb{R}</em>{+}^{n} .$ </li>
+<li>Mass $M$ of agents. </li>
+<li>Each agent is identified by a type $v=\left(v<em>{1}, v</em>{2}, \ldots v_{n}\right) \in \mathbb{R}^{n}$ </li>
+</ol>
+<p><strong>Single agent decision problem:</strong></p>
+<p>Given strategy $s$ and win probabilities $p$. </p>
+<ul>
+<li>$s_i$: number of tickets an agent puts on item i.</li>
+<li>$p_i$: Probability of draw a ticket of item i.</li>
+</ul>
+<p>$\chi(s, p)=\left{\chi<em>{i}(s, p)\right}</em>{i=1}^{n}$  summaries the probability of winning each object</p>
+<script type="math/tex; mode=display">\begin{equation}\chi_{i}(s, p):=\left(1-\left(1-p_{i}\right)^{s_{i}}\right) \prod_{j>i}\left(1-p_{j}\right)^{s_{j}}\end{equation}</script><script type="math/tex; mode=display">w(v, s, p):=v \cdot \chi(s, p)</script><p>Optimal Strategy： Greedy Algorithm</p>
+<p><strong>K-Equilibrium</strong></p>
+<p>Consider k ticket <strong>strategy profile</strong> $\Phi(v) = s^k$  ($\sum(s_i) = k$)</p>
+<p>For any k parallel lottery there exists <strong><strong>k-ticket </strong></strong>equilibrium pair $(\Phi, p)$ </p>
+<h1 id="Equilibrium-Efficiency-Analysis"><a href="#Equilibrium-Efficiency-Analysis" class="headerlink" title="Equilibrium Efficiency Analysis"></a>Equilibrium Efficiency Analysis</h1><p>Allocation x is α-Pareto efficient if for every feasible allocation y  ($\alpha\geq 1$).</p>
+<script type="math/tex; mode=display">\begin{equation}\eta\left(\left\{v: \frac{y(v) \cdot v}{x(v) \cdot v} \leq \alpha .\right\}\right)>0\end{equation}</script><p><strong>Theorem 1:</strong> Any equilibrium of the  k-ticket parallel lottery is  $\frac{1}{\left(1-\left(1-\frac{1}{k+1}\right)^{k}\right)}$-Pareto efficient.</p>
+<p>(This converges to $\frac{e}{e-1}$)</p>
+<p>Theorem 1 gives the bound of the inefficiency f k-parallel but didn’t provide any insight into such inefficiency.</p>
+<h2 id="2-types-of-Inefficiency"><a href="#2-types-of-Inefficiency" class="headerlink" title="2 types of Inefficiency"></a>2 types of Inefficiency</h2><h3 id="Trade-Reallocation-Trade-Efficiency"><a href="#Trade-Reallocation-Trade-Efficiency" class="headerlink" title="Trade Reallocation(Trade Efficiency)"></a>Trade Reallocation(Trade Efficiency)</h3><p> A trade reallocation of $x$ is a feasible allocation $y$ such that $\int x(v) d \eta=\int y(v) d \eta$. </p>
+<p>Allocation $x$ is $<strong>\alpha$-trade efficient</strong> if for any $y$ that is a trade reallocation of $x$,  (2) holds. </p>
+<p>An allocation is trade efficient if it is 1-trade efficient</p>
+<p>Any k-ticket equilibrium is $\frac{1}{\left(1-(1-1 / k)^{k}\right)}$-trade efficient.</p>
+<h3 id="Waste-Reallocation-Wasteful-Efficiency"><a href="#Waste-Reallocation-Wasteful-Efficiency" class="headerlink" title="Waste Reallocation(Wasteful Efficiency)"></a>Waste Reallocation(Wasteful Efficiency)</h3><p>A waste reallocation of $x$ is a feasible allocation $y$ such that for every $v$ and every $i$ that is fully allocated under $x, y<em>{i}(v) \leq x</em>{i}(v)$. </p>
+<p>Allocation $x$ is $\epsilon$-wasteful if for any $y$ that is a waste reallocation of $x$, and any $v$, $(v \cdot y(v)) /(v \cdot x(v)) \leq 1+\epsilon .$ </p>
+<p>An allocation is non-wasteful if it is 0-wasteful.</p>
+<p>Any k-ticket equilibrium is $\frac{1}{k}$-waste efficient.</p>
+<h1 id="Effect-of-changing-K"><a href="#Effect-of-changing-K" class="headerlink" title="Effect of changing K"></a>Effect of changing K</h1><p>Only 2 items and we use $v = \frac{v_2}{v_1}$ to denote the agent’s type.  </p>
+<p>Proposition 1  </p>
+<p>With most people strongly prefer item 1($v\ll1$) and some agents nearly indifferent($v\approx1$). </p>
+<p>If $\mu_1+\mu_2 &gt;1$ then in  every non-wasteful and envy-free allocation. Every agent gets an item and item 1 is allocated randomly to those who prefer item 1.(when $k\rightarrow \infty$ the equilibrium behave like this)</p>
+<p>Proposition 2</p>
+<p>Agents with Strong Preferences Prefer Smaller k.</p>
+<p>Example:</p>
+<p><img src="/2021/12/05/Parallel%20Lottery/Untitled%201.png" alt="Untitled" style="zoom:50%;"></p>
+<ul>
+<li><strong><em>Tradeoff Regime:</em></strong>  Increase k befits agent to compete for under demanded items  and hurt agents with strong preference.</li>
+<li><strong><em>Waste Trap Regime:</em></strong> If most agents strongly prefer item 1 then small k will not reduce competition but just cost more waste.</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>algorithm</tag>
+      </tags>
+  </entry>
 </search>
