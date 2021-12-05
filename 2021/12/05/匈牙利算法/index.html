@@ -28,7 +28,7 @@
 <meta property="og:description" content="Hungarian AlgorithmThe Hungarian matching algorithm , also called the Kuhn-Munkres algorithm, is a $O\big(|V|^3\big)$algorithm that can be used to find maximum-weight matchings  in bipartite graphs ,">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-05T06:35:20.000Z">
-<meta property="article:modified_time" content="2021-12-05T06:40:18.964Z">
+<meta property="article:modified_time" content="2021-12-05T06:41:16.858Z">
 <meta property="article:author" content="Windsky Wang">
 <meta property="article:tag" content="algorithm">
 <meta name="twitter:card" content="summary">
@@ -212,7 +212,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-12-05 14:35:20 / 修改时间：14:40:18" itemprop="dateCreated datePublished" datetime="2021-12-05T14:35:20+08:00">2021-12-05</time>
+              <time title="创建时间：2021-12-05 14:35:20 / 修改时间：14:41:16" itemprop="dateCreated datePublished" datetime="2021-12-05T14:35:20+08:00">2021-12-05</time>
             </span>
 
           
@@ -260,7 +260,7 @@
 </ol>
 <h3 id="Improving-the-labeling"><a href="#Improving-the-labeling" class="headerlink" title="Improving the labeling"></a>Improving the labeling</h3><ol>
 <li>$S \subseteq X$ and $T \subseteq Y$, where $S$ and $T$ represent the candidate augmenting alternating path between the matching and the edges not in the matching.</li>
-<li>Let $N<em>{l}(S)$ be the neighbors to each node that is in $S$ along edges in $E</em>{l}$ such that $N<em>{l}(S)=\left{v \mid \forall u \in S:(u, v) \in E</em>{l}\right}$.</li>
+<li>Let $N_l(S)$ be the neighbors to each node that is in $S$ along edges in $E_l$ such that $N_l(S)=\left{v \mid \forall u \in S:(u, v) \in E_l\right}$.</li>
 <li>If $N_{l}(S)=T$, then we cannot increase the size of the alternating path (and therefore can’t further augment), so we need to improve the labeling.</li>
 <li>Let $\delta_{l}$ be the minimum of $l(u)+l(v)-w(u, v)$ over all of the $u \in S$ and $v \notin T$.</li>
 <li>Improve the labeling $l$ to $l^{\prime}$ :</li>
