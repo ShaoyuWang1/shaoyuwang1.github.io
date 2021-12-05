@@ -43,6 +43,147 @@
       </tags>
   </entry>
   <entry>
+    <title>Cryptocurrency</title>
+    <url>/2021/06/02/Cryptocurrency/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="/2021/06/02/Cryptocurrency/BTC_Logo.svg.png" style="zoom:10%;"></p>
+<p>Basic introduction of cryptocurrency</p>
+<a id="more"></a>
+<h1 id="1-What-is-cryptocurrency"><a href="#1-What-is-cryptocurrency" class="headerlink" title="1 What is cryptocurrency?"></a>1 What is cryptocurrency?</h1><p>Cryptocurrency is a form of payment that can be exchanged online for goods and services. Many companies have issued their own currencies, often called tokens, and these can be traded specifically for the good or service that the company provides. Think of them as you would arcade tokens or casino chips. You’ll need to exchange real currency for the cryptocurrency to access the good or service.</p>
+<p>Cryptocurrencies work using a technology called <strong>blockchain</strong>. Blockchain is a <strong>decentralized</strong> technology spread across many computers that manages and records transactions. Part of the appeal of this technology is its security.</p>
+<h1 id="2-Why-popular"><a href="#2-Why-popular" class="headerlink" title="2 Why popular?"></a>2 Why popular?</h1><p>Cryptocurrencies appeal to their supporters for a variety of reasons. Here are some of the most popular:</p>
+<ul>
+<li>Supporters see cryptocurrencies such as Bitcoin as the currency of the future and are racing to buy them now, presumably before they become more valuable（升值）</li>
+<li>Some supporters like the fact that cryptocurrency removes central banks from managing the money supply, since over time these banks tend to reduce the value of money via inflation（私密）</li>
+<li>Other supporters like the technology behind cryptocurrencies, the blockchain, because it’s a decentralized processing and recording system and can be more secure than traditional payment systems（技术控）</li>
+</ul>
+<h1 id="3-How-it-works？"><a href="#3-How-it-works？" class="headerlink" title="3 How it works？"></a>3 How it works？</h1><h2 id="3-1-Decentralize"><a href="#3-1-Decentralize" class="headerlink" title="3.1 Decentralize:"></a>3.1 Decentralize:</h2><p>In traditional electronic trading， there will always be a trusted third party either country\Bank or big company like Alibaba. In cryptocurrency there is no such “Center”.</p>
+<h2 id="3-2-Block-Chain"><a href="#3-2-Block-Chain" class="headerlink" title="3.2 Block Chain:"></a>3.2 Block Chain:</h2><p>Since, there is no centralized third party we need another way to verify and record transaction. The main idea behind cryptocurrency is to let everyone keep the whole e-ledger—<strong>the block chain</strong>.</p>
+<p>In every 5 minutes someone will pack all the transactions(<strong>block</strong>) then he will broadcast to everyone and link the new block to the block chain.Every block will be encrypted by hash function.For bitcoin, it uses POW algorithm wich is based on SHA256. </p>
+<center>
+  <font color="blue">SHA256</font>(<font color="green">Plain Text</font>) = <font color="green">010101101010..0101</font>(256 bit)
+</center>
+
+
+
+<p><img src="/2021/06/02/Cryptocurrency/blockchain_demo.png" style="zoom:50%;"></p>
+<p>In short:</p>
+<p><center>Ledger-Trust+Cryptography=<font color="#4182D1">Cryptocurrency</font></center></p>
+<p><img src="/2021/06/02/Cryptocurrency/VSbank.png" style="zoom:50%;"></p>
+<h2 id="3-3-Why-this-works"><a href="#3-3-Why-this-works" class="headerlink" title="3.3 Why this works?"></a>3.3 Why this works?</h2><ol>
+<li><p>It satisfy the basic requirements to be used as “currency”. </p>
+<p><strong>currency = transaction history</strong></p>
+</li>
+<li><p>Althoug there is no provement of non-solvable property of SHA256 but we can assume it is not possible to solve it. So it is hard(expensive, 51% attack) to forgery.</p>
+<p><strong>Fraud is computationally infeasible</strong></p>
+</li>
+</ol>
+<h1 id="4-What-is-mining"><a href="#4-What-is-mining" class="headerlink" title="4 What is mining?"></a>4 What is mining?</h1><h2 id="4-1-Block-reward"><a href="#4-1-Block-reward" class="headerlink" title="4.1 Block reward"></a>4.1 Block reward</h2><p><strong>Block Award</strong>:</p>
+<p>Once a new block is added to the block chain, the people who finish such job will get rewarded for 25 bit coins<strong>(halve after every 210000 blocks,and for now each block is rewarded for 12.5 btc)</strong></p>
+<h2 id="4-2-Who-can-get-reward"><a href="#4-2-Who-can-get-reward" class="headerlink" title="4.2 Who can get reward?"></a>4.2 Who can get reward?</h2><p>To get the reward one must get the opportunity to add a new block. This is where cryptography works. </p>
+<p>SHA256 algorithms will translate plaintext into 256 binary code, the cryptocurrency protocol will announce, for example: first 30 bits should be 0 for next block. Miners will try different keys until one lucky miner find the key that satisfies the requirement.</p>
+<p>SHA256(。。。+transaction+Time Stamp+。。。+<font color="green">key</font>) = <font color="red">0000…000</font>1010111</p>
+<h2 id="4-3-Proof-of-work"><a href="#4-3-Proof-of-work" class="headerlink" title="4.3 Proof of work"></a>4.3 Proof of work</h2><p>The miners may get conflict signals recording conflict transactions. Miners should always t<strong>rsust one with more computational work.</strong></p>
+<p>Some times conflict may come from the broadcast speed.For example one may get 2 blocks at the same time, then he sholud keep both blocks and one of them will gradually get longer and longer than another one, then based on <strong>proof of work</strong> protocol he should take the longer one.</p>
+<p>Some time fraud may come from fraud. It is obvious that to make others trust your record you have to make sure your chain grows faster than the true chain, which means you have to posses at least 51% computation power which is not possible.</p>
+<p><img src="/2021/06/02/Cryptocurrency/proofWork.png" style="zoom:50%;"></p>
+<h1 id="5-Problems"><a href="#5-Problems" class="headerlink" title="5 Problems"></a>5 Problems</h1><h2 id="5-1-Speculation-and-fraud"><a href="#5-1-Speculation-and-fraud" class="headerlink" title="5.1 Speculation and fraud"></a>5.1 Speculation and fraud</h2><p>Cryptocurrencies have been compared to Ponzi schemes, pyramid schemes and economic bubbles, such as housing market bubbles. Howard Marks of Oaktree Capital Management stated in 2017 that digital currencies were “nothing but an unfounded fad (or perhaps even a pyramid scheme), based on a willingness to ascribe value to something that has little or none beyond what people will pay for it”, and compared them to the tulip mania (1637), South Sea Bubble (1720), and dot-com bubble (1999). The New Yorker has explained the debate based on interviews with blockchain founders in an article about the “argument over whether Bitcoin, Ethereum, and the blockchain are transforming the world”.</p>
+<p>(泡沫与庞氏骗局)</p>
+<h2 id="5-2-legal-concern"><a href="#5-2-legal-concern" class="headerlink" title="5.2 legal concern"></a>5.2 legal concern</h2><p>Cryptocurrency networks display a lack of regulation that has been criticized as enabling criminals who seek to evade taxes and launder money. Money laundering issues are also present in regular bank transfers, however with bank-to-bank wire transfers for instance, the account holder must at least provide a proven identity.</p>
+<p>（洗钱，非法汇款等）</p>
+<h2 id="5-3-Environment-concern"><a href="#5-3-Environment-concern" class="headerlink" title="5.3 Environment concern"></a>5.3 Environment concern</h2><p>挖矿带来的电力的浪费，环境污染，硬件消耗。</p>
+]]></content>
+      <tags>
+        <tag>学术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>大数据与隐私</title>
+    <url>/2021/06/08/Data-privacy/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img align="cente" src="/2021/06/08/Data-privacy/index.jpeg" style="zoom:67%;"></p>
+<p>大数据技术在提升社会协作效率、给人们带来诸多便利与舒适的同时, 也逐渐引发了一系列问题, “大数据杀熟”便是恶果之一。</p>
+<a id="more"></a>
+<p>​    所谓“大数据杀熟”, 通俗说来就是平台(主要是互联网平台)充分利用自身所掌握的大数据技术对<strong>消费市场进行更为精准与细腻的划分</strong>, 在此基础上主要<strong>对熟人(习惯、依赖该平台的较为忠诚的用户)进行不当地利益宰割</strong>, 从而使大数据技术成为部分经营者追求超额利润的有力工具。也就是说, 面临同样的商品或服务, 具有忠诚度的用户群体看到并为此实际支付的价格反而比新客户或一般用户要贵,   而且这种行为极具隐蔽性。一言以蔽之, 大数据技术加剧了经营者和相对人之间的的信息不平等, 消费者很难通过网络对经营者价格歧视的抗辩进行甄别</p>
+<p>​    究其本质, “大数据杀熟”的技术原理就是互联网平台凭借其所掌握的极其庞大且维度异常丰富的数据, 诸如用户的个人身份信息、位置信息、聊天记录以及支付信息等一切有可能被线上记录的数字化信息, 然后通过一整套复杂、高效而又极其先进的数据运算、分析和挖掘技术对碎片化、零散的用户数字化信息进行全方位的扫描、分析与研究(数据标注), 然后通过一些关键词的标注对用户进行细致归类, 从而生成独特的 <font color="EE695E"><strong>用户画像</strong>。</font></p>
+<h1 id="1-主因"><a href="#1-主因" class="headerlink" title="1 主因"></a>1 主因</h1><p>1.数据高度集中，互联网的发展建立在用户数据的规模智商，用户规模越大整个互联网越能发挥出更大的效用，综合价值成集合式增长。 相较于传统经济样态, 互联网经济的边际成本非常低, 收益却可以很高,自然导致了数据的集中于垄断。</p>
+<p>2.用户”粘性“，用户粘性是各大互联网产品重要的指标。用户长久的习惯于使用某一平台，由于用户对便利、稳定的追求使得有被”杀熟“的可能。</p>
+<p>3.不同平台间的隐私窃取。微信与京东，支付宝与淘宝等的相互泄漏数据很易使得用户的偏好或购物倾向被泄漏，从而引导消费、杀熟等。粘贴板、输入法等获取信息。</p>
+<font color="red">矛盾：</font>
+
+<p>公司需要用户数据刻画用户画像，以此来提供服务</p>
+<p>VS</p>
+<p>公民隐私泄漏给互联网公司利用用户隐私数据创造价格歧视的机会</p>
+<p>据此，按照通行的观点，价格歧视往往被分为三级：</p>
+<p>一级价格歧视，即看人报价，报出对方能够接受的最高价，攫取最大利润；传统商业社会中，游商采用这种方式比较多；</p>
+<p>二级价格歧视，即根据批量大小定价，从而获得最好的周转率，批量大的消费者获得实惠；从商家角度看，虽然单一商品获利降低，但由于销量增加，也可以获得更大的利润；</p>
+<p>三级价格歧视，是根据销售区域的不同进行差异化定价。</p>
+<p>对于大数据杀熟，我国法律中已经有相应的规则进行规范。《中华人民共和国消费者权益保护法》第十九条规定：商店提供商品应明码标价。该法第十条规定：消费者享有公平交易的权利。明码标价意味着商品价格展示不应因为消费者不同而不同，由于不同的消费者看到的价格不同，因而大数据杀熟违反了明码标价的原则。消费者权益保护法规定消费者获得公平交易的权利，也从另一个角度说明了相同商品或服务的定价应一视同仁。</p>
+<h2 id="数据安全法，6-10通过"><a href="#数据安全法，6-10通过" class="headerlink" title="数据安全法，6.10通过"></a>数据安全法，6.10通过</h2><h1 id="2-数据中个人隐私保护的技术分析"><a href="#2-数据中个人隐私保护的技术分析" class="headerlink" title="2 数据中个人隐私保护的技术分析"></a>2 数据中个人隐私保护的技术分析</h1><h2 id="2-1-将id去敏？"><a href="#2-1-将id去敏？" class="headerlink" title="2.1  将id去敏？"></a>2.1  将id去敏？</h2><p>例如在用户数据需要被使用时，使用去敏手段，如：将名字等敏感的个人信息去除。</p>
+<p>问题： How anonymous ?</p>
+<p>2006 netflix收集大量用户评分一次来训练自己的评分预测功能：</p>
+<p>1， 将uid改为无意义代码</p>
+<p>2，随机修改部分用户评分</p>
+<p><a href="https://ieeexplore.ieee.org/document/4531148">Robust De-anonymization of Large Sparse Datasets</a></p>
+<p>(利用了imdb的数据库，correlation 可以)</p>
+<p>马萨诸塞州，医疗数据。</p>
+<font color="red">考虑彼此反推数据，如何加密？</font>
+
+
+
+
+
+<h2 id="2-2-只发布粗粒度的统计数据？"><a href="#2-2-只发布粗粒度的统计数据？" class="headerlink" title="2.2 只发布粗粒度的统计数据？"></a>2.2 只发布粗粒度的统计数据？</h2><script type="math/tex; mode=display">
+\begin{array}{l}
+\begin{array}{|c|c|c|}
+\hline \text { Age } & \text { Gender } & \text { Employed? } \\
+\hline<18 & \mathrm{M} & \text { Yes } \\
+\hline<18 & \mathrm{~F} & \text { No } \\
+\hline<18 & \mathrm{M} & \text { No } \\
+\hline \geq 18 & \mathrm{~F} & \text { Yes } \\
+\hline \geq 18 & \mathrm{~F} & \text { Yes } \\
+\hline
+\end{array}\\
+{\text { Original dataset }}
+\end{array}</script><script type="math/tex; mode=display">
+\begin{array}{l}
+\begin{array}{|c|c|c|}
+\hline \text { Age } & \text { Employed? } & \text { Count } \\
+\hline<18 & \text { Yes } & 1 \\
+\hline<18 & \text { No } & 2 \\
+\hline \geq 18 & \text { Yes } & 2 \\
+\hline \geq 18 & \text { No } & 0 \\
+\hline
+\end{array}\\
+\begin{array}{|c|c|c|}
+\hline \text { Age } & \text { Gender } & \text { Count } \\
+\hline<18 & \mathrm{M} & 2 \\
+\hline<18 & \mathrm{~F} & 1 \\
+\hline \geq 18 & \mathrm{M} & 0 \\
+\hline \geq 18 & \mathrm{~F} & 2 \\
+\hline
+\end{array}\\
+\end{array}</script><p>很容易可以从发布的两份数据中反推出必有两个大于18岁女性，有工作。</p>
+<p>（数据重构攻击）</p>
+<p>可能解决方法：</p>
+<p>1，对统计结果加上有权重的噪音，处理outlier</p>
+<p>2， 统计结果上，将outlier划入相对大的群体，减少outlier</p>
+<h2 id="2-3-Deferential-Privacy"><a href="#2-3-Deferential-Privacy" class="headerlink" title="2.3  Deferential Privacy"></a>2.3  Deferential Privacy</h2><script type="math/tex; mode=display">
+\exp (-\varepsilon) \leq \frac{\operatorname{Pr}[A(D)=O]}{\operatorname{Pr}\left[A\left(D^{\prime}\right)=O\right]} \leq \exp (\varepsilon)</script><p>对任意“相邻”数据集 $D$ 和 $D^{\prime}$ 及任意输出 $O$ 都成立</p>
+<p>1,拉普拉斯噪声</p>
+<script type="math/tex; mode=display">
+\operatorname{pdf}(x)=\frac{1}{2 \lambda} \exp \left(-\frac{|x|}{\lambda}\right)</script><p>lambda为 相邻数据集查询发生的最大改变量 / $\epsilon$</p>
+<ol>
+<li><p>random answer</p>
+<p>引入随机量计入答案，保证统计量依然准确可感。</p>
+</li>
+</ol>
+<p><img align="cente" src="/2021/06/08/Data-privacy/random_answer.png" style="zoom:67%;"></p>
+]]></content>
+      <tags>
+        <tag>学术</tag>
+        <tag>分析</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Gurobi在python中的使用</title>
     <url>/2021/04/30/Gurobi-in-Python/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>简单学习了下gurobi 在python中的应用，日后估计会经常使用，在此做个记录方便以后掌握。</p>
@@ -57,6 +198,11 @@
       <tags>
         <tag>技术</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>My New Post</title>
+    <url>/2021/01/17/My-New-Post/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
   </entry>
   <entry>
     <title>MAB学习笔记</title>
@@ -114,9 +260,84 @@ R(T) \leq O\left(T^{2 / 3}(\log T)^{1 / 3}\right)</script><p>​    To complete 
       </tags>
   </entry>
   <entry>
-    <title>My New Post</title>
-    <url>/2021/01/17/My-New-Post/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+    <title>Paper Reading</title>
+    <url>/2021/11/24/Regulation/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Robust-Monopoly-Regulation-AER-RR"><a href="#Robust-Monopoly-Regulation-AER-RR" class="headerlink" title="Robust Monopoly Regulation(AER RR)"></a>Robust Monopoly Regulation(AER RR)</h1><p>Yingni Guo ，Eran Shmaya</p>
+<a id="more"></a>
+<h2 id="1-Introduction-amp-Environment"><a href="#1-Introduction-amp-Environment" class="headerlink" title="1 Introduction &amp; Environment"></a>1 Introduction &amp; Environment</h2><p>There is a monopolistic firm and a mass one of consumers.</p>
+<p> <strong>Inverse-demand function:</strong> </p>
+<p>​        $V:[0,1] \rightarrow[0, \bar{v}]$    </p>
+<p>​        A quantity-price pair $(q, p) \in [0,1] \times[0, \bar{v}]$ is feasible if and only if it is below the inverse-demand function, i.e., $p \leqslant V(q)$.<br>​        The total value to consumers of quantity $q$ is the area under the inverse-demand function given by $\int_{0}^{q} V(z) \mathrm{d} z$</p>
+<p><strong>Optimal total surplus:</strong> </p>
+<script type="math/tex; mode=display">
+\operatorname{OPT}(V, C)=\max _{q \in[0,1]}\left(\int_{0}^{q} V(z) \mathrm{d} z-C(q)\right)</script><p><strong>Distortion of total surplus(with quantity q):</strong></p>
+<script type="math/tex; mode=display">
+\operatorname{DSTR}(V, C, q)=\operatorname{OPT}(V, C)-\left(\int_{0}^{q} V(z) \mathrm{d} z-C(q)\right)</script><p><strong>Regulatory policies:</strong></p>
+<p>​            Revenue of the firm: $\rho(q, p)$</p>
+<ol>
+<li>subsidy : $\rho(q, p) = qp + s$​</li>
+<li>tax: $\rho(q, p) = qp - t$</li>
+<li>price cap:  $\rho(q, p) =\min (q p, q k)$</li>
+</ol>
+<p><strong>Consumer surplus and Firm payoff : </strong></p>
+<script type="math/tex; mode=display">
+\mathrm{CS}(V, \rho, q, p)=\int_{0}^{q} V(z) \mathrm{d} z-\rho(q, p)\\
+\mathrm{FP}(V, C, \rho, q, p)=\rho(q, p)-C(q)</script><h2 id="2-Problem"><a href="#2-Problem" class="headerlink" title="2 Problem"></a>2 Problem</h2><p>​    The regulator’s payoff is a wseighted sum: $CS + \alpha FP, \alpha \in (0,1)$​</p>
+<p><strong>Complete Information Payoff :</strong></p>
+<script type="math/tex; mode=display">
+\operatorname{CIP}(V, C)=\max _{\rho, q, p}(\operatorname{CS}(V, \rho, q, p)+\alpha \mathrm{FP}(V, C, \rho, q, p))</script><p><strong>Proposition 1:</strong></p>
+<script type="math/tex; mode=display">
+\mathrm{CIP}(V, C)=\mathrm{OPT}(V, C)</script><script type="math/tex; mode=display">
+\rho(q, p)=\left\{\begin{array}{ll}
+C\left(q^{*}\right) & \text { if }(q, p)=\left(q^{*}, V\left(q^{*}\right)\right) \\
+0 & \text { otherwise }
+\end{array}\right.</script><p><strong>Regret:</strong></p>
+<script type="math/tex; mode=display">
+\operatorname{RGRT}(V, C, \rho, q, p)=\operatorname{CIP}(V, C)-(\operatorname{CS}(V, \rho, q, p)+\alpha \mathrm{FP}(V, C, \rho, q, p))</script><script type="math/tex; mode=display">
+\begin{aligned} \mathrm{RGRT} &=\mathrm{CIP}-(\mathrm{CS}+\alpha \mathrm{FP})=\mathrm{OPT}-(\mathrm{CS}+\alpha \mathrm{FP}) \\ &=\mathrm{OPT}-(\mathrm{CS}+\mathrm{FP})+(1-\alpha) \mathrm{FP} \\ &=\mathrm{DSTR}+(1-\alpha) \mathrm{FP} \end{aligned}</script><script type="math/tex; mode=display">
+\underset{\rho}{\operatorname{minimize}} \max _{V, C, q, p} \operatorname{RGRT}(V, C, \rho, q, p)</script><h2 id="3-Main-Result"><a href="#3-Main-Result" class="headerlink" title="3 Main Result"></a>3 Main Result</h2><h3 id="Price-Cap-k"><a href="#Price-Cap-k" class="headerlink" title="Price Cap k"></a>Price Cap k</h3><p><img src="/2021/11/24/Regulation/sample.png" alt="image-20210806094741252"></p>
+<p>$k_{\alpha}=\frac{\bar{v}}{2-\alpha}$</p>
+<p><strong>Proposition 2：</strong>The worst-case regret under any policy is at least $(1-\alpha) k_{\alpha}=\frac{1-\alpha}{2-\alpha} \bar{v}$.</p>
+<p><strong>Theorem 1:</strong></p>
+<p><strong>Lower bound on worst-case regret:</strong></p>
+<script type="math/tex; mode=display">
+r_{\alpha}=\max _{q \in[0,1], p \in\left[0, k_{\alpha}\right]} \min \left(q(1-\alpha) k_{\alpha}-q p \log q, q\left(k_{\alpha}-p\right)\right)</script><script type="math/tex; mode=display">
+r_{\alpha}=\bar{v}\left\{\begin{array}{ll}
+\frac{1-\alpha}{2-\alpha} & \alpha \leqslant \frac{1}{2} \\
+\frac{(2+\alpha-\sqrt{\alpha(\alpha+4)}) e^{1-\frac{\alpha+\sqrt{\alpha(\alpha+4)}}{2}}}{2(2-\alpha)} & \alpha>\frac{1}{2} .
+\end{array}, \quad q_{\alpha}=\left\{\begin{array}{ll}
+1, & \text { if } \alpha \leqslant 1 / 2 \\
+e^{1-\frac{\alpha+\sqrt{\alpha(\alpha+4)}}{2}}, & \text { if } \alpha>1 / 2
+\end{array}\right.\right.</script><p><strong>Theorem 2 (Optimal policy).</strong> Let</p>
+<script type="math/tex; mode=display">
+s_{\alpha}=\sup \left\{q\left(k_{\alpha}-p\right): q \in[0,1], p \in\left[0, k_{\alpha}\right], q(1-\alpha) k_{\alpha}-q p \log q>r_{\alpha}\right\}</script><p>The policy</p>
+<script type="math/tex; mode=display">
+\rho(q, p)=\min \left(q k_{\alpha}, q p+s\right)</script><p>with $s<em>{\alpha} \leqslant s \leqslant r</em>{\alpha}$ achieves the worst-case regret $r_{\alpha}$.</p>
+<p>$s<em>{\alpha}=\left{\begin{array}{ll}\bar{v} \frac{\alpha}{2-\alpha} &amp; \text { if } \alpha \leqslant \frac{1}{2} \ r</em>{\alpha} &amp; \text { if } \alpha&gt;\frac{1}{2}\end{array}\right.$</p>
+<p><strong>Theorem 3:</strong> Let $\rho$ be an optimal policy. Then</p>
+<ol>
+<li>(Price cap): $\rho(q, p) \leqslant q k<em>{\alpha}$ for every $q \leqslant q</em>{\alpha}$.</li>
+<li><p>(Subsidy): There exists some $(q, p)$ such that $\rho(q, p) \geqslant q p+s_{\alpha}$.</p>
+</li>
+<li><p>(Subsidy cap): $\rho(q, p) \leqslant q p+r_{\alpha}$​ for every $(q, p)$</p>
+</li>
+</ol>
+<p>Trade off between 3 parts:</p>
+<ol>
+<li><p>Giving more surplus to consumer(Surplus redistribution)</p>
+<p>体现在price cap设置上，price cap 限制monopoly firm cannot get more than $k_\alpha$​ from consumer.</p>
+</li>
+<li><p>Underproduction</p>
+<p>For low quantity, subsidy is piece-rate increasing, incentivize the firm to producemore.</p>
+</li>
+<li><p>Overproduction</p>
+<p>The subsidize is capped , so the potential overproduction is under control.</p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>学术</tag>
+      </tags>
   </entry>
   <entry>
     <title>Thompson Sampling笔记</title>
@@ -342,6 +563,50 @@ U_{i}\left(s_{i}\right)=U_{i}(\underline{s})+\int_{\underline{s}}^{s_{i}} F^{n-1
       </tags>
   </entry>
   <entry>
+    <title>匈牙利算法</title>
+    <url>/2021/12/05/%E5%8C%88%E7%89%99%E5%88%A9%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Hungarian-Algorithm"><a href="#Hungarian-Algorithm" class="headerlink" title="Hungarian Algorithm"></a>Hungarian Algorithm</h1><p>The <strong>Hungarian matching algorithm</strong> , also called the Kuhn-Munkres algorithm, is a $O\big(|V|^3\big)$algorithm that can be used to find maximum-weight matchings  in bipartite graphs , which is sometimes called the <strong>assignment problem</strong> . A bipartite graph can easily be represented by an adj matrix, where the weights of edges are the entries. Thinking about the graph in terms of an adjacency matrix is useful for the Hungarian algorithm.</p>
+<a id="more"></a>
+<h2 id="The-Hungarian-Algorithm-for-Graphs"><a href="#The-Hungarian-Algorithm-for-Graphs" class="headerlink" title="The Hungarian Algorithm for Graphs"></a><strong>The Hungarian Algorithm for Graphs</strong></h2><p>Given: the labeling $l$, an equality graph $G_l=(V, E_l)$, an initial matching $M$ in $G_l$, and an unmatched vertex $u \in V$ and $u \notin M$</p>
+<h3 id="Augmenting-the-matching"><a href="#Augmenting-the-matching" class="headerlink" title="Augmenting the matching"></a>Augmenting the matching</h3><ol>
+<li><p>A path is augmenting for $M$ in $G_l$ if it alternates between edges in the matching and edges not in the matching, and the first and last vertices are free vertices, or unmatched, in $M$. We will keep track of a candidate augmenting path starting at the vertex $u$.</p>
+</li>
+<li><p>If the algorithm finds an unmatched vertex $v$, add on to the existing augmenting path $p$ by adding the $u$ to $v$ segment.</p>
+</li>
+<li><p>Flip the matching by replacing the edges in $M$ with the edges in the augmenting path that are not in $M$ (in other words, the edges in $\left.E_l-M\right)$.</p>
+</li>
+</ol>
+<h3 id="Improving-the-labeling"><a href="#Improving-the-labeling" class="headerlink" title="Improving the labeling"></a>Improving the labeling</h3><ol>
+<li>$S \subseteq X$ and $T \subseteq Y$, where $S$ and $T$ represent the candidate augmenting alternating path between the matching and the edges not in the matching.</li>
+<li>Let $N_l(S)$ be the neighbors to each node that is in $S$ along edges in $E_l$ such that $N_l(S)={v \mid \forall u \in S:(u, v) \in E_l}$.</li>
+<li>If $N_{l}(S)=T$, then we cannot increase the size of the alternating path (and therefore can’t further augment), so we need to improve the labeling.</li>
+<li>Let $\delta_{l}$ be the minimum of $l(u)+l(v)-w(u, v)$ over all of the $u \in S$ and $v \notin T$.</li>
+<li>Improve the labeling $l$ to $l^{\prime}$ :</li>
+</ol>
+<ul>
+<li><p>If $r \in S$, then $l^{\prime}(r)=l(r)-\delta_{l}$,</p>
+</li>
+<li><p>If $r \in T$, then $l^{\prime}(r)=l(r)+\delta_{l}$.</p>
+</li>
+<li><p>If $r \notin S$ and $r \notin T$, then $l^{\prime}(r)=l(r)$.</p>
+</li>
+</ul>
+<p>   $l^{\prime}$ is a valid labeling and $E<em>{l} \subset E</em>{l^{\prime}}$.</p>
+<h3 id="Putting-it-all-together-The-Hungarian-Algorithm"><a href="#Putting-it-all-together-The-Hungarian-Algorithm" class="headerlink" title="Putting it all together: The Hungarian Algorithm"></a>Putting it all together: The Hungarian Algorithm</h3><ol>
+<li>Start with some matching $M$, a valid labeling $l$, where $l$ is defined as the labelling $\forall x \in X, y \in Y \mid l(y)=0, l(x)=\max _{y \in Y}(w(x, y))$.</li>
+<li>Do these steps until a perfect matching is found (when $M$ is perfect):</li>
+</ol>
+<ul>
+<li>(a) Look for an augmenting path in $M$.</li>
+<li>(b) If an augmenting path does not exist, improve the labeling and then go back to step (a).</li>
+</ul>
+<h2 id="Python-Implementation"><a href="#Python-Implementation" class="headerlink" title="Python Implementation:"></a>Python Implementation:</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">TOLERANCE = <span class="number">1e-6</span>  <span class="comment"># everything below is considered zero</span></span><br><span class="line">MAX = <span class="number">999999</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">improveLabels</span>(<span class="params">val</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot; change the labels, and maintain minSlack.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> u <span class="keyword">in</span> S:</span><br><span class="line">        lu[u] -= val</span><br><span class="line">    <span class="keyword">for</span> v <span class="keyword">in</span> V:</span><br><span class="line">        <span class="keyword">if</span> v <span class="keyword">in</span> T:</span><br><span class="line">            lv[v] += val</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            minSlack[v][<span class="number">0</span>] -= val</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">improveMatching</span>(<span class="params">v</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot; apply the alternating path from v to the root in the tree.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    u = T[v]</span><br><span class="line">    <span class="keyword">if</span> u <span class="keyword">in</span> Mu:</span><br><span class="line">        improveMatching(Mu[u])</span><br><span class="line">    Mu[u] = v</span><br><span class="line">    Mv[v] = u</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">slack</span>(<span class="params">u,v</span>):</span> <span class="keyword">return</span> lu[u]+lv[v]-w[u][v]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">augment</span>():</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot; augment the matching, possibly improving the lablels on the way.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="comment"># select edge (u,v) with u in S, v not in T and min slack</span></span><br><span class="line">        ((val, u), v) = <span class="built_in">min</span>([(minSlack[v], v) <span class="keyword">for</span> v <span class="keyword">in</span> V <span class="keyword">if</span> v <span class="keyword">not</span> <span class="keyword">in</span> T])</span><br><span class="line"><span class="comment">#         assert u in S</span></span><br><span class="line"><span class="comment">#         assert val &gt; - TOLERANCE</span></span><br><span class="line">        <span class="keyword">if</span> val &gt; TOLERANCE:</span><br><span class="line">            improveLabels(val)</span><br><span class="line">        <span class="comment"># now we are sure that (u,v) is saturated</span></span><br><span class="line">        <span class="keyword">assert</span> <span class="built_in">abs</span>(slack(u,v)) &lt; TOLERANCE  <span class="comment"># test zero slack with tolerance</span></span><br><span class="line">        T[v] = u                            <span class="comment"># add (u,v) to the tree</span></span><br><span class="line">        <span class="keyword">if</span> v <span class="keyword">in</span> Mv:</span><br><span class="line">            u1 = Mv[v]                      <span class="comment"># matched edge,</span></span><br><span class="line">            <span class="keyword">assert</span> <span class="keyword">not</span> u1 <span class="keyword">in</span> S</span><br><span class="line">            S[u1] = <span class="literal">True</span>                    <span class="comment"># ... add endpoint to tree</span></span><br><span class="line">            <span class="keyword">for</span> v <span class="keyword">in</span> V:                     <span class="comment"># maintain minSlack</span></span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> v <span class="keyword">in</span> T <span class="keyword">and</span> minSlack[v][<span class="number">0</span>] &gt; slack(u1,v):</span><br><span class="line">                    minSlack[v] = [slack(u1,v), u1]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            improveMatching(v)              <span class="comment"># v is a free vertex</span></span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">maxWeightMatching</span>(<span class="params">weights</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot; given w, the weight matrix of a complete bipartite graph,</span></span><br><span class="line"><span class="string">        returns the mappings Mu : U-&gt;V ,Mv : V-&gt;U encoding the matching</span></span><br><span class="line"><span class="string">        as well as the value of it.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">global</span> U,V,S,T,Mu,Mv,lu,lv, minSlack, w</span><br><span class="line">    w  = weights</span><br><span class="line">    n  = <span class="built_in">len</span>(w)</span><br><span class="line">    V = <span class="built_in">range</span>(n)</span><br><span class="line">    U   = <span class="built_in">range</span>(n)</span><br><span class="line">    <span class="comment"># initialize the feasible vertex label.</span></span><br><span class="line">    lu = [ <span class="built_in">max</span>([w[u][v] <span class="keyword">for</span> v <span class="keyword">in</span> V]) <span class="keyword">for</span> u <span class="keyword">in</span> U]  </span><br><span class="line">    lv = [ <span class="number">0</span>                         <span class="keyword">for</span> v <span class="keyword">in</span> V]</span><br><span class="line">    Mu = &#123;&#125;                                      </span><br><span class="line">    Mv = &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># choose a unmatched vertex u0</span></span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(Mu)&lt;n:</span><br><span class="line">        free = [u <span class="keyword">for</span> u <span class="keyword">in</span> U <span class="keyword">if</span> u <span class="keyword">not</span> <span class="keyword">in</span> Mu]      </span><br><span class="line">        u0 = free[<span class="number">0</span>]</span><br><span class="line">        S = &#123;u0: <span class="literal">True</span>&#125;                           </span><br><span class="line">        T = &#123;&#125;</span><br><span class="line">        minSlack = [[slack(u0,v), u0] <span class="keyword">for</span> v <span class="keyword">in</span> V]</span><br><span class="line">        augment()</span><br><span class="line"></span><br><span class="line">    val = <span class="built_in">sum</span>(lu)+<span class="built_in">sum</span>(lv)</span><br><span class="line">    <span class="keyword">return</span>  val</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>只狼-影逝二度</title>
     <url>/2021/03/13/%E5%8F%AA%E7%8B%BC-%E5%BD%B1%E9%80%9D%E4%BA%8C%E5%BA%A6/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="/2021/03/13/%E5%8F%AA%E7%8B%BC-%E5%BD%B1%E9%80%9D%E4%BA%8C%E5%BA%A6/index.jpeg" style="zoom:33%;"></p>
@@ -419,6 +684,49 @@ U_{i}\left(s_{i}\right)=U_{i}(\underline{s})+\int_{\underline{s}}^{s_{i}} F^{n-1
       </tags>
   </entry>
   <entry>
+    <title>如何反驳那些认为圣诞老人不存在的幼稚的人们</title>
+    <url>/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>圣诞老人是存在的！</p>
+<a id="more"></a>
+<p>“<a href="http://www.guokr.com/article/3908/">圣诞怪谈</a>”中，“圣诞公公不存在”被证实为谣言：</p>
+<blockquote>
+<p>根据大量的历史数据以及 NORAD过去50 多年来追踪圣诞老人所收集的信息，我们坚信圣诞老人确定一定以及肯定是存在的…如今，NORAD使用四种高科技手段：雷达、卫星、Santa Cam和喷气式战斗机，来追踪圣诞老人…圣诞夜当晚，NORAD会为我们传来圣诞老人带着他的驯鹿环游世界的图像和视频…</p>
+</blockquote>
+<p>但是，小朋友们，虽然这更加坚定了你心中“圣诞老人存在”的信念，可如果依然有可恶的幼稚的无趣的人说“那些都是骗人的，哄小孩的，明明就没有圣诞老人”，你还是不能只凭这些来反驳。想让他们哑口无言，看看下面的教学吧（原图自<a href="http://survivingtheworld.net/">Surviving the World</a>）。</p>
+<h2 id="圣诞老人的存在性"><a href="#圣诞老人的存在性" class="headerlink" title="圣诞老人的存在性"></a>圣诞老人的存在性</h2><p><img src="/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/1.jpeg" alt="img" style="zoom:50%;"></p>
+<p>真的有圣诞老人哦</p>
+<p>不要理那些可恶的“大孩子”们说的话</p>
+<p>圣诞老人当然存在了！！</p>
+<p>事实上证明这件事一点儿也不难</p>
+<p><img src="/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/2.jpeg" alt="img" style="zoom:50%;"></p>
+<p>首先呢，你要明白有无数多个宇宙同时存在</p>
+<p>（小朋友们，这一点很好理解吧- __,-）</p>
+<p>多到你根本记不住在多少个宇宙里你喷了香体喷剂，</p>
+<p>多少个宇宙里你忘了喷，或者多少个你甚至连腋窝都没有（囧）</p>
+<p><img src="/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/2.jpeg" alt="img" style="zoom:50%;"></p>
+<p>所以，这就意味着圣诞老人不仅是存在的，</p>
+<p>而且还可能有宇宙总数的一半那么多个！</p>
+<p>（某些<a href="http://www.guokr.com/article/3914/">死理性派</a>是不是以为圣诞老人只有一个呢）</p>
+<p><img src="/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/4.jpeg" alt="img" style="zoom:50%;"></p>
+<p>“但是，哼哼”，某些人会说，</p>
+<p>“就算是有一半的宇宙里存在着圣诞老人，我们也在那些圣诞老人不存在的宇宙里。”</p>
+<p><img src="/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/5.jpeg" alt="img" style="zoom:50%;"></p>
+<p>好吧，就算他们说的是对的</p>
+<p>但是在这无数多个宇宙中</p>
+<p>至少有一个圣诞老人会穿梭于不同的宇宙之间</p>
+<p>而且至少有一个圣诞老人会穿梭到我们的宇宙来</p>
+<p><img src="/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/4.jpeg" alt="img" style="zoom:50%;"></p>
+<p>所以说，保持着你们童真的梦想，</p>
+<p>开心的等着圣诞老人吧</p>
+<p>如果那些大孩子一直反对你的观点</p>
+<p>无视掉他们</p>
+<p>他们不懂物理</p>
+]]></content>
+      <tags>
+        <tag>数学</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>提利昂·兰尼斯特是龙还是狮的一些猜想</title>
     <url>/2021/01/20/%E5%B0%8F%E6%81%B6%E9%AD%94%E6%8F%90%E5%88%A9%E6%98%82%C2%B7%E5%85%B0%E5%B0%BC%E6%96%AF%E7%89%B9%E6%98%AF%E5%90%A6%E4%B8%BA%E9%BE%99%E7%A7%8D%E7%9A%84%E4%B8%80%E4%BA%9B%E7%8C%9C%E6%83%B3/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="/2021/01/20/%E5%B0%8F%E6%81%B6%E9%AD%94%E6%8F%90%E5%88%A9%E6%98%82%C2%B7%E5%85%B0%E5%B0%BC%E6%96%AF%E7%89%B9%E6%98%AF%E5%90%A6%E4%B8%BA%E9%BE%99%E7%A7%8D%E7%9A%84%E4%B8%80%E4%BA%9B%E7%8C%9C%E6%83%B3/提利昂插画.png" alt="提利昂插画" style="zoom:33%;"></p>
@@ -462,6 +770,26 @@ U_{i}\left(s_{i}\right)=U_{i}(\underline{s})+\int_{\underline{s}}^{s_{i}} F^{n-1
       <tags>
         <tag>冰火</tag>
         <tag>闲谈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我的心在示波器上跳动</title>
+    <url>/2021/12/01/%E6%88%91%E7%9A%84%E5%BF%83%E5%9C%A8%E7%A4%BA%E6%B3%A2%E5%99%A8%E4%B8%8A%E8%B7%B3%E5%8A%A8/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我想我现在应该前进了，在将来的某个时刻创造些美好的东西。</p>
+<a id="more"></a>
+<p>我感觉到一切正在生长，一切又在衰老。</p>
+<p>意识到有些事情可能正在发生或者是已经发生</p>
+<p>预感不到具体是什么事情，大概就是有这样一个意识，突然觉得生活好像是有点不一样。</p>
+<p>对一切充满了智慧的体系，不管是哲学还是数学，只要他深刻周密，我就对他抱有审美式的爱好。</p>
+<p>我顶顶喜欢的是自理生活，理成一塌糊涂也罢。</p>
+<p>我要从啤酒花里吐出野马。</p>
+<p>过去我们在顶礼膜拜中度过光阴时，我们知道什么是生活么？</p>
+<p>我只要还有一点感情，就无法不期待获得对方的感情，不论是爱还是憎。</p>
+<p>肉麻的东西无论如何不该被赞美。</p>
+<p>在台风中央平静地迎接我的死亡。</p>
+]]></content>
+      <tags>
+        <tag>歪诗</tag>
       </tags>
   </entry>
   <entry>
@@ -516,6 +844,14 @@ U_{i}\left(s_{i}\right)=U_{i}(\underline{s})+\int_{\underline{s}}^{s_{i}} F^{n-1
       <tags>
         <tag>算法</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>深北莫算法与Quasi-Newton</title>
+    <url>/2021/11/18/%E6%B7%B1%E5%8C%97%E8%8E%AB%E7%AE%97%E6%B3%95%E4%B8%8EQuasi-Newton/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>​    优化课与同学尝试BFGS的参数选择讨论到12点@_@, 回宿舍路上口瓢把SMBU（深北莫）也读成了BFGS。觉得深北莫算法这“雅号”比BFGS更透着一股亲近感。as</p>
+<p><img src="/2021/11/18/%E6%B7%B1%E5%8C%97%E8%8E%AB%E7%AE%97%E6%B3%95%E4%B8%8EQuasi-Newton/intro.jpeg" style="zoom:33%;"></p>
+<a id="more"></a>
+]]></content>
   </entry>
   <entry>
     <title>猫咪分类实现</title>
@@ -618,147 +954,6 @@ cat_kind  项目文件名
       </tags>
   </entry>
   <entry>
-    <title>Cryptocurrency</title>
-    <url>/2021/06/02/Cryptocurrency/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="/2021/06/02/Cryptocurrency/BTC_Logo.svg.png" style="zoom:10%;"></p>
-<p>Basic introduction of cryptocurrency</p>
-<a id="more"></a>
-<h1 id="1-What-is-cryptocurrency"><a href="#1-What-is-cryptocurrency" class="headerlink" title="1 What is cryptocurrency?"></a>1 What is cryptocurrency?</h1><p>Cryptocurrency is a form of payment that can be exchanged online for goods and services. Many companies have issued their own currencies, often called tokens, and these can be traded specifically for the good or service that the company provides. Think of them as you would arcade tokens or casino chips. You’ll need to exchange real currency for the cryptocurrency to access the good or service.</p>
-<p>Cryptocurrencies work using a technology called <strong>blockchain</strong>. Blockchain is a <strong>decentralized</strong> technology spread across many computers that manages and records transactions. Part of the appeal of this technology is its security.</p>
-<h1 id="2-Why-popular"><a href="#2-Why-popular" class="headerlink" title="2 Why popular?"></a>2 Why popular?</h1><p>Cryptocurrencies appeal to their supporters for a variety of reasons. Here are some of the most popular:</p>
-<ul>
-<li>Supporters see cryptocurrencies such as Bitcoin as the currency of the future and are racing to buy them now, presumably before they become more valuable（升值）</li>
-<li>Some supporters like the fact that cryptocurrency removes central banks from managing the money supply, since over time these banks tend to reduce the value of money via inflation（私密）</li>
-<li>Other supporters like the technology behind cryptocurrencies, the blockchain, because it’s a decentralized processing and recording system and can be more secure than traditional payment systems（技术控）</li>
-</ul>
-<h1 id="3-How-it-works？"><a href="#3-How-it-works？" class="headerlink" title="3 How it works？"></a>3 How it works？</h1><h2 id="3-1-Decentralize"><a href="#3-1-Decentralize" class="headerlink" title="3.1 Decentralize:"></a>3.1 Decentralize:</h2><p>In traditional electronic trading， there will always be a trusted third party either country\Bank or big company like Alibaba. In cryptocurrency there is no such “Center”.</p>
-<h2 id="3-2-Block-Chain"><a href="#3-2-Block-Chain" class="headerlink" title="3.2 Block Chain:"></a>3.2 Block Chain:</h2><p>Since, there is no centralized third party we need another way to verify and record transaction. The main idea behind cryptocurrency is to let everyone keep the whole e-ledger—<strong>the block chain</strong>.</p>
-<p>In every 5 minutes someone will pack all the transactions(<strong>block</strong>) then he will broadcast to everyone and link the new block to the block chain.Every block will be encrypted by hash function.For bitcoin, it uses POW algorithm wich is based on SHA256. </p>
-<center>
-  <font color="blue">SHA256</font>(<font color="green">Plain Text</font>) = <font color="green">010101101010..0101</font>(256 bit)
-</center>
-
-
-
-<p><img src="/2021/06/02/Cryptocurrency/blockchain_demo.png" style="zoom:50%;"></p>
-<p>In short:</p>
-<p><center>Ledger-Trust+Cryptography=<font color="#4182D1">Cryptocurrency</font></center></p>
-<p><img src="/2021/06/02/Cryptocurrency/VSbank.png" style="zoom:50%;"></p>
-<h2 id="3-3-Why-this-works"><a href="#3-3-Why-this-works" class="headerlink" title="3.3 Why this works?"></a>3.3 Why this works?</h2><ol>
-<li><p>It satisfy the basic requirements to be used as “currency”. </p>
-<p><strong>currency = transaction history</strong></p>
-</li>
-<li><p>Althoug there is no provement of non-solvable property of SHA256 but we can assume it is not possible to solve it. So it is hard(expensive, 51% attack) to forgery.</p>
-<p><strong>Fraud is computationally infeasible</strong></p>
-</li>
-</ol>
-<h1 id="4-What-is-mining"><a href="#4-What-is-mining" class="headerlink" title="4 What is mining?"></a>4 What is mining?</h1><h2 id="4-1-Block-reward"><a href="#4-1-Block-reward" class="headerlink" title="4.1 Block reward"></a>4.1 Block reward</h2><p><strong>Block Award</strong>:</p>
-<p>Once a new block is added to the block chain, the people who finish such job will get rewarded for 25 bit coins<strong>(halve after every 210000 blocks,and for now each block is rewarded for 12.5 btc)</strong></p>
-<h2 id="4-2-Who-can-get-reward"><a href="#4-2-Who-can-get-reward" class="headerlink" title="4.2 Who can get reward?"></a>4.2 Who can get reward?</h2><p>To get the reward one must get the opportunity to add a new block. This is where cryptography works. </p>
-<p>SHA256 algorithms will translate plaintext into 256 binary code, the cryptocurrency protocol will announce, for example: first 30 bits should be 0 for next block. Miners will try different keys until one lucky miner find the key that satisfies the requirement.</p>
-<p>SHA256(。。。+transaction+Time Stamp+。。。+<font color="green">key</font>) = <font color="red">0000…000</font>1010111</p>
-<h2 id="4-3-Proof-of-work"><a href="#4-3-Proof-of-work" class="headerlink" title="4.3 Proof of work"></a>4.3 Proof of work</h2><p>The miners may get conflict signals recording conflict transactions. Miners should always t<strong>rsust one with more computational work.</strong></p>
-<p>Some times conflict may come from the broadcast speed.For example one may get 2 blocks at the same time, then he sholud keep both blocks and one of them will gradually get longer and longer than another one, then based on <strong>proof of work</strong> protocol he should take the longer one.</p>
-<p>Some time fraud may come from fraud. It is obvious that to make others trust your record you have to make sure your chain grows faster than the true chain, which means you have to posses at least 51% computation power which is not possible.</p>
-<p><img src="/2021/06/02/Cryptocurrency/proofWork.png" style="zoom:50%;"></p>
-<h1 id="5-Problems"><a href="#5-Problems" class="headerlink" title="5 Problems"></a>5 Problems</h1><h2 id="5-1-Speculation-and-fraud"><a href="#5-1-Speculation-and-fraud" class="headerlink" title="5.1 Speculation and fraud"></a>5.1 Speculation and fraud</h2><p>Cryptocurrencies have been compared to Ponzi schemes, pyramid schemes and economic bubbles, such as housing market bubbles. Howard Marks of Oaktree Capital Management stated in 2017 that digital currencies were “nothing but an unfounded fad (or perhaps even a pyramid scheme), based on a willingness to ascribe value to something that has little or none beyond what people will pay for it”, and compared them to the tulip mania (1637), South Sea Bubble (1720), and dot-com bubble (1999). The New Yorker has explained the debate based on interviews with blockchain founders in an article about the “argument over whether Bitcoin, Ethereum, and the blockchain are transforming the world”.</p>
-<p>(泡沫与庞氏骗局)</p>
-<h2 id="5-2-legal-concern"><a href="#5-2-legal-concern" class="headerlink" title="5.2 legal concern"></a>5.2 legal concern</h2><p>Cryptocurrency networks display a lack of regulation that has been criticized as enabling criminals who seek to evade taxes and launder money. Money laundering issues are also present in regular bank transfers, however with bank-to-bank wire transfers for instance, the account holder must at least provide a proven identity.</p>
-<p>（洗钱，非法汇款等）</p>
-<h2 id="5-3-Environment-concern"><a href="#5-3-Environment-concern" class="headerlink" title="5.3 Environment concern"></a>5.3 Environment concern</h2><p>挖矿带来的电力的浪费，环境污染，硬件消耗。</p>
-]]></content>
-      <tags>
-        <tag>学术</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>大数据与隐私</title>
-    <url>/2021/06/08/Data-privacy/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img align="cente" src="/2021/06/08/Data-privacy/index.jpeg" style="zoom:67%;"></p>
-<p>大数据技术在提升社会协作效率、给人们带来诸多便利与舒适的同时, 也逐渐引发了一系列问题, “大数据杀熟”便是恶果之一。</p>
-<a id="more"></a>
-<p>​    所谓“大数据杀熟”, 通俗说来就是平台(主要是互联网平台)充分利用自身所掌握的大数据技术对<strong>消费市场进行更为精准与细腻的划分</strong>, 在此基础上主要<strong>对熟人(习惯、依赖该平台的较为忠诚的用户)进行不当地利益宰割</strong>, 从而使大数据技术成为部分经营者追求超额利润的有力工具。也就是说, 面临同样的商品或服务, 具有忠诚度的用户群体看到并为此实际支付的价格反而比新客户或一般用户要贵,   而且这种行为极具隐蔽性。一言以蔽之, 大数据技术加剧了经营者和相对人之间的的信息不平等, 消费者很难通过网络对经营者价格歧视的抗辩进行甄别</p>
-<p>​    究其本质, “大数据杀熟”的技术原理就是互联网平台凭借其所掌握的极其庞大且维度异常丰富的数据, 诸如用户的个人身份信息、位置信息、聊天记录以及支付信息等一切有可能被线上记录的数字化信息, 然后通过一整套复杂、高效而又极其先进的数据运算、分析和挖掘技术对碎片化、零散的用户数字化信息进行全方位的扫描、分析与研究(数据标注), 然后通过一些关键词的标注对用户进行细致归类, 从而生成独特的 <font color="EE695E"><strong>用户画像</strong>。</font></p>
-<h1 id="1-主因"><a href="#1-主因" class="headerlink" title="1 主因"></a>1 主因</h1><p>1.数据高度集中，互联网的发展建立在用户数据的规模智商，用户规模越大整个互联网越能发挥出更大的效用，综合价值成集合式增长。 相较于传统经济样态, 互联网经济的边际成本非常低, 收益却可以很高,自然导致了数据的集中于垄断。</p>
-<p>2.用户”粘性“，用户粘性是各大互联网产品重要的指标。用户长久的习惯于使用某一平台，由于用户对便利、稳定的追求使得有被”杀熟“的可能。</p>
-<p>3.不同平台间的隐私窃取。微信与京东，支付宝与淘宝等的相互泄漏数据很易使得用户的偏好或购物倾向被泄漏，从而引导消费、杀熟等。粘贴板、输入法等获取信息。</p>
-<font color="red">矛盾：</font>
-
-<p>公司需要用户数据刻画用户画像，以此来提供服务</p>
-<p>VS</p>
-<p>公民隐私泄漏给互联网公司利用用户隐私数据创造价格歧视的机会</p>
-<p>据此，按照通行的观点，价格歧视往往被分为三级：</p>
-<p>一级价格歧视，即看人报价，报出对方能够接受的最高价，攫取最大利润；传统商业社会中，游商采用这种方式比较多；</p>
-<p>二级价格歧视，即根据批量大小定价，从而获得最好的周转率，批量大的消费者获得实惠；从商家角度看，虽然单一商品获利降低，但由于销量增加，也可以获得更大的利润；</p>
-<p>三级价格歧视，是根据销售区域的不同进行差异化定价。</p>
-<p>对于大数据杀熟，我国法律中已经有相应的规则进行规范。《中华人民共和国消费者权益保护法》第十九条规定：商店提供商品应明码标价。该法第十条规定：消费者享有公平交易的权利。明码标价意味着商品价格展示不应因为消费者不同而不同，由于不同的消费者看到的价格不同，因而大数据杀熟违反了明码标价的原则。消费者权益保护法规定消费者获得公平交易的权利，也从另一个角度说明了相同商品或服务的定价应一视同仁。</p>
-<h2 id="数据安全法，6-10通过"><a href="#数据安全法，6-10通过" class="headerlink" title="数据安全法，6.10通过"></a>数据安全法，6.10通过</h2><h1 id="2-数据中个人隐私保护的技术分析"><a href="#2-数据中个人隐私保护的技术分析" class="headerlink" title="2 数据中个人隐私保护的技术分析"></a>2 数据中个人隐私保护的技术分析</h1><h2 id="2-1-将id去敏？"><a href="#2-1-将id去敏？" class="headerlink" title="2.1  将id去敏？"></a>2.1  将id去敏？</h2><p>例如在用户数据需要被使用时，使用去敏手段，如：将名字等敏感的个人信息去除。</p>
-<p>问题： How anonymous ?</p>
-<p>2006 netflix收集大量用户评分一次来训练自己的评分预测功能：</p>
-<p>1， 将uid改为无意义代码</p>
-<p>2，随机修改部分用户评分</p>
-<p><a href="https://ieeexplore.ieee.org/document/4531148">Robust De-anonymization of Large Sparse Datasets</a></p>
-<p>(利用了imdb的数据库，correlation 可以)</p>
-<p>马萨诸塞州，医疗数据。</p>
-<font color="red">考虑彼此反推数据，如何加密？</font>
-
-
-
-
-
-<h2 id="2-2-只发布粗粒度的统计数据？"><a href="#2-2-只发布粗粒度的统计数据？" class="headerlink" title="2.2 只发布粗粒度的统计数据？"></a>2.2 只发布粗粒度的统计数据？</h2><script type="math/tex; mode=display">
-\begin{array}{l}
-\begin{array}{|c|c|c|}
-\hline \text { Age } & \text { Gender } & \text { Employed? } \\
-\hline<18 & \mathrm{M} & \text { Yes } \\
-\hline<18 & \mathrm{~F} & \text { No } \\
-\hline<18 & \mathrm{M} & \text { No } \\
-\hline \geq 18 & \mathrm{~F} & \text { Yes } \\
-\hline \geq 18 & \mathrm{~F} & \text { Yes } \\
-\hline
-\end{array}\\
-{\text { Original dataset }}
-\end{array}</script><script type="math/tex; mode=display">
-\begin{array}{l}
-\begin{array}{|c|c|c|}
-\hline \text { Age } & \text { Employed? } & \text { Count } \\
-\hline<18 & \text { Yes } & 1 \\
-\hline<18 & \text { No } & 2 \\
-\hline \geq 18 & \text { Yes } & 2 \\
-\hline \geq 18 & \text { No } & 0 \\
-\hline
-\end{array}\\
-\begin{array}{|c|c|c|}
-\hline \text { Age } & \text { Gender } & \text { Count } \\
-\hline<18 & \mathrm{M} & 2 \\
-\hline<18 & \mathrm{~F} & 1 \\
-\hline \geq 18 & \mathrm{M} & 0 \\
-\hline \geq 18 & \mathrm{~F} & 2 \\
-\hline
-\end{array}\\
-\end{array}</script><p>很容易可以从发布的两份数据中反推出必有两个大于18岁女性，有工作。</p>
-<p>（数据重构攻击）</p>
-<p>可能解决方法：</p>
-<p>1，对统计结果加上有权重的噪音，处理outlier</p>
-<p>2， 统计结果上，将outlier划入相对大的群体，减少outlier</p>
-<h2 id="2-3-Deferential-Privacy"><a href="#2-3-Deferential-Privacy" class="headerlink" title="2.3  Deferential Privacy"></a>2.3  Deferential Privacy</h2><script type="math/tex; mode=display">
-\exp (-\varepsilon) \leq \frac{\operatorname{Pr}[A(D)=O]}{\operatorname{Pr}\left[A\left(D^{\prime}\right)=O\right]} \leq \exp (\varepsilon)</script><p>对任意“相邻”数据集 $D$ 和 $D^{\prime}$ 及任意输出 $O$ 都成立</p>
-<p>1,拉普拉斯噪声</p>
-<script type="math/tex; mode=display">
-\operatorname{pdf}(x)=\frac{1}{2 \lambda} \exp \left(-\frac{|x|}{\lambda}\right)</script><p>lambda为 相邻数据集查询发生的最大改变量 / $\epsilon$</p>
-<ol>
-<li><p>random answer</p>
-<p>引入随机量计入答案，保证统计量依然准确可感。</p>
-</li>
-</ol>
-<p><img align="cente" src="/2021/06/08/Data-privacy/random_answer.png" style="zoom:67%;"></p>
-]]></content>
-      <tags>
-        <tag>学术</tag>
-        <tag>分析</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>P,NP,NPC,NP-hard</title>
     <url>/2021/07/09/P-NP-NPC-NP-hard/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>之前在最优化学习时自然是接触过P，NP等的定义，但时间久了脑海里留下的也只是相对模糊的印象，最近看到北大文学系一博主在08年发布的分析，讲的十分透彻，通篇搬运在这里，方便日后复习。</p>
@@ -777,201 +972,6 @@ cat_kind  项目文件名
 ]]></content>
       <tags>
         <tag>学术</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何反驳那些认为圣诞老人不存在的幼稚的人们</title>
-    <url>/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>圣诞老人是存在的！</p>
-<a id="more"></a>
-<p>“<a href="http://www.guokr.com/article/3908/">圣诞怪谈</a>”中，“圣诞公公不存在”被证实为谣言：</p>
-<blockquote>
-<p>根据大量的历史数据以及 NORAD过去50 多年来追踪圣诞老人所收集的信息，我们坚信圣诞老人确定一定以及肯定是存在的…如今，NORAD使用四种高科技手段：雷达、卫星、Santa Cam和喷气式战斗机，来追踪圣诞老人…圣诞夜当晚，NORAD会为我们传来圣诞老人带着他的驯鹿环游世界的图像和视频…</p>
-</blockquote>
-<p>但是，小朋友们，虽然这更加坚定了你心中“圣诞老人存在”的信念，可如果依然有可恶的幼稚的无趣的人说“那些都是骗人的，哄小孩的，明明就没有圣诞老人”，你还是不能只凭这些来反驳。想让他们哑口无言，看看下面的教学吧（原图自<a href="http://survivingtheworld.net/">Surviving the World</a>）。</p>
-<h2 id="圣诞老人的存在性"><a href="#圣诞老人的存在性" class="headerlink" title="圣诞老人的存在性"></a>圣诞老人的存在性</h2><p><img src="/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/1.jpeg" alt="img" style="zoom:50%;"></p>
-<p>真的有圣诞老人哦</p>
-<p>不要理那些可恶的“大孩子”们说的话</p>
-<p>圣诞老人当然存在了！！</p>
-<p>事实上证明这件事一点儿也不难</p>
-<p><img src="/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/2.jpeg" alt="img" style="zoom:50%;"></p>
-<p>首先呢，你要明白有无数多个宇宙同时存在</p>
-<p>（小朋友们，这一点很好理解吧- __,-）</p>
-<p>多到你根本记不住在多少个宇宙里你喷了香体喷剂，</p>
-<p>多少个宇宙里你忘了喷，或者多少个你甚至连腋窝都没有（囧）</p>
-<p><img src="/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/2.jpeg" alt="img" style="zoom:50%;"></p>
-<p>所以，这就意味着圣诞老人不仅是存在的，</p>
-<p>而且还可能有宇宙总数的一半那么多个！</p>
-<p>（某些<a href="http://www.guokr.com/article/3914/">死理性派</a>是不是以为圣诞老人只有一个呢）</p>
-<p><img src="/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/4.jpeg" alt="img" style="zoom:50%;"></p>
-<p>“但是，哼哼”，某些人会说，</p>
-<p>“就算是有一半的宇宙里存在着圣诞老人，我们也在那些圣诞老人不存在的宇宙里。”</p>
-<p><img src="/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/5.jpeg" alt="img" style="zoom:50%;"></p>
-<p>好吧，就算他们说的是对的</p>
-<p>但是在这无数多个宇宙中</p>
-<p>至少有一个圣诞老人会穿梭于不同的宇宙之间</p>
-<p>而且至少有一个圣诞老人会穿梭到我们的宇宙来</p>
-<p><img src="/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/4.jpeg" alt="img" style="zoom:50%;"></p>
-<p>所以说，保持着你们童真的梦想，</p>
-<p>开心的等着圣诞老人吧</p>
-<p>如果那些大孩子一直反对你的观点</p>
-<p>无视掉他们</p>
-<p>他们不懂物理</p>
-]]></content>
-      <tags>
-        <tag>数学</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>深北莫算法与Quasi-Newton</title>
-    <url>/2021/11/18/%E6%B7%B1%E5%8C%97%E8%8E%AB%E7%AE%97%E6%B3%95%E4%B8%8EQuasi-Newton/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>​    优化课与同学尝试BFGS的参数选择讨论到12点@_@, 回宿舍路上口瓢把SMBU（深北莫）也读成了BFGS。觉得深北莫算法这“雅号”比BFGS更透着一股亲近感。as</p>
-<p><img src="/2021/11/18/%E6%B7%B1%E5%8C%97%E8%8E%AB%E7%AE%97%E6%B3%95%E4%B8%8EQuasi-Newton/intro.jpeg" style="zoom:33%;"></p>
-<a id="more"></a>
-]]></content>
-  </entry>
-  <entry>
-    <title>Paper Reading</title>
-    <url>/2021/11/24/Regulation/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Robust-Monopoly-Regulation-AER-RR"><a href="#Robust-Monopoly-Regulation-AER-RR" class="headerlink" title="Robust Monopoly Regulation(AER RR)"></a>Robust Monopoly Regulation(AER RR)</h1><p>Yingni Guo ，Eran Shmaya</p>
-<a id="more"></a>
-<h2 id="1-Introduction-amp-Environment"><a href="#1-Introduction-amp-Environment" class="headerlink" title="1 Introduction &amp; Environment"></a>1 Introduction &amp; Environment</h2><p>There is a monopolistic firm and a mass one of consumers.</p>
-<p> <strong>Inverse-demand function:</strong> </p>
-<p>​        $V:[0,1] \rightarrow[0, \bar{v}]$    </p>
-<p>​        A quantity-price pair $(q, p) \in [0,1] \times[0, \bar{v}]$ is feasible if and only if it is below the inverse-demand function, i.e., $p \leqslant V(q)$.<br>​        The total value to consumers of quantity $q$ is the area under the inverse-demand function given by $\int_{0}^{q} V(z) \mathrm{d} z$</p>
-<p><strong>Optimal total surplus:</strong> </p>
-<script type="math/tex; mode=display">
-\operatorname{OPT}(V, C)=\max _{q \in[0,1]}\left(\int_{0}^{q} V(z) \mathrm{d} z-C(q)\right)</script><p><strong>Distortion of total surplus(with quantity q):</strong></p>
-<script type="math/tex; mode=display">
-\operatorname{DSTR}(V, C, q)=\operatorname{OPT}(V, C)-\left(\int_{0}^{q} V(z) \mathrm{d} z-C(q)\right)</script><p><strong>Regulatory policies:</strong></p>
-<p>​            Revenue of the firm: $\rho(q, p)$</p>
-<ol>
-<li>subsidy : $\rho(q, p) = qp + s$​</li>
-<li>tax: $\rho(q, p) = qp - t$</li>
-<li>price cap:  $\rho(q, p) =\min (q p, q k)$</li>
-</ol>
-<p><strong>Consumer surplus and Firm payoff : </strong></p>
-<script type="math/tex; mode=display">
-\mathrm{CS}(V, \rho, q, p)=\int_{0}^{q} V(z) \mathrm{d} z-\rho(q, p)\\
-\mathrm{FP}(V, C, \rho, q, p)=\rho(q, p)-C(q)</script><h2 id="2-Problem"><a href="#2-Problem" class="headerlink" title="2 Problem"></a>2 Problem</h2><p>​    The regulator’s payoff is a wseighted sum: $CS + \alpha FP, \alpha \in (0,1)$​</p>
-<p><strong>Complete Information Payoff :</strong></p>
-<script type="math/tex; mode=display">
-\operatorname{CIP}(V, C)=\max _{\rho, q, p}(\operatorname{CS}(V, \rho, q, p)+\alpha \mathrm{FP}(V, C, \rho, q, p))</script><p><strong>Proposition 1:</strong></p>
-<script type="math/tex; mode=display">
-\mathrm{CIP}(V, C)=\mathrm{OPT}(V, C)</script><script type="math/tex; mode=display">
-\rho(q, p)=\left\{\begin{array}{ll}
-C\left(q^{*}\right) & \text { if }(q, p)=\left(q^{*}, V\left(q^{*}\right)\right) \\
-0 & \text { otherwise }
-\end{array}\right.</script><p><strong>Regret:</strong></p>
-<script type="math/tex; mode=display">
-\operatorname{RGRT}(V, C, \rho, q, p)=\operatorname{CIP}(V, C)-(\operatorname{CS}(V, \rho, q, p)+\alpha \mathrm{FP}(V, C, \rho, q, p))</script><script type="math/tex; mode=display">
-\begin{aligned} \mathrm{RGRT} &=\mathrm{CIP}-(\mathrm{CS}+\alpha \mathrm{FP})=\mathrm{OPT}-(\mathrm{CS}+\alpha \mathrm{FP}) \\ &=\mathrm{OPT}-(\mathrm{CS}+\mathrm{FP})+(1-\alpha) \mathrm{FP} \\ &=\mathrm{DSTR}+(1-\alpha) \mathrm{FP} \end{aligned}</script><script type="math/tex; mode=display">
-\underset{\rho}{\operatorname{minimize}} \max _{V, C, q, p} \operatorname{RGRT}(V, C, \rho, q, p)</script><h2 id="3-Main-Result"><a href="#3-Main-Result" class="headerlink" title="3 Main Result"></a>3 Main Result</h2><h3 id="Price-Cap-k"><a href="#Price-Cap-k" class="headerlink" title="Price Cap k"></a>Price Cap k</h3><p><img src="/2021/11/24/Regulation/sample.png" alt="image-20210806094741252"></p>
-<p>$k_{\alpha}=\frac{\bar{v}}{2-\alpha}$</p>
-<p><strong>Proposition 2：</strong>The worst-case regret under any policy is at least $(1-\alpha) k_{\alpha}=\frac{1-\alpha}{2-\alpha} \bar{v}$.</p>
-<p><strong>Theorem 1:</strong></p>
-<p><strong>Lower bound on worst-case regret:</strong></p>
-<script type="math/tex; mode=display">
-r_{\alpha}=\max _{q \in[0,1], p \in\left[0, k_{\alpha}\right]} \min \left(q(1-\alpha) k_{\alpha}-q p \log q, q\left(k_{\alpha}-p\right)\right)</script><script type="math/tex; mode=display">
-r_{\alpha}=\bar{v}\left\{\begin{array}{ll}
-\frac{1-\alpha}{2-\alpha} & \alpha \leqslant \frac{1}{2} \\
-\frac{(2+\alpha-\sqrt{\alpha(\alpha+4)}) e^{1-\frac{\alpha+\sqrt{\alpha(\alpha+4)}}{2}}}{2(2-\alpha)} & \alpha>\frac{1}{2} .
-\end{array}, \quad q_{\alpha}=\left\{\begin{array}{ll}
-1, & \text { if } \alpha \leqslant 1 / 2 \\
-e^{1-\frac{\alpha+\sqrt{\alpha(\alpha+4)}}{2}}, & \text { if } \alpha>1 / 2
-\end{array}\right.\right.</script><p><strong>Theorem 2 (Optimal policy).</strong> Let</p>
-<script type="math/tex; mode=display">
-s_{\alpha}=\sup \left\{q\left(k_{\alpha}-p\right): q \in[0,1], p \in\left[0, k_{\alpha}\right], q(1-\alpha) k_{\alpha}-q p \log q>r_{\alpha}\right\}</script><p>The policy</p>
-<script type="math/tex; mode=display">
-\rho(q, p)=\min \left(q k_{\alpha}, q p+s\right)</script><p>with $s<em>{\alpha} \leqslant s \leqslant r</em>{\alpha}$ achieves the worst-case regret $r_{\alpha}$.</p>
-<p>$s<em>{\alpha}=\left{\begin{array}{ll}\bar{v} \frac{\alpha}{2-\alpha} &amp; \text { if } \alpha \leqslant \frac{1}{2} \ r</em>{\alpha} &amp; \text { if } \alpha&gt;\frac{1}{2}\end{array}\right.$</p>
-<p><strong>Theorem 3:</strong> Let $\rho$ be an optimal policy. Then</p>
-<ol>
-<li>(Price cap): $\rho(q, p) \leqslant q k<em>{\alpha}$ for every $q \leqslant q</em>{\alpha}$.</li>
-<li><p>(Subsidy): There exists some $(q, p)$ such that $\rho(q, p) \geqslant q p+s_{\alpha}$.</p>
-</li>
-<li><p>(Subsidy cap): $\rho(q, p) \leqslant q p+r_{\alpha}$​ for every $(q, p)$</p>
-</li>
-</ol>
-<p>Trade off between 3 parts:</p>
-<ol>
-<li><p>Giving more surplus to consumer(Surplus redistribution)</p>
-<p>体现在price cap设置上，price cap 限制monopoly firm cannot get more than $k_\alpha$​ from consumer.</p>
-</li>
-<li><p>Underproduction</p>
-<p>For low quantity, subsidy is piece-rate increasing, incentivize the firm to producemore.</p>
-</li>
-<li><p>Overproduction</p>
-<p>The subsidize is capped , so the potential overproduction is under control.</p>
-</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>学术</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>我的心在示波器上跳动</title>
-    <url>/2021/12/01/%E6%88%91%E7%9A%84%E5%BF%83%E5%9C%A8%E7%A4%BA%E6%B3%A2%E5%99%A8%E4%B8%8A%E8%B7%B3%E5%8A%A8/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我想我现在应该前进了，在将来的某个时刻创造些美好的东西。</p>
-<a id="more"></a>
-<p>我感觉到一切正在生长，一切又在衰老。</p>
-<p>意识到有些事情可能正在发生或者是已经发生</p>
-<p>预感不到具体是什么事情，大概就是有这样一个意识，突然觉得生活好像是有点不一样。</p>
-<p>对一切充满了智慧的体系，不管是哲学还是数学，只要他深刻周密，我就对他抱有审美式的爱好。</p>
-<p>我顶顶喜欢的是自理生活，理成一塌糊涂也罢。</p>
-<p>我要从啤酒花里吐出野马。</p>
-<p>过去我们在顶礼膜拜中度过光阴时，我们知道什么是生活么？</p>
-<p>我只要还有一点感情，就无法不期待获得对方的感情，不论是爱还是憎。</p>
-<p>肉麻的东西无论如何不该被赞美。</p>
-<p>在台风中央平静地迎接我的死亡。</p>
-]]></content>
-      <tags>
-        <tag>歪诗</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>匈牙利算法</title>
-    <url>/2021/12/05/%E5%8C%88%E7%89%99%E5%88%A9%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Hungarian-Algorithm"><a href="#Hungarian-Algorithm" class="headerlink" title="Hungarian Algorithm"></a>Hungarian Algorithm</h1><p>The <strong>Hungarian matching algorithm</strong> , also called the Kuhn-Munkres algorithm, is a $O\big(|V|^3\big)$algorithm that can be used to find maximum-weight matchings  in bipartite graphs , which is sometimes called the <strong>assignment problem</strong> . A bipartite graph can easily be represented by an adj matrix, where the weights of edges are the entries. Thinking about the graph in terms of an adjacency matrix is useful for the Hungarian algorithm.</p>
-<a id="more"></a>
-<h2 id="The-Hungarian-Algorithm-for-Graphs"><a href="#The-Hungarian-Algorithm-for-Graphs" class="headerlink" title="The Hungarian Algorithm for Graphs"></a><strong>The Hungarian Algorithm for Graphs</strong></h2><p>Given: the labeling $l$, an equality graph $G_l=(V, E_l)$, an initial matching $M$ in $G_l$, and an unmatched vertex $u \in V$ and $u \notin M$</p>
-<h3 id="Augmenting-the-matching"><a href="#Augmenting-the-matching" class="headerlink" title="Augmenting the matching"></a>Augmenting the matching</h3><ol>
-<li><p>A path is augmenting for $M$ in $G_l$ if it alternates between edges in the matching and edges not in the matching, and the first and last vertices are free vertices, or unmatched, in $M$. We will keep track of a candidate augmenting path starting at the vertex $u$.</p>
-</li>
-<li><p>If the algorithm finds an unmatched vertex $v$, add on to the existing augmenting path $p$ by adding the $u$ to $v$ segment.</p>
-</li>
-<li><p>Flip the matching by replacing the edges in $M$ with the edges in the augmenting path that are not in $M$ (in other words, the edges in $\left.E_l-M\right)$.</p>
-</li>
-</ol>
-<h3 id="Improving-the-labeling"><a href="#Improving-the-labeling" class="headerlink" title="Improving the labeling"></a>Improving the labeling</h3><ol>
-<li>$S \subseteq X$ and $T \subseteq Y$, where $S$ and $T$ represent the candidate augmenting alternating path between the matching and the edges not in the matching.</li>
-<li>Let $N_l(S)$ be the neighbors to each node that is in $S$ along edges in $E_l$ such that $N_l(S)={v \mid \forall u \in S:(u, v) \in E_l}$.</li>
-<li>If $N_{l}(S)=T$, then we cannot increase the size of the alternating path (and therefore can’t further augment), so we need to improve the labeling.</li>
-<li>Let $\delta_{l}$ be the minimum of $l(u)+l(v)-w(u, v)$ over all of the $u \in S$ and $v \notin T$.</li>
-<li>Improve the labeling $l$ to $l^{\prime}$ :</li>
-</ol>
-<ul>
-<li><p>If $r \in S$, then $l^{\prime}(r)=l(r)-\delta_{l}$,</p>
-</li>
-<li><p>If $r \in T$, then $l^{\prime}(r)=l(r)+\delta_{l}$.</p>
-</li>
-<li><p>If $r \notin S$ and $r \notin T$, then $l^{\prime}(r)=l(r)$.</p>
-</li>
-</ul>
-<p>   $l^{\prime}$ is a valid labeling and $E<em>{l} \subset E</em>{l^{\prime}}$.</p>
-<h3 id="Putting-it-all-together-The-Hungarian-Algorithm"><a href="#Putting-it-all-together-The-Hungarian-Algorithm" class="headerlink" title="Putting it all together: The Hungarian Algorithm"></a>Putting it all together: The Hungarian Algorithm</h3><ol>
-<li>Start with some matching $M$, a valid labeling $l$, where $l$ is defined as the labelling $\forall x \in X, y \in Y \mid l(y)=0, l(x)=\max _{y \in Y}(w(x, y))$.</li>
-<li>Do these steps until a perfect matching is found (when $M$ is perfect):</li>
-</ol>
-<ul>
-<li>(a) Look for an augmenting path in $M$.</li>
-<li>(b) If an augmenting path does not exist, improve the labeling and then go back to step (a).</li>
-</ul>
-<h2 id="Python-Implementation"><a href="#Python-Implementation" class="headerlink" title="Python Implementation:"></a>Python Implementation:</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">TOLERANCE = <span class="number">1e-6</span>  <span class="comment"># everything below is considered zero</span></span><br><span class="line">MAX = <span class="number">999999</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">improveLabels</span>(<span class="params">val</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot; change the labels, and maintain minSlack.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> u <span class="keyword">in</span> S:</span><br><span class="line">        lu[u] -= val</span><br><span class="line">    <span class="keyword">for</span> v <span class="keyword">in</span> V:</span><br><span class="line">        <span class="keyword">if</span> v <span class="keyword">in</span> T:</span><br><span class="line">            lv[v] += val</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            minSlack[v][<span class="number">0</span>] -= val</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">improveMatching</span>(<span class="params">v</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot; apply the alternating path from v to the root in the tree.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    u = T[v]</span><br><span class="line">    <span class="keyword">if</span> u <span class="keyword">in</span> Mu:</span><br><span class="line">        improveMatching(Mu[u])</span><br><span class="line">    Mu[u] = v</span><br><span class="line">    Mv[v] = u</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">slack</span>(<span class="params">u,v</span>):</span> <span class="keyword">return</span> lu[u]+lv[v]-w[u][v]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">augment</span>():</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot; augment the matching, possibly improving the lablels on the way.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="comment"># select edge (u,v) with u in S, v not in T and min slack</span></span><br><span class="line">        ((val, u), v) = <span class="built_in">min</span>([(minSlack[v], v) <span class="keyword">for</span> v <span class="keyword">in</span> V <span class="keyword">if</span> v <span class="keyword">not</span> <span class="keyword">in</span> T])</span><br><span class="line"><span class="comment">#         assert u in S</span></span><br><span class="line"><span class="comment">#         assert val &gt; - TOLERANCE</span></span><br><span class="line">        <span class="keyword">if</span> val &gt; TOLERANCE:</span><br><span class="line">            improveLabels(val)</span><br><span class="line">        <span class="comment"># now we are sure that (u,v) is saturated</span></span><br><span class="line">        <span class="keyword">assert</span> <span class="built_in">abs</span>(slack(u,v)) &lt; TOLERANCE  <span class="comment"># test zero slack with tolerance</span></span><br><span class="line">        T[v] = u                            <span class="comment"># add (u,v) to the tree</span></span><br><span class="line">        <span class="keyword">if</span> v <span class="keyword">in</span> Mv:</span><br><span class="line">            u1 = Mv[v]                      <span class="comment"># matched edge,</span></span><br><span class="line">            <span class="keyword">assert</span> <span class="keyword">not</span> u1 <span class="keyword">in</span> S</span><br><span class="line">            S[u1] = <span class="literal">True</span>                    <span class="comment"># ... add endpoint to tree</span></span><br><span class="line">            <span class="keyword">for</span> v <span class="keyword">in</span> V:                     <span class="comment"># maintain minSlack</span></span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> v <span class="keyword">in</span> T <span class="keyword">and</span> minSlack[v][<span class="number">0</span>] &gt; slack(u1,v):</span><br><span class="line">                    minSlack[v] = [slack(u1,v), u1]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            improveMatching(v)              <span class="comment"># v is a free vertex</span></span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">maxWeightMatching</span>(<span class="params">weights</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot; given w, the weight matrix of a complete bipartite graph,</span></span><br><span class="line"><span class="string">        returns the mappings Mu : U-&gt;V ,Mv : V-&gt;U encoding the matching</span></span><br><span class="line"><span class="string">        as well as the value of it.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">global</span> U,V,S,T,Mu,Mv,lu,lv, minSlack, w</span><br><span class="line">    w  = weights</span><br><span class="line">    n  = <span class="built_in">len</span>(w)</span><br><span class="line">    V = <span class="built_in">range</span>(n)</span><br><span class="line">    U   = <span class="built_in">range</span>(n)</span><br><span class="line">    <span class="comment"># initialize the feasible vertex label.</span></span><br><span class="line">    lu = [ <span class="built_in">max</span>([w[u][v] <span class="keyword">for</span> v <span class="keyword">in</span> V]) <span class="keyword">for</span> u <span class="keyword">in</span> U]  </span><br><span class="line">    lv = [ <span class="number">0</span>                         <span class="keyword">for</span> v <span class="keyword">in</span> V]</span><br><span class="line">    Mu = &#123;&#125;                                      </span><br><span class="line">    Mv = &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># choose a unmatched vertex u0</span></span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(Mu)&lt;n:</span><br><span class="line">        free = [u <span class="keyword">for</span> u <span class="keyword">in</span> U <span class="keyword">if</span> u <span class="keyword">not</span> <span class="keyword">in</span> Mu]      </span><br><span class="line">        u0 = free[<span class="number">0</span>]</span><br><span class="line">        S = &#123;u0: <span class="literal">True</span>&#125;                           </span><br><span class="line">        T = &#123;&#125;</span><br><span class="line">        minSlack = [[slack(u0,v), u0] <span class="keyword">for</span> v <span class="keyword">in</span> V]</span><br><span class="line">        augment()</span><br><span class="line"></span><br><span class="line">    val = <span class="built_in">sum</span>(lu)+<span class="built_in">sum</span>(lv)</span><br><span class="line">    <span class="keyword">return</span>  val</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>algorithm</tag>
       </tags>
   </entry>
 </search>
