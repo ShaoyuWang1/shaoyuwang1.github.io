@@ -975,13 +975,13 @@ cat_kind  项目文件名
       </tags>
   </entry>
   <entry>
-    <title>匈牙利算法</title>
-    <url>/2021/12/05/Parallel%20Lottery/</url>
+    <title>Paper Reading</title>
+    <url>/2021/11/28/Parallel%20Lottery/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Parallel-Lottery"><a href="#Parallel-Lottery" class="headerlink" title="Parallel Lottery"></a>Parallel Lottery</h1><p><a href="https://pubsonline.informs.org/doi/10.1287/mnsc.2021.4120">Parallel Lotteries: Insights from Alaskan Hunting Permit Allocation</a></p>
 <p><a href="https://pubsonline.informs.org/action/doSearch?text1=Arnosti%2C+Nick&amp;field1=Contrib">Nick Arnosti</a>, <a href="https://pubsonline.informs.org/action/doSearch?text1=Randolph%2C+Tim&amp;field1=Contrib">Tim Randolph</a></p>
 <a id="more"></a>
 <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction:"></a>Introduction:</h1><p>Analyze the parallel lottery that is used to allocate <strong>heterogeneous resources to unit-demand agents.</strong></p>
-<p><img src="/2021/12/05/Parallel%20Lottery/Untitled.png" alt="Untitled" style="zoom:50%;"></p>
+<p><img src="/2021/11/28/Parallel%20Lottery/Untitled.png" alt="Untitled" style="zoom:50%;"></p>
 <h1 id="Notation-and-Preliminary"><a href="#Notation-and-Preliminary" class="headerlink" title="Notation and Preliminary"></a>Notation and Preliminary</h1><ol>
 <li>$n$ types of items with quantities $\mu=\left(\mu<em>{1}, \mu</em>{2}\right.\left.\ldots, \mu<em>{n}\right) \in \mathbb{R}</em>{+}^{n} .$ </li>
 <li>Mass $M$ of agents. </li>
@@ -1017,14 +1017,14 @@ cat_kind  项目文件名
 <p>Proposition 2</p>
 <p>Agents with Strong Preferences Prefer Smaller k.</p>
 <p>Example:</p>
-<p><img src="/2021/12/05/Parallel%20Lottery/Untitled%201.png" alt="Untitled" style="zoom:50%;"></p>
+<p><img src="/2021/11/28/Parallel%20Lottery/Untitled%201.png" alt="Untitled" style="zoom:50%;"></p>
 <ul>
 <li><strong><em>Tradeoff Regime:</em></strong>  Increase k befits agent to compete for under demanded items  and hurt agents with strong preference.</li>
 <li><strong><em>Waste Trap Regime:</em></strong> If most agents strongly prefer item 1 then small k will not reduce competition but just cost more waste.</li>
 </ul>
 ]]></content>
       <tags>
-        <tag>algorithm</tag>
+        <tag>学术</tag>
       </tags>
   </entry>
 </search>
