@@ -283,6 +283,13 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>http://www.vvindsky.xyz/tags/%E6%9D%8E%E5%BF%97/</loc>
+    <lastmod>2022-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   
 </urlset>
