@@ -1088,19 +1088,6 @@ cat_kind  项目文件名
       </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/2022/04/19/PS9/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Q1"><a href="#Q1" class="headerlink" title="Q1"></a>Q1</h1><p>Not a BNE.</p>
-<p>Without lose of generality, let  $x_1 &gt; x_2&gt; x_3$</p>
-<p>Then consider the payoff of the first player. </p>
-<p>$\pi_1 = x_3-x_2 &lt; 0$ which is not a best responce, he has incentive to decrease his bid.</p>
-<h1 id="Q2"><a href="#Q2" class="headerlink" title="Q2"></a>Q2</h1><p>The expected profit of $x_i =x$ pretending to be $x_i$   Is:</p>
-<script type="math/tex; mode=display">\left(\frac{x^{\prime}}{\bar{x}}\right)^{n-1} \cdot\left(\int_{0}^{x^{\prime}}\left[\left(x^{\prime}, \hat{x}\right)-b(\hat{x})\right]\left(\frac{\hat{x}}{x^{\prime}}\right)^{n-2} \cdot \frac{1}{x^{\prime}} d \hat{x}\right)</script><p>We plug in $b(x_i) = v(x_i,x_i)$ and check for the FOC can get the result that $b(x_i) = v(x_i,x_i)$ is a BNE. And SOC is also satisified by the mononte increasing property of v(x)</p>
-<h1 id="Q3"><a href="#Q3" class="headerlink" title="Q3"></a>Q3</h1><p>Yes.</p>
-<p>As long as the value is k , meanning the expected value is greater than $a y_i +(1-a)k$ so if $y_i&gt;k$ , bidder i will always want to increase the bid a little bit to win the object.</p>
-]]></content>
-  </entry>
-  <entry>
     <title>Voice April</title>
     <url>/2022/04/23/%E2%80%9C%E5%9B%9B%E6%9C%88%E4%B9%8B%E5%A3%B0%E2%80%9D/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><video autoplay class="AssetMedia--video" controls controlslist="nodownload" loop playsinline poster="https://lh3.googleusercontent.com/wMq7T6-N8zAALew_HSbJRRbCquW93gB6ZX14HCNY7H9FTgVFG2smvnRx-8Omakgjr7T64KXJq22LmJcVe_n2vdonG8ZZZZUHKD_aVg" preload="metadata" style="border-radius: initial;"><source data-testid="AssetMedia--video" src="https://res.cloudinary.com/dno1beosk/video/upload/v1650679990/%E4%B8%8A%E6%B5%B7%E5%9B%9B%E6%9C%88%E4%B9%8B%E5%A3%B0_e0gtfn.mp4" type="video/mp4"></video>
