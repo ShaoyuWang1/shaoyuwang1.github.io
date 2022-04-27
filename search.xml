@@ -1029,7 +1029,7 @@ cat_kind  项目文件名
   <entry>
     <title>神坛跌向老头环（一）</title>
     <url>/2022/04/15/%E7%A5%9E%E5%9D%9B%E8%B7%8C%E5%90%91%E8%80%81%E5%A4%B4%E7%8E%AF/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><video class="AssetMedia--video" controls="controls" controlslist="nodownload" loop playsinline preload="metadata" style="border-radius: initial;"><source data-testid="AssetMedia--video" src="https://res.cloudinary.com/dno1beosk/video/upload/v1650805856/elden_ring_rt1gwz.mp4" type="video/mp4"></video>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><video width="350" class="AssetMedia--video" controls="controls" controlslist="nodownload" loop playsinline preload="metadata" style="border-radius: initial;"><source data-testid="AssetMedia--video" src="https://res.cloudinary.com/dno1beosk/video/upload/v1650805856/elden_ring_rt1gwz.mp4" type="video/mp4"></video>
 
 
 
