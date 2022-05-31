@@ -20,27 +20,17 @@
     var CONFIG = {"hostname":"www.vvindsky.xyz","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":null},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="圣诞老人是存在的！">
-<meta property="og:type" content="article">
-<meta property="og:title" content="如何反驳那些认为圣诞老人不存在的幼稚的人们">
-<meta property="og:url" content="http://www.vvindsky.xyz/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="最小割与最大流">
+<meta property="og:url" content="http://www.vvindsky.xyz/2022/05/23/%E6%9C%80%E5%B0%8F%E5%89%B2%E4%B8%8E%E6%9C%80%E5%A4%A7%E6%B5%81/index.html">
 <meta property="og:site_name" content="Wind and Sky">
-<meta property="og:description" content="圣诞老人是存在的！">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://www.vvindsky.xyz/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/1.jpeg">
-<meta property="og:image" content="http://www.vvindsky.xyz/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/2.jpeg">
-<meta property="og:image" content="http://www.vvindsky.xyz/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/2.jpeg">
-<meta property="og:image" content="http://www.vvindsky.xyz/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/4.jpeg">
-<meta property="og:image" content="http://www.vvindsky.xyz/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/5.jpeg">
-<meta property="og:image" content="http://www.vvindsky.xyz/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/4.jpeg">
-<meta property="article:published_time" content="2021-10-17T14:03:39.000Z">
-<meta property="article:modified_time" content="2021-11-17T14:07:51.481Z">
+<meta property="article:published_time" content="2022-05-23T01:30:19.000Z">
+<meta property="article:modified_time" content="2022-05-23T01:30:19.958Z">
 <meta property="article:author" content="Windsky Wang">
-<meta property="article:tag" content="数学">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://www.vvindsky.xyz/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/1.jpeg">
 
-<link rel="canonical" href="http://www.vvindsky.xyz/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/">
+<link rel="canonical" href="http://www.vvindsky.xyz/2022/05/23/%E6%9C%80%E5%B0%8F%E5%89%B2%E4%B8%8E%E6%9C%80%E5%A4%A7%E6%B5%81/">
 
 
 <script id="page-configurations">
@@ -53,7 +43,7 @@
   };
 </script>
 
-  <title>如何反驳那些认为圣诞老人不存在的幼稚的人们 | Wind and Sky</title>
+  <title>最小割与最大流 | Wind and Sky</title>
   
 
 
@@ -195,7 +185,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.vvindsky.xyz/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/">
+    <link itemprop="mainEntityOfPage" href="http://www.vvindsky.xyz/2022/05/23/%E6%9C%80%E5%B0%8F%E5%89%B2%E4%B8%8E%E6%9C%80%E5%A4%A7%E6%B5%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -208,7 +198,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          如何反驳那些认为圣诞老人不存在的幼稚的人们
+          最小割与最大流
         </h1>
 
         <div class="post-meta">
@@ -218,15 +208,8 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-10-17 22:03:39" itemprop="dateCreated datePublished" datetime="2021-10-17T22:03:39+08:00">2021-10-17</time>
+              <time title="创建时间：2022-05-23 09:30:19" itemprop="dateCreated datePublished" datetime="2022-05-23T09:30:19+08:00">2022-05-23</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-17 22:07:51" itemprop="dateModified" datetime="2021-11-17T22:07:51+08:00">2021-11-17</time>
-              </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -244,8 +227,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/" itemprop="commentCount"></span>
+    <a title="valine" href="/2022/05/23/%E6%9C%80%E5%B0%8F%E5%89%B2%E4%B8%8E%E6%9C%80%E5%A4%A7%E6%B5%81/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/05/23/%E6%9C%80%E5%B0%8F%E5%89%B2%E4%B8%8E%E6%9C%80%E5%A4%A7%E6%B5%81/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -260,42 +243,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>圣诞老人是存在的！</p>
-<a id="more"></a>
-<p>“<a target="_blank" rel="noopener" href="http://www.guokr.com/article/3908/">圣诞怪谈</a>”中，“圣诞公公不存在”被证实为谣言：</p>
-<blockquote>
-<p>根据大量的历史数据以及 NORAD过去50 多年来追踪圣诞老人所收集的信息，我们坚信圣诞老人确定一定以及肯定是存在的…如今，NORAD使用四种高科技手段：雷达、卫星、Santa Cam和喷气式战斗机，来追踪圣诞老人…圣诞夜当晚，NORAD会为我们传来圣诞老人带着他的驯鹿环游世界的图像和视频…</p>
-</blockquote>
-<p>但是，小朋友们，虽然这更加坚定了你心中“圣诞老人存在”的信念，可如果依然有可恶的幼稚的无趣的人说“那些都是骗人的，哄小孩的，明明就没有圣诞老人”，你还是不能只凭这些来反驳。想让他们哑口无言，看看下面的教学吧（原图自<a target="_blank" rel="noopener" href="http://survivingtheworld.net/">Surviving the World</a>）。</p>
-<h2 id="圣诞老人的存在性"><a href="#圣诞老人的存在性" class="headerlink" title="圣诞老人的存在性"></a>圣诞老人的存在性</h2><p><img src="/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/1.jpeg" alt="img" style="zoom:50%;"></p>
-<p>真的有圣诞老人哦</p>
-<p>不要理那些可恶的“大孩子”们说的话</p>
-<p>圣诞老人当然存在了！！</p>
-<p>事实上证明这件事一点儿也不难</p>
-<p><img src="/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/2.jpeg" alt="img" style="zoom:50%;"></p>
-<p>首先呢，你要明白有无数多个宇宙同时存在</p>
-<p>（小朋友们，这一点很好理解吧- __,-）</p>
-<p>多到你根本记不住在多少个宇宙里你喷了香体喷剂，</p>
-<p>多少个宇宙里你忘了喷，或者多少个你甚至连腋窝都没有（囧）</p>
-<p><img src="/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/2.jpeg" alt="img" style="zoom:50%;"></p>
-<p>所以，这就意味着圣诞老人不仅是存在的，</p>
-<p>而且还可能有宇宙总数的一半那么多个！</p>
-<p>（某些<a target="_blank" rel="noopener" href="http://www.guokr.com/article/3914/">死理性派</a>是不是以为圣诞老人只有一个呢）</p>
-<p><img src="/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/4.jpeg" alt="img" style="zoom:50%;"></p>
-<p>“但是，哼哼”，某些人会说，</p>
-<p>“就算是有一半的宇宙里存在着圣诞老人，我们也在那些圣诞老人不存在的宇宙里。”</p>
-<p><img src="/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/5.jpeg" alt="img" style="zoom:50%;"></p>
-<p>好吧，就算他们说的是对的</p>
-<p>但是在这无数多个宇宙中</p>
-<p>至少有一个圣诞老人会穿梭于不同的宇宙之间</p>
-<p>而且至少有一个圣诞老人会穿梭到我们的宇宙来</p>
-<p><img src="/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/4.jpeg" alt="img" style="zoom:50%;"></p>
-<p>所以说，保持着你们童真的梦想，</p>
-<p>开心的等着圣诞老人吧</p>
-<p>如果那些大孩子一直反对你的观点</p>
-<p>无视掉他们</p>
-<p>他们不懂物理</p>
-
+        
     </div>
 
     
@@ -310,7 +258,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://www.vvindsky.xyz/2021/10/17/%E5%A6%82%E4%BD%95%E5%8F%8D%E9%A9%B3%E9%82%A3%E4%BA%9B%E8%AE%A4%E4%B8%BA%E5%9C%A3%E8%AF%9E%E8%80%81%E4%BA%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B9%BC%E7%A8%9A%E7%9A%84%E4%BA%BA%E4%BB%AC/" title="如何反驳那些认为圣诞老人不存在的幼稚的人们">http://www.vvindsky.xyz/2021/10/17/如何反驳那些认为圣诞老人不存在的幼稚的人们/</a>
+    <a href="http://www.vvindsky.xyz/2022/05/23/%E6%9C%80%E5%B0%8F%E5%89%B2%E4%B8%8E%E6%9C%80%E5%A4%A7%E6%B5%81/" title="最小割与最大流">http://www.vvindsky.xyz/2022/05/23/最小割与最大流/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -320,9 +268,6 @@
 
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag"># 数学</a>
-          </div>
 
         
 
@@ -330,13 +275,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/07/09/P-NP-NPC-NP-hard/" rel="prev" title="P,NP,NPC,NP-hard">
-      <i class="fa fa-chevron-left"></i> P,NP,NPC,NP-hard
+    <a href="/2022/05/23/String-Matching%E9%97%AE%E9%A2%98/" rel="prev" title="String Matching问题">
+      <i class="fa fa-chevron-left"></i> String Matching问题
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/11/18/%E6%B7%B1%E5%8C%97%E8%8E%AB%E7%AE%97%E6%B3%95%E4%B8%8EQuasi-Newton/" rel="next" title="深北莫算法与Quasi-Newton">
-      深北莫算法与Quasi-Newton <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     

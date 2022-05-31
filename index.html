@@ -184,6 +184,171 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.vvindsky.xyz/2022/05/23/%E6%9C%80%E5%B0%8F%E5%89%B2%E4%B8%8E%E6%9C%80%E5%A4%A7%E6%B5%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Windsky Wang">
+      <meta itemprop="description" content="保持清醒">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wind and Sky">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/23/%E6%9C%80%E5%B0%8F%E5%89%B2%E4%B8%8E%E6%9C%80%E5%A4%A7%E6%B5%81/" class="post-title-link" itemprop="url">最小割与最大流</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-23 09:30:19" itemprop="dateCreated datePublished" datetime="2022-05-23T09:30:19+08:00">2022-05-23</time>
+            </span>
+
+          
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.vvindsky.xyz/2022/05/23/String-Matching%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Windsky Wang">
+      <meta itemprop="description" content="保持清醒">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wind and Sky">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/23/String-Matching%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">String Matching问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-23 09:29:58" itemprop="dateCreated datePublished" datetime="2022-05-23T09:29:58+08:00">2022-05-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-31 16:07:33" itemprop="dateModified" datetime="2022-05-31T16:07:33+08:00">2022-05-31</time>
+              </span>
+
+          
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><center size="12">String matching 问题</center></p>
+<p>对于给定的两个字符串 <em>S1</em> 和 <em>S2</em> 将2个字符串进行匹配解决：S2是否是S1 的子字符串？S2和S1 如何进行“对齐”使得2个字符串最接近？等问题</p>
+<p>最直接以及常见的使用场景例如：查询 DNA上是否含有某个基因，2个DNA是否有相似的片段（可能是相似的基因）</p>
+<p><img src="/2022/05/23/String-Matching%E9%97%AE%E9%A2%98/cover.png" style="zoom:33%;"></p>
+<h1 id="完美匹配问题（Matching）"><a href="#完美匹配问题（Matching）" class="headerlink" title="完美匹配问题（Matching）"></a>完美匹配问题（Matching）</h1><p>问题：检测长度为n 的字符串T 上是否含有长度为m的字符串P</p>
+<p>Input: T, P</p>
+<p>Output: 首个matching的index</p>
+<p><strong>Sample Input:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">abcabcabdabba</span><br><span class="line">abcabd</span><br></pre></td></tr></table></figure>
+<p><strong>Sample Output:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3</span><br></pre></td></tr></table></figure>
+<h2 id="匹配问题采用Knuth-Morris-Pratt-KMP算法。"><a href="#匹配问题采用Knuth-Morris-Pratt-KMP算法。" class="headerlink" title="匹配问题采用Knuth-Morris-Pratt KMP算法。"></a>匹配问题采用<strong>Knuth-Morris-Pratt KMP算法</strong>。</h2><p>Multivating brute-force algorithm:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">for i &#x3D; 1:n:</span><br><span class="line">	for j&#x3D;1:m</span><br><span class="line">		if s1[i+j] !&#x3D;s[j]:</span><br><span class="line">     break</span><br><span class="line">  end</span><br><span class="line">  print(i)</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>这必然会造成重复计算，如何理解？ 我们首先拆分暴力算法的思路：</p>
+<p>1）在S1位置上循环i = 0…n</p>
+<p>2）在每个i位置上开始循环 比对 T与P</p>
+<p>3）如果我们重复到j发现不重复了 然后在i+1位置上从头开始尝试是否匹配。</p>
+<p>第3步就是我们复杂度高的来源，<font color="#8A2BE2">我们不需要从i到i+1的时候从头把j从0开始重新计算</font>:</p>
+<p><img src="/2022/05/23/String-Matching%E9%97%AE%E9%A2%98/example1.png" alt="image-20220531152652470" style="zoom:30%;"></p>
+<p>那么从j=？ 重新开始呢？假设在T[i]处 已经匹配了p位，那么只需要找到一个k使得 P[1:k]为 P[p-k:p]也即<font color="#8FA0000">“后缀是前缀”</font></p>
+<p>KMP算法分两步：</p>
+<p>1） 构建一个索引：given任意位置，找出最大的<font color="#8FA0000">“后缀是前缀”</font></p>
+<p><img src="/2022/05/23/String-Matching%E9%97%AE%E9%A2%98/example2.png" alt="image-20220531152652470" style="zoom:50%;"></p>
+<p>2）用这个索引进行逐个的检索</p>
+<p>code:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"># 构建索引next[m]</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">compute_next</span><span class="params">(<span class="built_in">string</span> P,<span class="keyword">int</span> next[])</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m = P.length();</span><br><span class="line">    next[<span class="number">0</span>] = <span class="number">0</span>;   <span class="comment">// initialization</span></span><br><span class="line">    <span class="keyword">int</span> k = <span class="number">0</span>; <span class="comment">// number of character matched</span></span><br><span class="line">    <span class="keyword">int</span> q = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(q&lt;m)&#123;</span><br><span class="line">        <span class="keyword">while</span>(k&gt;<span class="number">0</span> <span class="keyword">and</span> P[k] != P[q])&#123;</span><br><span class="line">            k = next[k<span class="number">-1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(P[k] == P[q]) k=k+<span class="number">1</span>;</span><br><span class="line">        next[q] = k;</span><br><span class="line">        </span><br><span class="line">        q++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#given next[m] 进行T上search P</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">KMP_search</span><span class="params">(<span class="built_in">string</span> T,<span class="built_in">string</span> P )</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m = P.length();</span><br><span class="line">    <span class="keyword">int</span> n = T.length();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> next[m];</span><br><span class="line">    compute_next(P, next);</span><br><span class="line">    <span class="keyword">int</span> q = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">while</span>(q&gt;<span class="number">0</span> <span class="keyword">and</span>  P[q]!= T[i])&#123;</span><br><span class="line">            q = next[q<span class="number">-1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(P[q] == T[i])&#123;</span><br><span class="line">            q++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(q == m)&#123;</span><br><span class="line">            <span class="keyword">return</span> i-m+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="对齐问题-Alignment"><a href="#对齐问题-Alignment" class="headerlink" title="对齐问题(Alignment)"></a>对齐问题(Alignment)</h1><p>想想这样一个问题，有2个string A 和B，把B改为A可以有以下几个操作：</p>
+<p>◦ Replace a letter with another letter 改<br>◦ Insert a letter 删<br>◦ Delete a letter 插入</p>
+<p>所以需要找到一个对齐方式例如：</p>
+<p><img src="/2022/05/23/String-Matching%E9%97%AE%E9%A2%98/example4.png" alt="image-20220531152652470" style="zoom:30%;"></p>
+<p>使得修改的cost最小，为此我们首先定义每一个对齐之后修改的“得分”：</p>
+<p>每处的得分为:</p>
+<p>$\delta(delete),\delta(modify),\delta(insert)$</p>
+<p>使用dp算法解决问题：</p>
+<p>Recurrence: For $\mathrm{i}&gt;0, \mathrm{j}&gt;0$</p>
+<script type="math/tex; mode=display">
+V(i, j)=\max \left\{\begin{array}{cl}
+V(i-1, j-1)+\delta(S[i], T[j]) & \text { Match/mismatch } \\
+V(i-1, j)+\delta(S[i],) & \text { Delete } \\
+V(i, j-1)+\delta(\ldots T[j]) & \text { Insert }
+\end{array}\right.</script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.vvindsky.xyz/2022/04/17/%E8%BA%AB%E5%BD%B1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -782,155 +947,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.vvindsky.xyz/2021/07/09/P-NP-NPC-NP-hard/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Windsky Wang">
-      <meta itemprop="description" content="保持清醒">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wind and Sky">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/09/P-NP-NPC-NP-hard/" class="post-title-link" itemprop="url">P,NP,NPC,NP-hard</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-09 16:32:26" itemprop="dateCreated datePublished" datetime="2021-07-09T16:32:26+08:00">2021-07-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-21 23:22:24" itemprop="dateModified" datetime="2022-05-21T23:22:24+08:00">2022-05-21</time>
-              </span>
-
-          
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>很久远以前在最优化学习时接触过P，NP等的定义。各类影视作品诸如《嫌疑人x的现身》，《基本演绎法》中也会出现这一“fancy”的设定。但很长一段时间内脑海里留下的也只是相对模糊的印象，最近看到北大文学系一博主在08年发布的分析，讲的十分透彻，通篇搬运在这里，方便日后复习。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/07/09/P-NP-NPC-NP-hard/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.vvindsky.xyz/2021/06/08/Data-privacy/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Windsky Wang">
-      <meta itemprop="description" content="保持清醒">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wind and Sky">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/08/Data-privacy/" class="post-title-link" itemprop="url">大数据与隐私</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-08 23:05:55" itemprop="dateCreated datePublished" datetime="2021-06-08T23:05:55+08:00">2021-06-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-01 10:54:34" itemprop="dateModified" datetime="2021-07-01T10:54:34+08:00">2021-07-01</time>
-              </span>
-
-          
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img align="cente" src="/2021/06/08/Data-privacy/index.jpeg" style="zoom:67%;"></p>
-<p>大数据技术在提升社会协作效率、给人们带来诸多便利与舒适的同时, 也逐渐引发了一系列问题, “大数据杀熟”便是恶果之一。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/08/Data-privacy/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1006,7 +1022,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
