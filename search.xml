@@ -1125,10 +1125,10 @@ cat_kind  项目文件名
   <entry>
     <title>String Matching问题</title>
     <url>/2022/05/23/String-Matching%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><center size="12">String matching 问题</center></p>
-<p>对于给定的两个字符串 <em>S1</em> 和 <em>S2</em> 将2个字符串进行匹配解决：S2是否是S1 的子字符串？S2和S1 如何进行“对齐”使得2个字符串最接近？等问题</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h1><p>对于给定的两个字符串 <em>S1</em> 和 <em>S2</em> 将2个字符串进行匹配解决：S2是否是S1 的子字符串？S2和S1 如何进行“对齐”使得2个字符串最接近？等问题</p>
 <p>最直接以及常见的使用场景例如：查询 DNA上是否含有某个基因，2个DNA是否有相似的片段（可能是相似的基因）</p>
-<p><img src="/2022/05/23/String-Matching%E9%97%AE%E9%A2%98/cover.png" style="zoom:33%;"></p>
+<p><img src="/2022/05/23/String-Matching%E9%97%AE%E9%A2%98/cover.png" style="zoom:20%;"></p>
+<a id="more"></a>
 <h1 id="完美匹配问题（Matching）"><a href="#完美匹配问题（Matching）" class="headerlink" title="完美匹配问题（Matching）"></a>完美匹配问题（Matching）</h1><p>问题：检测长度为n 的字符串T 上是否含有长度为m的字符串P</p>
 <p>Input: T, P</p>
 <p>Output: 首个matching的index</p>
