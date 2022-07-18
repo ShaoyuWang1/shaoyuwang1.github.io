@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://www.vvindsky.xyz/2022/07/18/Online-Learning-1-Intro/cover.jpeg">
 <meta property="article:published_time" content="2022-07-18T02:25:02.000Z">
-<meta property="article:modified_time" content="2022-07-18T03:04:06.553Z">
+<meta property="article:modified_time" content="2022-07-18T03:07:06.531Z">
 <meta property="article:author" content="Windsky Wang">
 <meta property="article:tag" content="学术">
 <meta property="article:tag" content="online learning">
@@ -215,7 +215,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-07-18 10:25:02 / 修改时间：11:04:06" itemprop="dateCreated datePublished" datetime="2022-07-18T10:25:02+08:00">2022-07-18</time>
+              <time title="创建时间：2022-07-18 10:25:02 / 修改时间：11:07:06" itemprop="dateCreated datePublished" datetime="2022-07-18T10:25:02+08:00">2022-07-18</time>
             </span>
 
           
@@ -254,7 +254,7 @@
 <p>开坑online learning and bandiys，一直很期望系统地学习下，利用这个暑假争取拿下。🤤</p>
 <a id="more"></a>
 <h2 id="Basic-Setting"><a href="#Basic-Setting" class="headerlink" title="Basic Setting"></a>Basic Setting</h2><p>A bandit problem is a sequential game between a <strong>learner</strong> and an <strong>environment</strong>.</p>
-<p>The game is played over $n$  rounds, where $n$ is a positive natural number called the horizon. In each round $t \in[n]$, the learner first chooses an action $A<em>{t}$ from a given set $\mathcal{A}$, and the environment then reveals a reward $X</em>{t} \in \mathbb{R}$. </p>
+<p>The game is played over $n$  rounds, where $n$ is a positive natural number called the horizon. In each round $t \in[n] $, the learner first chooses an action $A_t$ from a given set $\mathcal{A}$, and the environment then reveals a reward $X_t \in \mathbb{R}$. </p>
 <p>The learner cannot peek into the future when choosing their actions. The action $A<em>t$  should only depend on the history $H</em>{t-1} = \left(A<em>{1}, X</em>{1}, \ldots, A<em>{t-1}, X</em>{t-1}\right)$.</p>
 <h2 id="Regret"><a href="#Regret" class="headerlink" title="Regret"></a>Regret</h2><blockquote>
 <p><em>DEFINITION : The regret of the learner relative to a policy $\pi$ (not necessarily that followed by the learner) is the difference between the total expected reward using policy $\pi$ for $n$ rounds and the total expected reward collected by the learner over $n$ rounds. The regret relative to a set of policies $\Pi$ is the maximum regret relative to any policy $\pi \in \Pi$ in the set.</em></p>
