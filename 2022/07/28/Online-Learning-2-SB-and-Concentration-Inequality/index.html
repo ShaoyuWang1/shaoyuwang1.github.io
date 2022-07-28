@@ -20,17 +20,21 @@
     var CONFIG = {"hostname":"www.vvindsky.xyz","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":null},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http://www.vvindsky.xyz/categories/index.html">
+  <meta name="description" content="The goal of this chapter is to formally introduce stochastic bandits. The model introduced here provides the foundation for the remaining chapters that treat stochastic bandits. Core AssumptionsA stoc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Online Learning 2 SB and Concentration Inequality">
+<meta property="og:url" content="http://www.vvindsky.xyz/2022/07/28/Online-Learning-2-SB-and-Concentration-Inequality/index.html">
 <meta property="og:site_name" content="Wind and Sky">
+<meta property="og:description" content="The goal of this chapter is to formally introduce stochastic bandits. The model introduced here provides the foundation for the remaining chapters that treat stochastic bandits. Core AssumptionsA stoc">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-01-18T09:12:35.000Z">
-<meta property="article:modified_time" content="2021-01-18T09:13:36.037Z">
+<meta property="article:published_time" content="2022-07-28T00:38:10.000Z">
+<meta property="article:modified_time" content="2022-07-28T00:38:53.622Z">
 <meta property="article:author" content="Windsky Wang">
+<meta property="article:tag" content="学术">
+<meta property="article:tag" content="online learning">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://www.vvindsky.xyz/categories/">
+<link rel="canonical" href="http://www.vvindsky.xyz/2022/07/28/Online-Learning-2-SB-and-Concentration-Inequality/">
 
 
 <script id="page-configurations">
@@ -38,13 +42,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>categories | Wind and Sky
-</title>
+  <title>Online Learning 2 SB and Concentration Inequality | Wind and Sky</title>
   
 
 
@@ -178,51 +181,197 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-CN">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.vvindsky.xyz/2022/07/28/Online-Learning-2-SB-and-Concentration-Inequality/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Windsky Wang">
+      <meta itemprop="description" content="关掉所有灯，永恒吓不倒我们">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wind and Sky">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Online Learning 2 SB and Concentration Inequality
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">categories
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
 
-<div class="post-meta">
+              <time title="创建时间：2022-07-28 08:38:10 / 修改时间：08:38:53" itemprop="dateCreated datePublished" datetime="2022-07-28T08:38:10+08:00">2022-07-28</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/07/28/Online-Learning-2-SB-and-Concentration-Inequality/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/07/28/Online-Learning-2-SB-and-Concentration-Inequality/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
   
 
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>The goal of this chapter is to formally introduce stochastic bandits. The model introduced here provides the foundation for the remaining chapters that treat stochastic bandits.</p>
+<h1 id="Core-Assumptions"><a href="#Core-Assumptions" class="headerlink" title="Core Assumptions"></a>Core Assumptions</h1><p>A stochastic bandit is a collection of distributions $\nu=\left(P_{a}: a \in \mathcal{A}\right)$, where $\mathcal{A}$ is the set of available actions. The learner and the environment interact sequentially over n rounds.</p>
+<p>The interactions between learner and environment induce a probability measure on outcomes: $A_1,X_1,A_2,X_2 \dots A_n,X_n$ </p>
+<h2 id="2-main-assumptions-of-Stochastic-Bandits"><a href="#2-main-assumptions-of-Stochastic-Bandits" class="headerlink" title="2 main assumptions of Stochastic Bandits:"></a>2 main assumptions of Stochastic Bandits:</h2><p>(a) The conditional distribution of reward $X<em>{t}$ given $A</em>{1}, X<em>{1}, \dots, A</em>{t-1}, X<em>{t-1}, A</em>{t}$ is $P<em>{A</em>{t}}$, which captures the intuition that the environment samples $X<em>{t}$ from $P</em>{A_{t}}$ in round $t .$</p>
+<p>reward $X_t$ 只和 $A_t$ 有关</p>
+<p>(b) The conditional law of action $A<em>{t}$ given $A</em>{1}, X<em>{1}, \ldots, A</em>{t-1}, X<em>{t-1}$ is $\pi</em>{t}\left(\cdot \mid A<em>{1}, X</em>{1}, \ldots, A<em>{t-1}, X</em>{t-1}\right)$, where $\pi<em>{1}, \pi</em>{2}, \ldots$ is a sequence of probability kernels that characterise the learner. The most important element of this assumption is the intuitive fact that the learner cannot use the future observations in current decisions.</p>
+<p>决策者在每一期的决策只基于History，不考虑future，也即：</p>
+<p>$\pi<em>t : H</em>{t-1} \rightarrow \mathcal{A}$</p>
+<h1 id="Main-learning-objectives"><a href="#Main-learning-objectives" class="headerlink" title="Main learning objectives:"></a>Main learning objectives:</h1><p>Learner的目标是maximize $S<em>{n}=\sum</em>{t=1}^{n} X_{t}$</p>
+<ul>
+<li>关于$n$的取值，learner并不能提前知道要玩几轮博弈</li>
+<li>Reward 是一个随机量，我们需要定义一个measure来衡量reward的好坏</li>
+<li>Learner 并不知道每个arm真实的reward distribution</li>
+</ul>
+<h1 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h1><p><strong>Environment /Instance:</strong> $\quad \nu=\left(P<em>{1}, \ldots, P</em>{k}\right) \in \varepsilon$</p>
+<p>The set $\mathcal{E}$ is called <strong>environment class.</strong></p>
+<p>environment 描述了每个arm背后对应的分布的“选择范围”</p>
+<p>Example:<br> $\varepsilon<em>{k}^{B}=\left{\left(\mu</em>{1}, \ldots, \mu<em>{k}\right) \in[0,1]^{k}, P</em>{i} \sim \text { Bernoull }\left(\mu_{i}\right)\right}$</p>
+<h1 id="Regret"><a href="#Regret" class="headerlink" title="Regret"></a>Regret</h1><p> $R<em>{n}(\nu, \pi)=n \mu</em>{(\nu)}^{*}-E\left[\sum<em>{t=1}^{n} \mu</em>{A_{t}}\right]$</p>
+<p>最优选择的期望 - 按照policy<br>$\pi$ 每轮的真实选择的期望收益</p>
+<p>⭐ Notice that : regret 同时也是environment的函数</p>
+<p>为什么跟v有关？比如考虑一个情形</p>
+<p>Minimax regret:<br>$\min <em>{\pi \in \varepsilon} \max {v \in \varepsilon} \quad R</em>{n}(v, \pi)$</p>
+<p>不同的v对regret的结果有影响，我们期望找到一个mini max的策略</p>
+<h1 id="Concentration-Inequality"><a href="#Concentration-Inequality" class="headerlink" title="Concentration Inequality"></a>Concentration Inequality</h1><p>concentration inequality 在证明regret收敛性上非常重要，在这里进行介绍。</p>
+<p><strong>Theorem  1 Law of large number:</strong></p>
+<p> LLN 说的是：</p>
+<script type="math/tex; mode=display">
+\text{As}\quad  n \rightarrow \infty\quad \frac{1}{n}\left(X_{1}+\cdots+X_{n}\right) \rightarrow \bar{X_i}</script><p>仅仅只说明了一个“收敛性”</p>
+<p><strong>Theorem 2 Central limit theorem:</strong></p>
+<p>CLT: $X<em>{1}, \ldots, X</em>{n}$ iid, with  mean $\mu \operatorname{var} \sigma^{2}$</p>
+<script type="math/tex; mode=display">
+⁍</script><p>CLT 更近一步说明了“收敛速率”为$\sqrt{n}$</p>
+<p><strong>Theorem 3  Concentration inequality:</strong></p>
+<p>之前的2个theorem说的都是当n趋于无穷时的收敛性。而我们需要的工具是：“在中心附近的一个区间上的概率是多少”。解决这一问题的工具就是 Concentration Inequality。其形如：</p>
+<script type="math/tex; mode=display">
+P\left(\left|\bar{x}_{n}-\mu\right| \geqslant \varepsilon_{n}\right) \leqslant \sigma_{n}</script><h2 id="Thm-1-Markov-Inequality"><a href="#Thm-1-Markov-Inequality" class="headerlink" title="Thm 1 Markov Inequality"></a>Thm 1 Markov Inequality</h2><script type="math/tex; mode=display">
+P(|x| \geq \varepsilon) \leqslant \frac{  E[|x|]}{\varepsilon}</script><p>Proof:</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+E[|x|] &=E\left[|x| \mathcal{1}_{|x|  \leq\epsilon}\right]+E\left[|x| \mathcal{1}_{|x|  \geq\epsilon}\right]\\
+&\geq 0 +  E\left[\epsilon  \mathcal{1}_{|x|  \geq\epsilon}\right]\\
+&=\epsilon P(|x| \geq \epsilon)
+\end{aligned}</script><h2 id="Thm-2-Chebychev-Inequality"><a href="#Thm-2-Chebychev-Inequality" class="headerlink" title="Thm 2 Chebychev Inequality"></a>Thm 2 Chebychev Inequality</h2><script type="math/tex; mode=display">
+P(|X-E[x]| \geqslant \varepsilon) \leq \frac{\operatorname{Var}(x)}{\varepsilon^{2}}</script><p>但我们会发现，用chebychev确定的bound往往太宽了，以如下case为例：</p>
+<p>Let $x=\bar{x}<em>{n} \quad \operatorname{Var}\left(\bar{X}</em>{n}\right)=\frac{1}{n} \operatorname{Var}\left(X_{1}\right)$</p>
+<p>切比雪夫得到的bound：</p>
+<script type="math/tex; mode=display">
+P\left(\left|\bar{X}_{n}-\mu\right|>\varepsilon\right) \leq \frac{1}{n \varepsilon^{2}} \operatorname{Var}\left(X_{1}\right)</script><p>然而实际上for $X_1 \sim N(0,1)$ 我们积分一下：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}P\left(x_{1} \geqslant \varepsilon\right) &=\int_{\varepsilon}^{+\infty} \frac{1}{\sqrt{2 \pi}} \exp \left(-\frac{x^{2}}{2}\right) d x \\& \leq \frac{1}{\varepsilon \sqrt{2 \pi}} \int_{\varepsilon}^{+\infty} x \exp \left(-\frac{x^{2}}{2}\right) d x \\&=\frac{1}{\epsilon\sqrt{2 \pi} } \operatorname{exp}\left(-\frac{\varepsilon^{2}}{2}\right)\end{aligned}</script><p>对于$\bar{X_n}\sim N(0,1/n)$</p>
+<script type="math/tex; mode=display">
+P(\bar{X_n}<\epsilon)\leq \frac{1}{\epsilon\sqrt{2 \pi n } } \operatorname{exp}(-\frac{n\varepsilon^{2}}{2})\sim \text{exp}(-cn)</script><p>是一个exponential的速率，而不是切比雪夫的1/n的bound</p>
+<p>Definition： $\sigma$-subgaussian</p>
+<p>if for all $\lambda \in R$ we have:</p>
+<script type="math/tex; mode=display">
+E[\exp (\lambda x)] \leqslant \exp \left(\frac{\lambda^{2} \sigma^{2}}{2}\right)</script><p>Then x is called $\sigma$ subgaussian.</p>
+<p>特别的$x\sim N(0,\sigma^2)$是$\sigma$-subgaussian</p>
+<p>为什么需要subgaussian？ 因为subgaussian的性质可以得到很多concentration inequality，在常见的bandit证明中都很依赖subgaussian的性质。</p>
+<h2 id="Thm-3"><a href="#Thm-3" class="headerlink" title="Thm 3"></a>Thm 3</h2><p>If $X$ is $\sigma$-subgaussian, then $\forall \varepsilon&gt;0$,</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&P(X>\varepsilon) \leqslant \exp \left(-\frac{\varepsilon^{2}}{2 \sigma^{2}}\right) \\
+&P(X<-\varepsilon) \leqslant \exp  \left(-\frac{\varepsilon^{2}}{2 \sigma^{2}}\right)
+\end{align}</script><p><strong>Proof:</strong></p>
+<script type="math/tex; mode=display">
+\begin{align}
+P(X>\varepsilon)&=P(\exp (\lambda x) \geqslant \exp (\lambda \varepsilon))\\
+&\leq \exp (-\lambda \varepsilon) E[\exp (\lambda x)]\text{ (By Markov)}\\
+&\leqslant \exp \left(\frac{\lambda^{2} \sigma^{2}}{2}-\lambda \varepsilon\right)\text{ (By Subgaussian)}
+\end{align}</script><p>minimize over $\lambda$ , let $\lambda$ = $\epsilon/\sigma^2$</p>
+<h2 id="Lemma-subgaussian-property"><a href="#Lemma-subgaussian-property" class="headerlink" title="Lemma: subgaussian property"></a>Lemma: subgaussian property</h2><p>Suppose $X_1,X_2$ are $\sigma_1,\sigma_2$ subgaussian:</p>
+<ul>
+<li>$cX_1$ is $|c|\sigma_1$ subgaussian</li>
+<li>$X_1+X_2$ is $\sqrt{\sigma_1^2+\sigma_2^2}$ subgaussian</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Windsky Wang
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.vvindsky.xyz/2022/07/28/Online-Learning-2-SB-and-Concentration-Inequality/" title="Online Learning 2 SB and Concentration Inequality">http://www.vvindsky.xyz/2022/07/28/Online-Learning-2-SB-and-Concentration-Inequality/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
 </div>
 
-</header>
 
-      
-      
-      
-      <div class="post-body">
-          <div class="category-all-page">
-            <div class="category-all-title">
-              暂无分类
-            </div>
-            <div class="category-all">
-              
-            </div>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E6%9C%AF/" rel="tag"># 学术</a>
+              <a href="/tags/online-learning/" rel="tag"># online learning</a>
           </div>
-        
-      </div>
-      
-      
-      
-    </div>
-    
 
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/07/18/Online-Learning-1-Intro/" rel="prev" title="Online Learning(1) Intro">
+      <i class="fa fa-chevron-left"></i> Online Learning(1) Intro
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
     
-    
-    
+  </article>
+  
+  
+  
+
 
 
           </div>
