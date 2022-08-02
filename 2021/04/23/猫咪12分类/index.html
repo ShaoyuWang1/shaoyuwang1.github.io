@@ -259,16 +259,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><img src="/2021/04/23/%E7%8C%AB%E5%92%AA12%E5%88%86%E7%B1%BB/封面.jpeg" style="zoom:25%;"></p>
+        <img src="/2021/04/23/%E7%8C%AB%E5%92%AA12%E5%88%86%E7%B1%BB/封面.jpeg" style="zoom:25%;">
 <center>利用神经网络、残差神经网络进行猫咪分类训练。</center>
-
 <a id="more"></a>
-<h3 id="实现的主要部分有"><a href="#实现的主要部分有" class="headerlink" title="实现的主要部分有"></a>实现的主要部分有</h3><ul>
+<h3 id="实现的主要部分有"><a class="markdownIt-Anchor" href="#实现的主要部分有"></a> 实现的主要部分有</h3>
+<ul>
 <li>简单的网络结构在猫的种类识别上的应用，测试准确率0.832</li>
 <li>使用resNet50在猫的种类识别上的应用，测试准确率0.866</li>
 <li>使用数据增强解决过拟合问题，并提高测试准确率，测试准确率0.999</li>
 </ul>
-<h3 id="项目文件夹说明"><a href="#项目文件夹说明" class="headerlink" title="项目文件夹说明"></a>项目文件夹说明</h3><pre><code>------
+<h3 id="项目文件夹说明"><a class="markdownIt-Anchor" href="#项目文件夹说明"></a> 项目文件夹说明</h3>
+<pre><code>------
 cat_kind  项目文件名
     |----cat_data_resNet50  存放用于resNet网络训练的数据
         |----train      训练数据
@@ -295,59 +296,83 @@ cat_kind  项目文件名
     |----predict.py     使用简单网络进行预测的文件
     |----requirement.txt    环境依赖
     |----train.py       使用简单网络进行训练的文件
-</code></pre><h4 id="step1-数据集预处理"><a href="#step1-数据集预处理" class="headerlink" title="step1 数据集预处理"></a>step1 数据集预处理</h4><p>使用文件：prepare_data.py</p>
+</code></pre>
+<h4 id="step1-数据集预处理"><a class="markdownIt-Anchor" href="#step1-数据集预处理"></a> step1 数据集预处理</h4>
+<p>使用文件：prepare_data.py</p>
 <p>包括的操作有：</p>
-<h5 id="图片重命名"><a href="#图片重命名" class="headerlink" title="图片重命名"></a>图片重命名</h5><ul>
+<h5 id="图片重命名"><a class="markdownIt-Anchor" href="#图片重命名"></a> 图片重命名</h5>
+<ul>
 <li>在renameJPG()方法实现，重命名的意图有两个，第一是将图片都统一为一种图片类型，第二个目的是给图片添加训练标签（当然也可以将标签写在文件当中，这里只是一种简便的做法）</li>
 </ul>
-<h5 id="图片转换为统一的格式"><a href="#图片转换为统一的格式" class="headerlink" title="图片转换为统一的格式"></a>图片转换为统一的格式</h5><ul>
+<h5 id="图片转换为统一的格式"><a class="markdownIt-Anchor" href="#图片转换为统一的格式"></a> 图片转换为统一的格式</h5>
+<ul>
 <li>图片重命名保存的过程中将图片统一格式</li>
 </ul>
-<h5 id="图片统一大小"><a href="#图片统一大小" class="headerlink" title="图片统一大小"></a>图片统一大小</h5><ul>
+<h5 id="图片统一大小"><a class="markdownIt-Anchor" href="#图片统一大小"></a> 图片统一大小</h5>
+<ul>
 <li>该网络要求输入图片的大小为(100,100),所以运行时要修改out_img_size为(100,100)，数据集保存位置save_dir为cat_kind_data</li>
 </ul>
-<h5 id="将图片按照一定的比例划分"><a href="#将图片按照一定的比例划分" class="headerlink" title="将图片按照一定的比例划分"></a>将图片按照一定的比例划分</h5><ul>
+<h5 id="将图片按照一定的比例划分"><a class="markdownIt-Anchor" href="#将图片按照一定的比例划分"></a> 将图片按照一定的比例划分</h5>
+<ul>
 <li>按照比例9:1将数据划分为训练集和测试集,默认参数为0.9</li>
 </ul>
-<h4 id="step2-训练"><a href="#step2-训练" class="headerlink" title="step2 训练"></a>step2 训练</h4><ul>
-<li>使用文件：train.py，直接执行</li>
+<h4 id="step2-训练"><a class="markdownIt-Anchor" href="#step2-训练"></a> step2 训练</h4>
+<ul>
+<li>使用文件：<a target="_blank" rel="noopener" href="http://train.py">train.py</a>，直接执行</li>
 </ul>
-<h4 id="step3-测试"><a href="#step3-测试" class="headerlink" title="step3 测试"></a>step3 测试</h4><ul>
-<li>使用文件：predict.py，直接执行</li>
+<h4 id="step3-测试"><a class="markdownIt-Anchor" href="#step3-测试"></a> step3 测试</h4>
+<ul>
+<li>使用文件：<a target="_blank" rel="noopener" href="http://predict.py">predict.py</a>，直接执行</li>
 </ul>
-<h3 id="二-使用经典网络ResNet50实现猫的种类识别"><a href="#二-使用经典网络ResNet50实现猫的种类识别" class="headerlink" title="二 使用经典网络ResNet50实现猫的种类识别"></a>二 使用经典网络ResNet50实现猫的种类识别</h3><ul>
+<h3 id="二-使用经典网络resnet50实现猫的种类识别"><a class="markdownIt-Anchor" href="#二-使用经典网络resnet50实现猫的种类识别"></a> 二 使用经典网络ResNet50实现猫的种类识别</h3>
+<ul>
 <li>由于resnet网络较为复杂，在少量的数据集情况下结果容易出现过拟合，所以首先进行数据增强的处理</li>
 </ul>
-<h4 id="step1-数据增强"><a href="#step1-数据增强" class="headerlink" title="step1 数据增强"></a>step1 数据增强</h4><p><img src="/2021/04/23/%E7%8C%AB%E5%92%AA12%E5%88%86%E7%B1%BB/sample.png" alt></p>
+<h4 id="step1-数据增强"><a class="markdownIt-Anchor" href="#step1-数据增强"></a> step1 数据增强</h4>
+<p><img src="/2021/04/23/%E7%8C%AB%E5%92%AA12%E5%88%86%E7%B1%BB/sample.png" alt></p>
 <p>直接运行data_aug.py，然后会在dataAug文件夹下生成12个对应猫种类的文件夹，相应的参数可以在data_aug.py调整</p>
 <p><img src="/2021/04/23/%E7%8C%AB%E5%92%AA12%E5%88%86%E7%B1%BB/data_aug.png" alt></p>
-<h4 id="step2-数据集预处理"><a href="#step2-数据集预处理" class="headerlink" title="step2 数据集预处理"></a>step2 数据集预处理</h4><p>使用文件：prepare_data.py</p>
+<h4 id="step2-数据集预处理"><a class="markdownIt-Anchor" href="#step2-数据集预处理"></a> step2 数据集预处理</h4>
+<p>使用文件：prepare_data.py</p>
 <p>包括的操作有：</p>
-<h5 id="图片重命名-1"><a href="#图片重命名-1" class="headerlink" title="图片重命名"></a>图片重命名</h5><ul>
-<li>在renameJPG()方法实现，重命名的意图有两个，第一是将图片都统一为一种图片类型，<br>第二个目的是给图片添加训练标签（当然也可以将标签写在文件当中，这里只是一种简便的<br>做法）</li>
+<h5 id="图片重命名-2"><a class="markdownIt-Anchor" href="#图片重命名-2"></a> 图片重命名</h5>
+<ul>
+<li>在renameJPG()方法实现，重命名的意图有两个，第一是将图片都统一为一种图片类型，
+第二个目的是给图片添加训练标签（当然也可以将标签写在文件当中，这里只是一种简便的
+做法）</li>
 </ul>
-<h5 id="图片转换为统一的格式-1"><a href="#图片转换为统一的格式-1" class="headerlink" title="图片转换为统一的格式"></a>图片转换为统一的格式</h5><ul>
+<h5 id="图片转换为统一的格式-2"><a class="markdownIt-Anchor" href="#图片转换为统一的格式-2"></a> 图片转换为统一的格式</h5>
+<ul>
 <li>图片重命名保存的过程中将图片统一格式</li>
 </ul>
-<h5 id="图片统一大小-1"><a href="#图片统一大小-1" class="headerlink" title="图片统一大小"></a>图片统一大小</h5><ul>
+<h5 id="图片统一大小-2"><a class="markdownIt-Anchor" href="#图片统一大小-2"></a> 图片统一大小</h5>
+<ul>
 <li>在resNet中要求图片的大小在197——224之间，这里将图片的大小统一在224*224</li>
 </ul>
-<h5 id="将图片按照一定的比例划分-1"><a href="#将图片按照一定的比例划分-1" class="headerlink" title="将图片按照一定的比例划分"></a>将图片按照一定的比例划分</h5><ul>
+<h5 id="将图片按照一定的比例划分-2"><a class="markdownIt-Anchor" href="#将图片按照一定的比例划分-2"></a> 将图片按照一定的比例划分</h5>
+<ul>
 <li>按照比例9:1将数据划分为训练集和测试集</li>
 </ul>
-<h4 id="step3-定义网络结构"><a href="#step3-定义网络结构" class="headerlink" title="step3 定义网络结构"></a>step3 定义网络结构</h4><ul>
-<li><p>网络结构采用Keras搭建好的resNet50，使用文件：resnet_example/resnet50.py</p>
+<h4 id="step3-定义网络结构"><a class="markdownIt-Anchor" href="#step3-定义网络结构"></a> step3 定义网络结构</h4>
+<ul>
+<li>
+<p>网络结构采用Keras搭建好的resNet50，使用文件：resnet_example/resnet50.py</p>
 </li>
-<li><p>使用文件：resnet_example/resnet50.py,原始文件可从<a target="_blank" rel="noopener" href="https://github.com/fchollet/deep-learning-models">deep-learning-models</a><br>获取，为了使得该文件能适应训练加测试，我做了相应的修改</p>
+<li>
+<p>使用文件：resnet_example/resnet50.py,原始文件可从<a target="_blank" rel="noopener" href="https://github.com/fchollet/deep-learning-models">deep-learning-models</a>
+获取，为了使得该文件能适应训练加测试，我做了相应的修改</p>
 </li>
 </ul>
-<h4 id="step4-训练"><a href="#step4-训练" class="headerlink" title="step4 训练"></a>step4 训练</h4><ul>
+<h4 id="step4-训练"><a class="markdownIt-Anchor" href="#step4-训练"></a> step4 训练</h4>
+<ul>
 <li>使用文件：resnet_example/train_on_resnet.py</li>
 </ul>
-<h4 id="step5-测试"><a href="#step5-测试" class="headerlink" title="step5 测试"></a>step5 测试</h4><ul>
+<h4 id="step5-测试"><a class="markdownIt-Anchor" href="#step5-测试"></a> step5 测试</h4>
+<ul>
 <li>使用文件：resnet_example/predict_on_resnet.py</li>
 </ul>
-<h3 id="三-模型文件及数据集下载"><a href="#三-模型文件及数据集下载" class="headerlink" title="三 模型文件及数据集下载"></a>三 模型文件及数据集下载</h3><p>数据集使用的是来自百度公开数据集的猫咪12分类数据</p>
+<h3 id="三-模型文件及数据集下载"><a class="markdownIt-Anchor" href="#三-模型文件及数据集下载"></a> 三 模型文件及数据集下载</h3>
+<p>数据集使用的是来自百度公开数据集的猫咪12分类数据</p>
 <p><a target="_blank" rel="noopener" href="https://aistudio.baidu.com/aistudio/datasetDetail/10954">12分类数据集</a></p>
 <p><a href="http://www.vvindsky.xyz/cat_kind.zip">代码下载</a></p>
 

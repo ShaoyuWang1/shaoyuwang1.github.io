@@ -284,6 +284,20 @@
   </url>
   
   <url>
+    <loc>http://www.vvindsky.xyz/tags/online-learning/</loc>
+    <lastmod>2022-08-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.vvindsky.xyz/tags/%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2022-08-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://www.vvindsky.xyz/tags/algorithm/</loc>
     <lastmod>2022-08-02</lastmod>
     <changefreq>daily</changefreq>
@@ -326,20 +340,6 @@
   </url>
   
   <url>
-    <loc>http://www.vvindsky.xyz/tags/%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2022-08-02</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.vvindsky.xyz/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</loc>
-    <lastmod>2022-08-02</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://www.vvindsky.xyz/tags/%E6%9D%8E%E5%BF%97/</loc>
     <lastmod>2022-08-02</lastmod>
     <changefreq>daily</changefreq>
@@ -347,7 +347,7 @@
   </url>
   
   <url>
-    <loc>http://www.vvindsky.xyz/tags/online-learning/</loc>
+    <loc>http://www.vvindsky.xyz/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</loc>
     <lastmod>2022-08-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
