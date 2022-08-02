@@ -1628,59 +1628,44 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
   <entry>
     <title>Online Learning 4 ε-greedy &amp; UCB</title>
     <url>/2022/08/02/Online-Learning-4-%CE%B5-greedy-UCB/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><img src="/2022/08/02/Online-Learning-4-%CE%B5-greedy-UCB/cover.jpg" alt="Untitled" style="zoom:15%;">
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="/2022/08/02/Online-Learning-4-%CE%B5-greedy-UCB/cover.jpg" alt="Untitled" style="zoom:15%;"></p>
 <p>主要介绍$\epsilon$-greedy算法和UCB算法以及他们的regret 证明。非常重要的是介绍了一个很普适的证明框架(UCB 分析1)</p>
 <a id="more"></a>
-<h2 id="算法思想">算法思想</h2>
-<p>简单的greedy算法：<br>
-for $t=1, \cdots, k$ pull arm $t$</p>
-<p>for $t=k + 1, \ldots, n$, pull  $argmax_{i}  \hat{\mu}_{i}(t-1)$</p>
+<h2 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h2><p>简单的greedy算法：<br>for $t=1, \cdots, k$ pull arm $t$</p>
+<p>for $t=k + 1, \ldots, n$, pull  $argmax<em>{i}  \hat{\mu}</em>{i}(t-1)$</p>
 <p>每个arm实验一次，然后只拉最好的arm（边拉边更新均值）,但这显然是会有问题的。有可能最好的arm因为一开始的realize的reward不好导致永远不会再被拉到。</p>
 <p>所以要设计一个算法让我们在后期的“exploit”阶段，也会保持explore的可能性。</p>
-<h2 id="算法描述">算法描述</h2>
-<p>Input: $\varepsilon_{1} \varepsilon_{2} \ldots \varepsilon_{n}$</p>
+<h2 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h2><p>Input: $\varepsilon<em>{1} \varepsilon</em>{2} \ldots \varepsilon_{n}$</p>
 <p>If:</p>
-<p>$t=1, \ldots, k$,  pull arm $t$</p>
-<p>$t=k+1, \ldots, n$ pull arm$A_{t}=\left{\begin{array}{lc}<br>
-\operatorname{argmax}<em>{i} \hat{\mu}</em>{i}(t-1) &amp; \text { w.p. } 1-\varepsilon_{t} \<br>
-i &amp; \text { w.p. } \frac{\varepsilon_{t}}{k}<br>
-\end{array}\right.$</p>
+<p>$t=1, \ldots, k$,  pull arm $t$ </p>
+<p>$t=k+1, \ldots, n$ pull arm$A<em>{t}={\begin{array}{lc}<br>\operatorname{argmax}</em>{i} \hat{\mu}<em>{i}(t-1) &amp; \text { w.p. } 1-\varepsilon</em>{t} \<br>i &amp; \text { w.p. } \frac{\varepsilon_{t}}{k}<br>\end{array}$</p>
 <p>在后期也会保持一个$\epsilon_t$ 的概率尝试其他arm。</p>
 <p>why $\epsilon_t$ not $\epsilon$  ? 可以证得，当取常数$\epsilon$ 得时候regret会趋于无穷。</p>
-<h2 id="Regret-分析">Regret 分析</h2>
-<p>若取$\epsilon  \sim \frac{1}{t}$<br>
-then:</p>
+<h2 id="Regret-分析"><a href="#Regret-分析" class="headerlink" title="Regret 分析"></a>Regret 分析</h2><p>若取$\epsilon  \sim \frac{1}{t}$<br> then:</p>
 <p>Instance Independent  $\sim O(\sqrt{n})$ (只知道$\mu_1,\mu_2\cdots\mu_k$取值空间$\sim [0,1]$)</p>
 <p>Instance Dependent  $\sim O(\log n)$ （知道$\mu_1,\mu_2\cdots\mu_k$ 是哪些数，但不知道各自对应哪个arm）</p>
-<h1>Upper Confidence Bound Algorithm</h1>
-<p>著名的上置信度边界（UCB）算法，它克服了ETC的策略的所有限制，包括需要知道水平线和次优差距。该算法有许多不同的形式，取决于对噪声分布的假设。</p>
-<h2 id="算法思想-2">算法思想</h2>
-<p>UCB算法给人们的一个启示是“永远对未知保持乐观态度”</p>
+<h1 id="Upper-Confidence-Bound-Algorithm"><a href="#Upper-Confidence-Bound-Algorithm" class="headerlink" title="Upper Confidence Bound Algorithm"></a>Upper Confidence Bound Algorithm</h1><p>著名的上置信度边界（UCB）算法，它克服了ETC的策略的所有限制，包括需要知道水平线和次优差距。该算法有许多不同的形式，取决于对噪声分布的假设。</p>
+<h2 id="算法思想-1"><a href="#算法思想-1" class="headerlink" title="算法思想"></a>算法思想</h2><p>UCB算法给人们的一个启示是“永远对未知保持乐观态度”</p>
 <p>这样做的直观原因是，当乐观地行事时，会发生两种情况之一。</p>
 <ul>
 <li>要么乐观是合理的，在这种情况下，学习者的行为是最优的。</li>
 <li>要么乐观是不合理的。在这一情况下，learner采取了他们认为可能会带来大量奖励的行动，但事实上却并不是最优的。如果这种情况发生得足够频繁，那么学习者就会知道这个行动的真正回报并不最优，因此在未来不会选择它。</li>
 </ul>
-<h2 id="算法描述-2">算法描述</h2>
-<ul>
+<h2 id="算法描述-1"><a href="#算法描述-1" class="headerlink" title="算法描述"></a>算法描述</h2><ul>
 <li>计算upper bound：</li>
 </ul>
-<p>Recall that if $X_{1}, X_{2}, \ldots, X_{n}$ are independent and 1-subgaussian (which means that $\mathbb{E}[X_{i}]=0$ ) and $\hat{\mu}=\sum_{t=1}^{n} X_{t} / n$, then</p>
-<p>$$<br>
-\mathbb{P}(\hat{\mu} \geq \varepsilon) \leq \exp (-n \varepsilon^{2} / 2)<br>
-$$</p>
-<p>Equating the right-hand side with $\delta$ and solving for $\varepsilon$ leads to</p>
-<p>$$<br>
-\hat{\mu}<em>{i}(t-1)+\sqrt{\frac{2}{T</em>{i}(t-1)} \log (\frac{1}{\delta})}<br>
-$$</p>
-<ul>
+<p>Recall that if $X<em>{1}, X</em>{2}, \ldots, X<em>{n}$ are independent and 1-subgaussian (which means that $\mathbb{E}[X</em>{i}]=0$ ) and $\hat{\mu}=\sum<em>{t=1}^{n} X</em>{t} / n$, then</p>
+<script type="math/tex; mode=display">
+\mathbb{P}(\hat{\mu} \geq \varepsilon) \leq \exp (-n \varepsilon^{2} / 2)</script><p>Equating the right-hand side with $\delta$ and solving for $\varepsilon$ leads to</p>
+<script type="math/tex; mode=display">
+\hat{\mu}_{i}(t-1)+\sqrt{\frac{2}{T_{i}(t-1)} \log (\frac{1}{\delta})}</script><ul>
 <li>选择有最大置信区间上确界的arm</li>
 </ul>
 <p><img src="/2022/08/02/Online-Learning-4-%CE%B5-greedy-UCB/UCB.png" alt="Untitled"></p>
-<p>$$<br>
-A_{t}= \begin{cases}\operatorname{argmax}<em>{i}(\hat{\mu}</em>{i}(t-1)+\sqrt{\frac{2 \log \frac{1}{\delta}}{T_{i}(t-1)}}), &amp; \text { if } t&gt;K \ t, &amp; \text { otherwise }\end{cases}<br>
-$$</p>
-<p>Besides the slightly vague “optimism guarantees optimality or learning” intuition we gave before, it is worth exploring other intuitions for this choice of index. At a very basic level, we should explore arms more often if they are:</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+A_{t}= \begin{cases}\operatorname{argmax}_{i}(\hat{\mu}_{i}(t-1)+\sqrt{\frac{2 \log \frac{1}{\delta}}{T_{i}(t-1)}}), & \text { if } t>K \\ t, & \text { otherwise }\end{cases}
+\end{equation}</script><p>Besides the slightly vague “optimism guarantees optimality or learning” intuition we gave before, it is worth exploring other intuitions for this choice of index. At a very basic level, we should explore arms more often if they are:</p>
 <ul>
 <li>(a) promising (in that $\hat{\mu}_{i}(t-1)$ is large)</li>
 <li>(b) not well explored ( $T_{i}(t-1)$ is small).</li>
@@ -1692,33 +1677,29 @@ $$</p>
 <li>把regret 分解为在good event 下的regret 和 bad event 下的regret</li>
 </ul>
 <p>Regret = Regret | Good Event + Regret | Bad Event</p>
-<p>$$<br>
-\begin{aligned}<br>
-R_{n} &amp;=\sum_{t=1}^{n} E[\mu_{1}-\mu_{A_{t}}] \<br>
-&amp;=\sum_{t=1}^{n} E[(\mu_{1}-\mu_{A_{t}}) 1_{G}]+\sum_{t=1}^{n} E[(\mu_{1}-\mu_{A_{t}}) 1_{G^{c}}]<br>
-\end{aligned}<br>
-$$</p>
-<ul>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{aligned}
+R_{n} &=\sum_{t=1}^{n} E[\mu_{1}-\mu_{A_{t}}] \\
+&=\sum_{t=1}^{n} E[(\mu_{1}-\mu_{A_{t}}) 1_{G}]+\sum_{t=1}^{n} E[(\mu_{1}-\mu_{A_{t}}) 1_{G^{c}}]
+\end{aligned}
+\end{equation}</script><ul>
 <li>证明good event 下 regret 很小，bad event 下发生的概率很小</li>
 </ul>
 <p>这套证明思路非常常见，关键的技巧是如何构造“good event”</p>
-<h2 id="Regret-Analysis-（1）">Regret Analysis （1）</h2>
-<p>定义好事件为真实的arm 取值落在置信区间内：</p>
-<p>$G={\hat{\mu}<em>{i}(t-1)-\sqrt{\frac{2 \log ({\frac{1}{\sigma}})}{T</em>{i}(t-1)}} \leqslant \mu_{i} \leqslant \hat{\mu}<em>{i}(t-1)+\sqrt{\frac{2 \log ({\frac{1}{\sigma}})}{T</em>{i}(t-1)}}, \forall t, i}$</p>
-<h2 id="在好事件下的regret">在好事件下的regret</h2>
-<p><img src="/2022/08/02/Online-Learning-4-%CE%B5-greedy-UCB/banshu.png" alt="Untitled"></p>
+<h2 id="Regret-Analysis-（1）"><a href="#Regret-Analysis-（1）" class="headerlink" title="Regret Analysis （1）"></a>Regret Analysis （1）</h2><p>定义好事件为真实的arm 取值落在置信区间内：</p>
+<p>$G={\hat{\mu}<em>{i}(t-1)-\sqrt{\frac{2 \log ({\frac{1}{\sigma}})}{T</em>{i}(t-1)}} \leqslant \mu<em>{i} \leqslant \hat{\mu}</em>{i}(t-1)+\sqrt{\frac{2 \log ({\frac{1}{\sigma}})}{T_{i}(t-1)}}, \forall t, i}$</p>
+<h2 id="在好事件下的regret"><a href="#在好事件下的regret" class="headerlink" title="在好事件下的regret"></a>在好事件下的regret</h2><p><img src="/2022/08/02/Online-Learning-4-%CE%B5-greedy-UCB/banshu.png" alt="Untitled"></p>
 <p>我们得到在好事件下收益差距不会过大：</p>
-<p>$\mu_{1}-\mu_{A_{t}} \leq 2 \sqrt{2 \log (\frac{1}{\sigma})} \sqrt{\frac{1}{T_{A_{t}}(t-1)}}$</p>
-<p>We know  $T_{i}(t-1) \leq t-1$</p>
-<p>$$<br>
-\sum_{t=1}^{n} E[\sqrt{\frac{1}{T_{A_{t}}(t-1)}}] \leqslant \sum_{t=1}^{n} \sum_{i=1}^{k} \sqrt{\frac{1}{t}} \sim k \sqrt{n}<br>
-$$</p>
-<p>这一步放缩过大，每个arm i拉的次数小于t次，直接都放缩到t次</p>
-<p>Regret | Good Event $\leq$$\sum_{t=1}^{n} 2 \sqrt{2 \log (\frac{1}{\delta})} E[\sqrt{\frac{1}{T_{A_{t}}(t-1)}}]\sim2 \sqrt{2 \log \frac{1}{\sigma }} k \sqrt{n}$</p>
-<h2 id="在坏事件下的概率">在坏事件下的概率</h2>
-<p>坏事件下要尝试证明，坏事件概率不会过大</p>
-<p>Regret | Bad Event $\leqslant \sum_{t=1}^{n} E[(\mu_{1}-\mu_{A t}) 1_{G^c} ] \leq \sum_{t=1}^{n} P(G^{c})=n P(G^{c})$</p>
+<p>$\mu<em>{1}-\mu</em>{A<em>{t}} \leq 2 \sqrt{2 \log (\frac{1}{\sigma})} \sqrt{\frac{1}{T</em>{A_{t}}(t-1)}}$</p>
+<p>We know  $T_{i}(t-1) \leq t-1$ </p>
+<script type="math/tex; mode=display">
+\sum_{t=1}^{n} E[\sqrt{\frac{1}{T_{A_{t}}(t-1)}}] \leqslant \sum_{t=1}^{n} \sum_{i=1}^{k} \sqrt{\frac{1}{t}} \sim k \sqrt{n}</script><p>这一步放缩过大，每个arm i拉的次数小于t次，直接都放缩到t次</p>
+<p>Regret | Good Event $\leq$$\sum<em>{t=1}^{n} 2 \sqrt{2 \log (\frac{1}{\delta})} E[\sqrt{\frac{1}{T</em>{A_{t}}(t-1)}}]\sim2 \sqrt{2 \log \frac{1}{\sigma }} k \sqrt{n}$ </p>
+<h2 id="在坏事件下的概率"><a href="#在坏事件下的概率" class="headerlink" title="在坏事件下的概率"></a>在坏事件下的概率</h2><p>坏事件下要尝试证明，坏事件概率不会过大</p>
+<p>Regret | Bad Event $\leqslant \sum<em>{t=1}^{n} E[(\mu</em>{1}-\mu<em>{A t}) 1</em>{G^c} ] \leq \sum_{t=1}^{n} P(G^{c})=n P(G^{c})$</p>
 <p>为了方便讨论，我们denote一下每个arm的生成序列(每个arm都考虑到n期)</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1753,18 +1734,15 @@ $$</p>
 </tr>
 </tbody>
 </table>
-<p>Let $E_{t_{i}}=|\frac{\sum_{s=1}^{t} X <em>{si}}{t}-\mu</em>{i}| \leq \sqrt{\frac{2 \log (\frac{1}{\sigma})}{t}}$</p>
+</div>
+<p>Let $E<em>{t</em>{i}}=|\frac{\sum<em>{s=1}^{t} X </em>{si}}{t}-\mu_{i}| \leq \sqrt{\frac{2 \log (\frac{1}{\sigma})}{t}}$</p>
 <p>E 单独定义每个arm的good event</p>
-<p>if $\bigcap_{t=1}^{n} \bigcap_{i=1}^{k} E_{t i}$ holds, then $G$ holds（E取交集是一个更强的限制）</p>
-<p>$$<br>
-\begin{aligned}&amp;arrow \quad \bigcap_{t}^{k} \bigcap_{i}^{n} E_{t i} \subset G \&amp;arrow \quad G_{i}^{c} \subset \bigcup_{i=1}^{n} \bigcup_{i=1}^{k} E_{t i}^{c}\end{aligned}<br>
-$$</p>
-<p>且根据置信区间的定义我们可以知道 $E_{t i}^{c}\leq \delta$ 所以 $P(G^c) \leq nk\delta$</p>
-<h2 id="好坏加和">好坏加和</h2>
-<p>好坏regret 加和  $\leq 2 \sqrt{2 \log (\frac{1}{\delta})} k \sqrt{n}+n^{2} k \delta$</p>
+<p> if $\bigcap<em>{t=1}^{n} \bigcap</em>{i=1}^{k} E_{t i}$ holds, then $G$ holds（E取交集是一个更强的限制）</p>
+<script type="math/tex; mode=display">
+\begin{aligned}&arrow \quad \bigcap_{t}^{k} \bigcap_{i}^{n} E_{t i} \subset G \\&arrow \quad G_{i}^{c} \subset \bigcup_{i=1}^{n} \bigcup_{i=1}^{k} E_{t i}^{c}\end{aligned}</script><p>且根据置信区间的定义我们可以知道 $E_{t i}^{c}\leq \delta$ 所以 $P(G^c) \leq nk\delta$</p>
+<h2 id="好坏加和"><a href="#好坏加和" class="headerlink" title="好坏加和"></a>好坏加和</h2><p>好坏regret 加和  $\leq 2 \sqrt{2 \log (\frac{1}{\delta})} k \sqrt{n}+n^{2} k \delta$</p>
 <p>令$\delta  \sim 1/n^2$  $R_{n} \leq 4 \sqrt{\log n} k \sqrt{n}+k$</p>
-<h1>Regret 分析2 （bound收紧到$\sqrt{kn}$ ）</h1>
-<p>小咕🐦</p>
+<h1 id="Regret-分析2-（bound收紧到-sqrt-kn-）"><a href="#Regret-分析2-（bound收紧到-sqrt-kn-）" class="headerlink" title="Regret 分析2 （bound收紧到$\sqrt{kn}$ ）"></a>Regret 分析2 （bound收紧到$\sqrt{kn}$ ）</h1><p>小咕🐦</p>
 ]]></content>
       <tags>
         <tag>学术</tag>
