@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"www.vvindsky.xyz","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":null},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="简介： 最大流与最小割问题常用于matching问题、clustering问题等等... **最小割问题：**在一个带权重的图中找出一个将所有顶点分为两类的分割方法，切分割的边权重合最小（实际上就是一种对于边的cut）。 **最大流问题：**在一个带权有向图中，找出可能的最大流量从 S-&gt;T。">
+  <meta name="description" content="简介： 最大流与最小割问题常用于matching问题、clustering问题等等… **最小割问题：**在一个带权重的图中找出一个将所有顶点分为两类的分割方法，切分割的边权重合最小（实际上就是一种对于边的cut）。 **最大流问题：**在一个带权有向图中，找出可能的最大流量从 S-&gt;T。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最小割与最大流">
 <meta property="og:url" content="http://www.vvindsky.xyz/2022/05/23/%E6%9C%80%E5%B0%8F%E5%89%B2%E4%B8%8E%E6%9C%80%E5%A4%A7%E6%B5%81/index.html">
 <meta property="og:site_name" content="Wind and Sky">
-<meta property="og:description" content="简介： 最大流与最小割问题常用于matching问题、clustering问题等等... **最小割问题：**在一个带权重的图中找出一个将所有顶点分为两类的分割方法，切分割的边权重合最小（实际上就是一种对于边的cut）。 **最大流问题：**在一个带权有向图中，找出可能的最大流量从 S-&gt;T。">
+<meta property="og:description" content="简介： 最大流与最小割问题常用于matching问题、clustering问题等等… **最小割问题：**在一个带权重的图中找出一个将所有顶点分为两类的分割方法，切分割的边权重合最小（实际上就是一种对于边的cut）。 **最大流问题：**在一个带权有向图中，找出可能的最大流量从 S-&gt;T。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://www.vvindsky.xyz/2022/05/23/%E6%9C%80%E5%B0%8F%E5%89%B2%E4%B8%8E%E6%9C%80%E5%A4%A7%E6%B5%81/cover.png">
 <meta property="og:image" content="http://www.vvindsky.xyz/2022/05/23/%E6%9C%80%E5%B0%8F%E5%89%B2%E4%B8%8E%E6%9C%80%E5%A4%A7%E6%B5%81/cut.png">
@@ -261,13 +261,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="简介"><a class="markdownIt-Anchor" href="#简介"></a> 简介：</h1>
-<p>最大流与最小割问题常用于matching问题、clustering问题等等...</p>
+        <h1>简介：</h1>
+<p>最大流与最小割问题常用于matching问题、clustering问题等等…</p>
 <p>**最小割问题：**在一个带权重的图中找出一个将所有顶点分为两类的分割方法，切分割的边权重合最小（实际上就是一种对于边的cut）。</p>
 <p>**最大流问题：**在一个带权有向图中，找出可能的最大流量从 <strong>S-&gt;T</strong>。</p>
 <img src="/2022/05/23/%E6%9C%80%E5%B0%8F%E5%89%B2%E4%B8%8E%E6%9C%80%E5%A4%A7%E6%B5%81/cover.png" style="zoom:40%;">
 <a id="more"></a>
-<h1 id="最小割问题"><a class="markdownIt-Anchor" href="#最小割问题"></a> 最小割问题</h1>
+<h1>最小割问题</h1>
 <p>一个cut相当于将vertex分为两类，其中会切开一些边，找到最小的切分方法。</p>
 <img src="/2022/05/23/%E6%9C%80%E5%B0%8F%E5%89%B2%E4%B8%8E%E6%9C%80%E5%A4%A7%E6%B5%81/cut.png" style="zoom:40%;">
 <p>最小割问题在研究网络最薄弱环节相关问题上具备广泛应用。而这个问题如今也依旧是一个open problem。</p>
@@ -280,19 +280,19 @@
 <p>MONTE CARLO ALGORITHM：正确性不一定保证，但运行时间efficient</p>
 </li>
 </ol>
-<h2 id="kargers-algorithm"><a class="markdownIt-Anchor" href="#kargers-algorithm"></a> Karger's algorithm</h2>
+<h2 id="Karger’s-algorithm">Karger’s algorithm</h2>
 <p>Pick a random edge, contract it, and repeat <font color="red"> until you only have 2 vertices left</font>.</p>
 <img src="/2022/05/23/%E6%9C%80%E5%B0%8F%E5%89%B2%E4%B8%8E%E6%9C%80%E5%A4%A7%E6%B5%81/karger.png" style="zoom:40%;">
-<p>正确的概率 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&gt;</mo><mn>1</mn><mi mathvariant="normal">/</mi><mrow><mo fence="true">(</mo><mtable rowspacing="0.15999999999999992em" columnalign="left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mi>n</mi></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>2</mn></mstyle></mtd></mtr></mtable><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">&gt; 1 /\left(\begin{array}{l}
-n \\
-2
-\end{array}\right)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.40003em;vertical-align:-0.95003em;"></span><span class="mord">1</span><span class="mord">/</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span></span></span><span style="top:-2.4099999999999997em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9500000000000004em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span></span></span></span> 刚好分得的是正确的2 组</p>
-<h1 id="最大流问题"><a class="markdownIt-Anchor" href="#最大流问题"></a> 最大流问题</h1>
+<p>正确的概率 $&gt; 1 /\left(\begin{array}{l}<br>
+n \<br>
+2<br>
+\end{array}\right)$ 刚好分得的是正确的2 组</p>
+<h1>最大流问题</h1>
 <p>对于一个有向图 有起点S、终点T, 计算从S到T的最大流量。</p>
 <p>例如这是一种流：</p>
 <img src="/2022/05/23/%E6%9C%80%E5%B0%8F%E5%89%B2%E4%B8%8E%E6%9C%80%E5%A4%A7%E6%B5%81/flow.png" style="zoom:40%;">
 <p><font color="red">对于给定S和T的图，最大割与最小流相等,证明略</font></p>
-<h2 id="fold-fulkerson-algorithm"><a class="markdownIt-Anchor" href="#fold-fulkerson-algorithm"></a> Fold-Fulkerson Algorithm</h2>
+<h2 id="Fold-Fulkerson-Algorithm">Fold-Fulkerson Algorithm</h2>
 <p>核心：<font color="red">构建Residual Graph</font></p>
 <p>起始于任意的一个flow</p>
 <p>循环</p>

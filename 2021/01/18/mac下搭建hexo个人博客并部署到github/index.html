@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"www.vvindsky.xyz","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":null},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="主要内容：   github注册与创建仓库   安装git、nodejs、hexo   初始化+创建hexo博客   部署到github上+自动化   绑定域名、更换主题、设置评论区...（&#x2F;&#x2F;TODO）">
+  <meta name="description" content="主要内容：   github注册与创建仓库   安装git、nodejs、hexo   初始化+创建hexo博客   部署到github上+自动化   绑定域名、更换主题、设置评论区…（&#x2F;&#x2F;TODO）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mac下搭建hexo个人博客并部署到github">
 <meta property="og:url" content="http://www.vvindsky.xyz/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/index.html">
 <meta property="og:site_name" content="Wind and Sky">
-<meta property="og:description" content="主要内容：   github注册与创建仓库   安装git、nodejs、hexo   初始化+创建hexo博客   部署到github上+自动化   绑定域名、更换主题、设置评论区...（&#x2F;&#x2F;TODO）">
+<meta property="og:description" content="主要内容：   github注册与创建仓库   安装git、nodejs、hexo   初始化+创建hexo博客   部署到github上+自动化   绑定域名、更换主题、设置评论区…（&#x2F;&#x2F;TODO）">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://www.vvindsky.xyz/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/join.png">
 <meta property="og:image" content="http://www.vvindsky.xyz/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/create1.png">
@@ -279,7 +279,7 @@
 <p>部署到github上+自动化</p>
 </li>
 <li>
-<p>绑定域名、更换主题、设置评论区...（//TODO）</p>
+<p>绑定域名、更换主题、设置评论区…（//TODO）</p>
  <a id="more"></a>     
 </li>
 </ul>
@@ -322,7 +322,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
 <p>安装成功后在你想要存储博客项目的位置创建你的文件夹，我这里将路径设为“PATH/blog”</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在你的家目录下创建一个blog文件夹</span></span><br><span class="line">mkdir PATH/blog</span><br><span class="line"><span class="comment"># 进入目录</span></span><br><span class="line"><span class="built_in">cd</span> PATH/blog</span><br><span class="line"><span class="comment"># 初始化目录</span></span><br><span class="line">hexo init</span><br><span class="line"><span class="comment">#安装必备组件</span></span><br><span class="line">npm install</span><br><span class="line"><span class="comment"># 开启本地服务 </span></span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p>此时打开<a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a> 就可以看到运行在本地的hexo页面</p>
+<p>此时打开http://localhost:4000/ 就可以看到运行在本地的hexo页面</p>
 <img src="/2021/01/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0github/hello_world.png" alt="新建" style="zoom:50%;">
 <h3>
   4. 部署到github
