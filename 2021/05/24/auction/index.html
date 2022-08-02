@@ -256,133 +256,81 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <img src="/2021/05/24/auction/index.jpeg" style="zoom:90%;">
-<center>Basic Auction theory
+        <p><img src="/2021/05/24/auction/index.jpeg" style="zoom:90%;"></p>
+<p><center>Basic Auction theory</center></p>
 <a id="more"></a>
-<h1>1 Introduction</h1>
-<p>​	Auction theory can be approached from different angles – from the perspective of game theory (auctions are bayesian games of incomplete information), contract or mechanism design theory (auctions are allocation mechanisms), market microstructure (auctions are models of price formation), as well as in the context of different applications (procurement, patent licensing, public finance, etc.).</p>
-<p>​	Generally speaking, the higher the bidder offer the higher chance he will get the good but also he will get less profit, vice versa.</p>
+<h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h1><p>​    Auction theory can be approached from different angles – from the perspective of game theory (auctions are bayesian games of incomplete information), contract or mechanism design theory (auctions are allocation mechanisms), market microstructure (auctions are models of price formation), as well as in the context of different applications (procurement, patent licensing, public finance, etc.).</p>
+<p>​    Generally speaking, the higher the bidder offer the higher chance he will get the good but also he will get less profit, vice versa.</p>
 <p>The basic auction environment consists of:</p>
 <ul>
-<li>Bidders $$i=1, \ldots, n$$</li>
+<li>Bidders <script type="math/tex">i=1, \ldots, n</script></li>
 <li>One object to be sold</li>
-<li>Bidder $$i$$ observes a “signal” $$S_{i} \sim F(\cdot)$$, with typical realization $$s_{i} \in$$ $$[\underline{s}, \bar{s}]$$, and assume $$F$$ is continuous.</li>
-<li>Bidders’ signals $$S_{1}, \ldots, S_{n}$$ are independent.</li>
-<li>Bidder $i$ 's value $$v_{i}\left(s_{i}\right)=s_{i}$$</li>
+<li>Bidder <script type="math/tex">i</script> observes a “signal” <script type="math/tex">S_{i} \sim F(\cdot)</script>, with typical realization <script type="math/tex">s_{i} \in</script> <script type="math/tex">[\underline{s}, \bar{s}]</script>, and assume <script type="math/tex">F</script> is continuous.</li>
+<li>Bidders’ signals <script type="math/tex">S_{1}, \ldots, S_{n}</script> are independent.</li>
+<li>Bidder $i$ ‘s value <script type="math/tex">v_{i}\left(s_{i}\right)=s_{i}</script></li>
 </ul>
-<h1>2 Different Auction Forms</h1>
-<h2 id="1-English-auction-oral-ascending">1) English auction(oral ascending):</h2>
-<p>All bidders start in the auction with a price of zero. The price rises continuously, and bidders may drop out at any point in time. Once they drop out, they cannot reenter. The auction ends when only one bidder is left, and this bidder pays the price at which the second-to-last bidder dropped out.</p>
-<h2 id="2-Dutch-Auction-descending-price">2) Dutch Auction(descending price)</h2>
-<p>A Dutch auction is one of several similar types of auctions for buying or selling goods.Most commonly, it means an auction in which the auctioneer begins with a high asking price in the case of selling, and lowers it until some participant accepts the price, or it reaches a predetermined reserve price. This type of price auction is most commonly used for goods that are required to be sold quickly such as flowers, fresh produce or  tobacco.</p>
-<h2 id="3-First-price-sealed-bid-auction">3) First-price sealed-bid auction</h2>
-<p>Also known as blind bid all bidders simultaneously submit sealed bids so that no bidder knows the bid of any other participant. The highest bidder pays the price that was submitted.</p>
-<h2 id="4-Second-price-sealed-bid-auction-vickery-auction">4) Second-price sealed-bid auction(vickery auction)</h2>
-<p>In a Vickrey, or second price, auction, bidders are asked to submit sealed bids $$b_{1}, \ldots, b_{n}$$. The bidder who submits the highest bid is awarded the object, and pays the amount of the second highest bid.</p>
-<h1>3 First-price sealed-bid auction(FPSD)</h1>
-<p>In a FPSD auction the bidders sealed bids $$b_1,b_2\dots b_n$$ the bidders who submits the highest bid is awarded the object and pays his bid.</p>
+<h1 id="2-Different-Auction-Forms"><a href="#2-Different-Auction-Forms" class="headerlink" title="2 Different Auction Forms"></a>2 Different Auction Forms</h1><h2 id="1-English-auction-oral-ascending"><a href="#1-English-auction-oral-ascending" class="headerlink" title="1) English auction(oral ascending):"></a>1) English auction(oral ascending):</h2><p>All bidders start in the auction with a price of zero. The price rises continuously, and bidders may drop out at any point in time. Once they drop out, they cannot reenter. The auction ends when only one bidder is left, and this bidder pays the price at which the second-to-last bidder dropped out.</p>
+<h2 id="2-Dutch-Auction-descending-price"><a href="#2-Dutch-Auction-descending-price" class="headerlink" title="2) Dutch Auction(descending price)"></a>2) Dutch Auction(descending price)</h2><p>A Dutch auction is one of several similar types of auctions for buying or selling goods.Most commonly, it means an auction in which the auctioneer begins with a high asking price in the case of selling, and lowers it until some participant accepts the price, or it reaches a predetermined reserve price. This type of price auction is most commonly used for goods that are required to be sold quickly such as flowers, fresh produce or  tobacco.</p>
+<h2 id="3-First-price-sealed-bid-auction"><a href="#3-First-price-sealed-bid-auction" class="headerlink" title="3) First-price sealed-bid auction"></a>3) First-price sealed-bid auction</h2><p>Also known as blind bid all bidders simultaneously submit sealed bids so that no bidder knows the bid of any other participant. The highest bidder pays the price that was submitted.</p>
+<h2 id="4-Second-price-sealed-bid-auction-vickery-auction"><a href="#4-Second-price-sealed-bid-auction-vickery-auction" class="headerlink" title="4) Second-price sealed-bid auction(vickery auction)"></a>4) Second-price sealed-bid auction(vickery auction)</h2><p>In a Vickrey, or second price, auction, bidders are asked to submit sealed bids <script type="math/tex">b_{1}, \ldots, b_{n}</script>. The bidder who submits the highest bid is awarded the object, and pays the amount of the second highest bid.</p>
+<h1 id="3-First-price-sealed-bid-auction-FPSD"><a href="#3-First-price-sealed-bid-auction-FPSD" class="headerlink" title="3 First-price sealed-bid auction(FPSD)"></a>3 First-price sealed-bid auction(FPSD)</h1><p>In a FPSD auction the bidders sealed bids <script type="math/tex">b_1,b_2\dots b_n</script> the bidders who submits the highest bid is awarded the object and pays his bid.</p>
 <p>Under these rules the bidder will not bid higher than their values, by doing so they may get negative profit. By bidding lower than their true value they may make profit some time.</p>
-<h2 id="A-The-first-order-condition-approach">A The first order condition approach</h2>
-<p>We will look for an equilibrium where each bidder uses a bid strategy that is a strictly increasing, continuous, and differentiable function of his value. To do this we assume that different bidders use the same bid function $$b_j = b(s_j)$$ for different j.</p>
-<p>Bidder i’s expected profit as a  function of his bid $$b_i$$ and signal $$s_i$$<br>
-$$<br>
-U\left(b_{i}, s_{i}\right)=\left(s_{i}-b_{i}\right) \cdot \operatorname{Pr}\left[b_{j}=b\left(S_{j}\right) \leq b_{i}, \forall j \neq i\right]<br>
-$$</p>
-<p>Thus, bidder i chooses b to solve:<br>
-$$<br>
-\max <em>{b</em>{i}}\left(s_{i}-b_{i}\right) F^{n-1}\left(b^{-1}\left(b_{i}\right)\right)<br>
-$$<br>
-The first order condition is:<br>
-$$<br>
-\left(s_{i}-b_{i}\right)(n-1) F^{n-2}\left(b^{-1}\left(b_{i}\right)\right) f\left(b^{-1}\left(b_{i}\right)\right) \frac{1}{b^{\prime}\left(b^{-1}\left(b_{i}\right)\right)}-F^{n-1}\left(b^{-1}\left(b_{i}\right)\right)=0<br>
-$$<br>
-At a symmetric equilibrium, $$b_{i}=b\left(s_{i}\right)$$, so the first order condition reduces to a differential equation (here I’ll drop the $i$ subscript):<br>
-$$<br>
-b^{\prime}(s)=(s-b(s))(n-1) \frac{f(s)}{F(s)}<br>
-$$<br>
-This can be solved, using the boundary condition that $$b(\underline{s})=\underline{s}$$, to obtain:<br>
-$$<br>
-b(s)=s-\frac{\int_{\underline{s}}^{s_{i}} F^{n-1}(\tilde{s}) d \tilde{s}}{F^{n-1}(s)}<br>
-$$<br>
-It is easy to check that b(s) is increasing and differentiable. So any symmetric equilibrium with these properties must involve bidders using the strategy  b(s).</p>
-<h2 id="The-envelope-theorem-approach">The envelope theorem approach</h2>
-<p>For bidder i, his equilibrium payoff is:<br>
-$$<br>
-U\left(s_{i}\right)=\left(s_{i}-b\left(s_{i}\right)\right) F^{n-1}\left(s_{i}\right)\label{usi_1}<br>
-$$<br>
-Because i is playing the best-response in equilibrium, so:<br>
-$$<br>
-U\left(s_{i}\right)=\max <em>{b</em>{i}}\left(s_{i}-b_{i}\right) F^{n-1}\left(b^{-1}\left(b_{i}\right)\right)<br>
-$$<br>
-Applying the Envelope Theorem we can get:<br>
-$$<br>
-\left.\frac{d}{d s} U(s)\right|<em>{s=s</em>{i}}=F^{n-1}\left(b^{-1}\left(b\left(s_{i}\right)\right)=F^{n-1}\left(s_{i}\right)\right.<br>
-$$<br>
-and also:<br>
-$$<br>
-U\left(s_{i}\right)=U(\underline{s})+\int_{\underline{s}}^{s_{i}} F^{n-1}(\tilde{s}) d \tilde{s} \label{usi_2}<br>
-$$<br>
-As b(s) is increasing a bidder with signal $\underline{s}$ will never win the auction so we have $U(\underline{s})=0$, combine $\eqref{usi_1}$ and $\eqref{usi_2}$ we can easily get:<br>
-$$<br>
-b(s)=s-\frac{\int_{\underline{s}}^{s_{i}} F^{n-1}(\tilde{s}) d \tilde{s}}{F^{n-1}(s)}<br>
-$$</p>
-<h1>4 Vickery auction( Second price auction)</h1>
-<p>In a Vickrey, or second price auction, bidders are asked to submit sealed bids $$b_{1}, \ldots, b_{n}$$. The bidder who submits the highest bid is awarded the object, and pays the amount of the second highest bid.</p>
-<p><strong>Proposition 1</strong> <em>In a second price auction, it is a weakly dominant strategy to bid one’s value $$b_i(s_i) = s_i$$</em></p>
+<h2 id="A-The-first-order-condition-approach"><a href="#A-The-first-order-condition-approach" class="headerlink" title="A The first order condition approach"></a>A The first order condition approach</h2><p>We will look for an equilibrium where each bidder uses a bid strategy that is a strictly increasing, continuous, and differentiable function of his value. To do this we assume that different bidders use the same bid function <script type="math/tex">b_j = b(s_j)</script> for different j. </p>
+<p>Bidder i’s expected profit as a  function of his bid <script type="math/tex">b_i</script> and signal <script type="math/tex">s_i</script></p>
+<script type="math/tex; mode=display">
+U\left(b_{i}, s_{i}\right)=\left(s_{i}-b_{i}\right) \cdot \operatorname{Pr}\left[b_{j}=b\left(S_{j}\right) \leq b_{i}, \forall j \neq i\right]</script><p>Thus, bidder i chooses b to solve:</p>
+<script type="math/tex; mode=display">
+\max _{b_{i}}\left(s_{i}-b_{i}\right) F^{n-1}\left(b^{-1}\left(b_{i}\right)\right)</script><p>The first order condition is:</p>
+<script type="math/tex; mode=display">
+\left(s_{i}-b_{i}\right)(n-1) F^{n-2}\left(b^{-1}\left(b_{i}\right)\right) f\left(b^{-1}\left(b_{i}\right)\right) \frac{1}{b^{\prime}\left(b^{-1}\left(b_{i}\right)\right)}-F^{n-1}\left(b^{-1}\left(b_{i}\right)\right)=0</script><p>At a symmetric equilibrium, <script type="math/tex">b_{i}=b\left(s_{i}\right)</script>, so the first order condition reduces to a differential equation (here I’ll drop the $i$ subscript):</p>
+<script type="math/tex; mode=display">
+b^{\prime}(s)=(s-b(s))(n-1) \frac{f(s)}{F(s)}</script><p>This can be solved, using the boundary condition that <script type="math/tex">b(\underline{s})=\underline{s}</script>, to obtain:</p>
+<script type="math/tex; mode=display">
+b(s)=s-\frac{\int_{\underline{s}}^{s_{i}} F^{n-1}(\tilde{s}) d \tilde{s}}{F^{n-1}(s)}</script><p>It is easy to check that b(s) is increasing and differentiable. So any symmetric equilibrium with these properties must involve bidders using the strategy  b(s).</p>
+<h2 id="The-envelope-theorem-approach"><a href="#The-envelope-theorem-approach" class="headerlink" title="The envelope theorem approach"></a>The envelope theorem approach</h2><p>For bidder i, his equilibrium payoff is:</p>
+<script type="math/tex; mode=display">
+U\left(s_{i}\right)=\left(s_{i}-b\left(s_{i}\right)\right) F^{n-1}\left(s_{i}\right)\label{usi_1}</script><p>Because i is playing the best-response in equilibrium, so:</p>
+<script type="math/tex; mode=display">
+U\left(s_{i}\right)=\max _{b_{i}}\left(s_{i}-b_{i}\right) F^{n-1}\left(b^{-1}\left(b_{i}\right)\right)</script><p>Applying the Envelope Theorem we can get:</p>
+<script type="math/tex; mode=display">
+\left.\frac{d}{d s} U(s)\right|_{s=s_{i}}=F^{n-1}\left(b^{-1}\left(b\left(s_{i}\right)\right)=F^{n-1}\left(s_{i}\right)\right.</script><p>and also:</p>
+<script type="math/tex; mode=display">
+U\left(s_{i}\right)=U(\underline{s})+\int_{\underline{s}}^{s_{i}} F^{n-1}(\tilde{s}) d \tilde{s} \label{usi_2}</script><p>As b(s) is increasing a bidder with signal $\underline{s}$ will never win the auction so we have $U(\underline{s})=0$, combine $\eqref{usi_1}$ and $\eqref{usi_2}$ we can easily get:</p>
+<script type="math/tex; mode=display">
+b(s)=s-\frac{\int_{\underline{s}}^{s_{i}} F^{n-1}(\tilde{s}) d \tilde{s}}{F^{n-1}(s)}</script><h1 id="4-Vickery-auction-Second-price-auction"><a href="#4-Vickery-auction-Second-price-auction" class="headerlink" title="4 Vickery auction( Second price auction)"></a>4 Vickery auction( Second price auction)</h1><p>In a Vickrey, or second price auction, bidders are asked to submit sealed bids <script type="math/tex">b_{1}, \ldots, b_{n}</script>. The bidder who submits the highest bid is awarded the object, and pays the amount of the second highest bid.</p>
+<p><strong>Proposition 1</strong> <em>In a second price auction, it is a weakly dominant strategy to bid one’s value <script type="math/tex">b_i(s_i) = s_i</script></em></p>
 <p>(Easy to be proved, omitted here)</p>
-<p>Since each bidder will bid their value, the seller’s revenue (the amount paid in equilibrium) will be equal to the second highest value. Let $$S^{i: n}$$ denote the $i$ th highest of $n$ draws from distribution $$F$$ (so $$S^{i: n}$$ is a random variable with typical realization $$\left.s^{i: n}\right)$$. Then the seller’s expected revenue is $$\mathbb{E}\left[S^{2: n}\right] .$$</p>
-<h1>5 Revenue equivalence</h1>
-<p>What is the revenue from the first price auction? It is the expected winning bid, or the expected bid of the bidder with the highest signal, $$E[b(S^{1:n})]$$ To sharpen this, define $$G(s)=F^{n-1}(s) .$$Then $$G$$ is the probability that if you take $$n-1$$ draws from $$F$$, all will be below $$s$$ (i.e. it is the cdf of $$S^{1: n-1}$$ ). Then,<br>
-$$<br>
-b(s)=s-\frac{\int_{\underline{s}}^{s} F^{n-1}(\tilde{s}) d \tilde{s}}{F^{n-1}(s)}=\frac{1}{F^{n-1}(s)} \int_{\underline{s}}^{s} \tilde{s} d F^{n-1}(\tilde{s})=\mathbb{E}\left[S^{1: n-1} \mid S^{1: n-1} \leq s\right]<br>
-$$<br>
-That is, if a bidder has signal s, he sets his bid equal to the expectation of the highest of the other n-1​ values, conditional on all those values being less than his own. Using this fact, the expected revenue is:<br>
-$$<br>
-\mathbb{E}\left[b\left(S^{1: n}\right)\right]=\mathbb{E}\left[S^{1: n-1} \mid S^{1: n-1} \leq S^{1: n}\right]=\mathbb{E}\left[S^{2: n}\right]<br>
-$$</p>
-<p>equal to the expectation of the second highest value. We have shown:</p>
+<p>Since each bidder will bid their value, the seller’s revenue (the amount paid in equilibrium) will be equal to the second highest value. Let <script type="math/tex">S^{i: n}</script> denote the $i$ th highest of $n$ draws from distribution <script type="math/tex">F</script> (so <script type="math/tex">S^{i: n}</script> is a random variable with typical realization <script type="math/tex">\left.s^{i: n}\right)</script>. Then the seller’s expected revenue is <script type="math/tex">\mathbb{E}\left[S^{2: n}\right] .</script></p>
+<h1 id="5-Revenue-equivalence"><a href="#5-Revenue-equivalence" class="headerlink" title="5 Revenue equivalence"></a>5 Revenue equivalence</h1><p>What is the revenue from the first price auction? It is the expected winning bid, or the expected bid of the bidder with the highest signal, <script type="math/tex">E[b(S^{1:n})]</script> To sharpen this, define <script type="math/tex">G(s)=F^{n-1}(s) .</script>Then <script type="math/tex">G</script> is the probability that if you take <script type="math/tex">n-1</script> draws from <script type="math/tex">F</script>, all will be below <script type="math/tex">s</script> (i.e. it is the cdf of <script type="math/tex">S^{1: n-1}</script> ). Then,</p>
+<script type="math/tex; mode=display">
+b(s)=s-\frac{\int_{\underline{s}}^{s} F^{n-1}(\tilde{s}) d \tilde{s}}{F^{n-1}(s)}=\frac{1}{F^{n-1}(s)} \int_{\underline{s}}^{s} \tilde{s} d F^{n-1}(\tilde{s})=\mathbb{E}\left[S^{1: n-1} \mid S^{1: n-1} \leq s\right]</script><p>That is, if a bidder has signal s, he sets his bid equal to the expectation of the highest of the other n-1​ values, conditional on all those values being less than his own. Using this fact, the expected revenue is:</p>
+<script type="math/tex; mode=display">
+\mathbb{E}\left[b\left(S^{1: n}\right)\right]=\mathbb{E}\left[S^{1: n-1} \mid S^{1: n-1} \leq S^{1: n}\right]=\mathbb{E}\left[S^{2: n}\right]</script><p>equal to the expectation of the second highest value. We have shown: </p>
 <p><strong>Proposition 2</strong> <em>The first and second price auction yield the same revenue in expectation.</em></p>
 <p>The result above is a special case of the celebrated “revenue equivalence theorem” .</p>
-<p><strong>Revenue Equivalence Theorem</strong> :<em>Suppose n bidders have values</em> $$s_{1}, \ldots, s_{n}$$ <em>identically and independently distributed with cdf $$F(\cdot) .$$ Then all auction mechanisms that (i) always award the object to the bidder with highest value in equilibrium, and (ii) give a bidder with valuation $$\underline{s}$$ zero profits, generates the same revenue in expectation.</em></p>
+<p><strong>Revenue Equivalence Theorem</strong> :<em>Suppose n bidders have values</em> <script type="math/tex">s_{1}, \ldots, s_{n}</script> <em>identically and independently distributed with cdf <script type="math/tex">F(\cdot) .</script> Then all auction mechanisms that (i) always award the object to the bidder with highest value in equilibrium, and (ii) give a bidder with valuation <script type="math/tex">\underline{s}</script> zero profits, generates the same revenue in expectation.</em></p>
 <p><strong>proof:</strong></p>
-<p>We consider the general class of auctions where bidders submit bids $$b_1,\dots,b_n$$. An auction rule specifies for all i,<br>
-$$<br>
-\begin{aligned}<br>
-x_{i} &amp;: B_{1} \times \ldots \times B_{n} \rightarrow[0,1] \<br>
-t_{i} &amp;: B_{1} \times \ldots \times B_{n} \rightarrow \mathbb{R}<br>
-\end{aligned}<br>
-$$<br>
-where $$x_{i}(\cdot)$$ gives the probability $i$ will get the object and $$t_{i}(\cdot)$$ gives $i$ 's required payment as a function of the bids $$\left(b_{1}, \ldots, b_{n}\right)$$ . (For example in a first price auction, $$x_{1}\left(b_{1}, \ldots, b_{n}\right)$$ equals 1 if $$b_{1}$$ is the highest bid, and otherwise zero. Meanwhile $$t_{1}\left(b_{1}, \ldots, b_{n}\right)$$ equals zero unless $$b_{1}$$ is highest, in which case $$t_{1}=b_{1}$$)</p>
-<p>Given the auction rule, bidder $i$ 's expected payoff as a function of his signal and bid is:<br>
-$$<br>
-U_{i}\left(s_{i}, b_{i}\right)=s_{i} \mathbb{E}<em>{b</em>{-i}}\left[x_{i}\left(b_{i}, b_{-i}\right)\right]-\mathbb{E}<em>{b</em>{-i}}\left[t_{i}\left(b_{i}, b_{-i}\right)\right]<br>
-$$<br>
-Let $$b_{i}(\cdot), b_{-i}(\cdot)$$ denote an equilibrium of the auction game. Bidder $i$ 's equilibrium payoff is:<br>
-$$<br>
-U_{i}\left(s_{i}\right)=U_{i}\left(s_{i}, b\left(s_{i}\right)\right)=s_{i} F^{n-1}\left(s_{i}\right)-\mathbb{E}<em>{s</em>{-i}}\left[t_{i}\left(b_{i}\left(s_{i}\right), b_{-i}\left(s_{-i}\right)\right]\right.<br>
-$$<br>
-where we use (i) to write $$\mathbb{E}<em>{s</em>{-i}}\left[x_{i}\left(b\left(s_{i}\right), b\left(s_{-i}\right)\right)\right]=F^{n-1}\left(s_{i}\right)$$.<br>
-Using the fact that $$b\left(s_{i}\right)$$ must maximize $i$ 's payoff given $$s_{i}$$ and opponent strategies $$b_{-i}(\cdot)$$, the envelope theorem implies that:<br>
-$$<br>
-\left.\frac{d}{d s} U_{i}(s)\right|<em>{s=s</em>{i}}=\mathbb{E}<em>{b</em>{-i}}\left[x_{i}\left(b_{i}\left(s_{i}\right), b_{-i}\left(s_{-i}\right)\right)\right]=F^{n-1}\left(s_{i}\right)<br>
-$$<br>
-and also<br>
-$$<br>
-U_{i}\left(s_{i}\right)=U_{i}(\underline{s})+\int_{\underline{s}}^{s_{i}} F^{n-1}(\tilde{s}) d \tilde{s}=\int_{\underline{s}}^{s_{i}} F^{n-1}(\tilde{s}) d \tilde{s},<br>
-$$<br>
-where we use $(i i)$ to write $$U_{i}(\underline{s})=0$$ Combining our expressions for $$U_{i}\left(s_{i}\right)$$, we get bidder $i$ 's expected payment given his signal:<br>
-$$<br>
-\mathbb{E}<em>{s</em>{-i}}\left[t_{i}\left(b_{i}, b_{-i}\right)\right]=s_{i} F^{n-1}\left(s_{i}\right)-\int_{\underline{s}}^{s_{i}} F^{n-1}(\tilde{s}) d \tilde{s}=\int_{\underline{s}}^{s_{i}} \tilde{s} d F^{n-1}(\tilde{s})<br>
-$$<br>
-where the last equality is from integration by parts. Since $$x_{i}(\cdot)$$ does not enter into this expression, bidder i’s expected equilibrium payment given his signal is the same under all auction rules that satisfy (i) and (ii). Indeed, i’s expected payment given $$s_{i}$$ is equal to:<br>
-$$<br>
-\mathbb{E}\left[S^{1: n-1} \mid S^{1: n-1}&lt;s_{i}\right]=\mathbb{E}\left[S^{2: n} \mid S^{1: n}=s_{i}\right]<br>
-$$<br>
-So the seller’s revenue is:<br>
-$$<br>
-\mathbb{E}[\text { Revenue }]=\sum \mathbb{E}<em>{s</em>{i}}\left[i \text { 's expected payment } \mid s_{i}\right]=\mathbb{E}\left[S^{2: n}\right]<br>
-$$</p>
-</center>
+<p>We consider the general class of auctions where bidders submit bids <script type="math/tex">b_1,\dots,b_n</script>. An auction rule specifies for all i,</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+x_{i} &: B_{1} \times \ldots \times B_{n} \rightarrow[0,1] \\
+t_{i} &: B_{1} \times \ldots \times B_{n} \rightarrow \mathbb{R}
+\end{aligned}</script><p>where <script type="math/tex">x_{i}(\cdot)</script> gives the probability $i$ will get the object and <script type="math/tex">t_{i}(\cdot)</script> gives $i$ ‘s required payment as a function of the bids <script type="math/tex">\left(b_{1}, \ldots, b_{n}\right)</script> . (For example in a first price auction, <script type="math/tex">x_{1}\left(b_{1}, \ldots, b_{n}\right)</script> equals 1 if <script type="math/tex">b_{1}</script> is the highest bid, and otherwise zero. Meanwhile <script type="math/tex">t_{1}\left(b_{1}, \ldots, b_{n}\right)</script> equals zero unless <script type="math/tex">b_{1}</script> is highest, in which case <script type="math/tex">t_{1}=b_{1}</script>)</p>
+<p>Given the auction rule, bidder $i$ ‘s expected payoff as a function of his signal and bid is:</p>
+<script type="math/tex; mode=display">
+U_{i}\left(s_{i}, b_{i}\right)=s_{i} \mathbb{E}_{b_{-i}}\left[x_{i}\left(b_{i}, b_{-i}\right)\right]-\mathbb{E}_{b_{-i}}\left[t_{i}\left(b_{i}, b_{-i}\right)\right]</script><p>Let <script type="math/tex">b_{i}(\cdot), b_{-i}(\cdot)</script> denote an equilibrium of the auction game. Bidder $i$ ‘s equilibrium payoff is:</p>
+<script type="math/tex; mode=display">
+U_{i}\left(s_{i}\right)=U_{i}\left(s_{i}, b\left(s_{i}\right)\right)=s_{i} F^{n-1}\left(s_{i}\right)-\mathbb{E}_{s_{-i}}\left[t_{i}\left(b_{i}\left(s_{i}\right), b_{-i}\left(s_{-i}\right)\right]\right.</script><p>where we use (i) to write <script type="math/tex">\mathbb{E}_{s_{-i}}\left[x_{i}\left(b\left(s_{i}\right), b\left(s_{-i}\right)\right)\right]=F^{n-1}\left(s_{i}\right)</script>.<br>Using the fact that <script type="math/tex">b\left(s_{i}\right)</script> must maximize $i$ ‘s payoff given <script type="math/tex">s_{i}</script> and opponent strategies <script type="math/tex">b_{-i}(\cdot)</script>, the envelope theorem implies that:</p>
+<script type="math/tex; mode=display">
+\left.\frac{d}{d s} U_{i}(s)\right|_{s=s_{i}}=\mathbb{E}_{b_{-i}}\left[x_{i}\left(b_{i}\left(s_{i}\right), b_{-i}\left(s_{-i}\right)\right)\right]=F^{n-1}\left(s_{i}\right)</script><p>and also</p>
+<script type="math/tex; mode=display">
+U_{i}\left(s_{i}\right)=U_{i}(\underline{s})+\int_{\underline{s}}^{s_{i}} F^{n-1}(\tilde{s}) d \tilde{s}=\int_{\underline{s}}^{s_{i}} F^{n-1}(\tilde{s}) d \tilde{s},</script><p>where we use $(i i)$ to write <script type="math/tex">U_{i}(\underline{s})=0</script> Combining our expressions for <script type="math/tex">U_{i}\left(s_{i}\right)</script>, we get bidder $i$ ‘s expected payment given his signal:</p>
+<script type="math/tex; mode=display">
+\mathbb{E}_{s_{-i}}\left[t_{i}\left(b_{i}, b_{-i}\right)\right]=s_{i} F^{n-1}\left(s_{i}\right)-\int_{\underline{s}}^{s_{i}} F^{n-1}(\tilde{s}) d \tilde{s}=\int_{\underline{s}}^{s_{i}} \tilde{s} d F^{n-1}(\tilde{s})</script><p>where the last equality is from integration by parts. Since <script type="math/tex">x_{i}(\cdot)</script> does not enter into this expression, bidder i’s expected equilibrium payment given his signal is the same under all auction rules that satisfy (i) and (ii). Indeed, i’s expected payment given <script type="math/tex">s_{i}</script> is equal to:</p>
+<script type="math/tex; mode=display">
+\mathbb{E}\left[S^{1: n-1} \mid S^{1: n-1}<s_{i}\right]=\mathbb{E}\left[S^{2: n} \mid S^{1: n}=s_{i}\right]</script><p>So the seller’s revenue is:</p>
+<script type="math/tex; mode=display">
+\mathbb{E}[\text { Revenue }]=\sum \mathbb{E}_{s_{i}}\left[i \text { 's expected payment } \mid s_{i}\right]=\mathbb{E}\left[S^{2: n}\right]</script>
     </div>
 
     

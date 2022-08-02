@@ -250,74 +250,50 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <img src="/2022/06/12/KKT%E4%B8%8ECQ/cover.jpg" style="zoom:48%;">
+        <p><img src="/2022/06/12/KKT%E4%B8%8ECQ/cover.jpg" style="zoom:48%;"></p>
 <p>KKT已经成为了几乎所有的CS 、MAT学生都绕不开的知识、工具。浅写一下自己在几年的学习中对KKT和CQ的一些理解，方便自己日后复习。</p>
 <a id="more"></a>
-<h1>1 Unconstrained Problem</h1>
-<p>这一部分是non-linear programming 的基础，这不是本篇文章想要讨论的重点，日后可能会继续做一次总结。对于unconstrained的问题大体有2个解法：</p>
+<h1 id="1-Unconstrained-Problem"><a href="#1-Unconstrained-Problem" class="headerlink" title="1 Unconstrained Problem"></a>1 Unconstrained Problem</h1><p>这一部分是non-linear programming 的基础，这不是本篇文章想要讨论的重点，日后可能会继续做一次总结。对于unconstrained的问题大体有2个解法：</p>
 <ol>
 <li>Gradient Descent    (1阶的算法)</li>
 <li>Newton’s method / Quasi Neston’s method（2阶的算法）</li>
 </ol>
 <p>Unconstrained Problem 是解决constrained problem的基础。<strong>barrier method、penalty method</strong> 等都是将constrains 放到objective function之上，通过解决unconstrained problem来得到解（这些解法通常都可以与KKT point \ Duality 等结果相联系）</p>
-<h1>2 Constrained Problem and KKT condition</h1>
-<p>对于问题：<br>
-$$<br>
-\min _{x \in \mathbb{R}^{n}} f(x) \text { s.t. } g(x) \leq 0, \quad h(x)=0,<br>
-$$</p>
-<p>若x’ 是该问题的local solution，<font color="red">且在x’处满足一种CQ</font>，则在x’处必存在以下方程的一组解：</p>
-<p><strong>1st Order Karush-Kuhn-Tucker conditions</strong> (1阶KKT conditions）<br>
-$$<br>
-\left{\begin{array}{l}<br>
-\text { (i) } \nabla f\left(x^{<em>}\right)+\nabla g\left(x^{</em>}\right) \lambda^{<em>}+\nabla h\left(x^{</em>}\right) \mu^{<em>}=0 \quad \text { (multiplier rule) } \<br>
-\text { (ii) } h\left(x^{</em>}\right)=0 \<br>
-\text { (iii) } \lambda^{<em>} \geq 0, \quad g\left(x^{</em>}\right) \leq 0, \quad\left(\lambda^{<em>}\right)^{\top} g\left(x^{</em>}\right)=0 \quad \text { (complementarity conditions). }<br>
-\end{array}\right.<br>
-$$</p>
-<p>KKT condition通过 <em><strong>Farkas Lemma</strong></em>证明的，这一证明可以参考berserkas的教科书。</p>
+<h1 id="2-Constrained-Problem-and-KKT-condition"><a href="#2-Constrained-Problem-and-KKT-condition" class="headerlink" title="2 Constrained Problem and KKT condition"></a>2 Constrained Problem and KKT condition</h1><p>对于问题：</p>
+<script type="math/tex; mode=display">
+\min _{x \in \mathbb{R}^{n}} f(x) \text { s.t. } g(x) \leq 0, \quad h(x)=0,</script><p>若x’ 是该问题的local solution，<font color="red">且在x’处满足一种CQ</font>，则在x’处必存在以下方程的一组解：</p>
+<p> <strong>1st Order Karush-Kuhn-Tucker conditions</strong> (1阶KKT conditions）</p>
+<script type="math/tex; mode=display">
+\left\{\begin{array}{l}
+\text { (i) } \nabla f\left(x^{*}\right)+\nabla g\left(x^{*}\right) \lambda^{*}+\nabla h\left(x^{*}\right) \mu^{*}=0 \quad \text { (multiplier rule) } \\
+\text { (ii) } h\left(x^{*}\right)=0 \\
+\text { (iii) } \lambda^{*} \geq 0, \quad g\left(x^{*}\right) \leq 0, \quad\left(\lambda^{*}\right)^{\top} g\left(x^{*}\right)=0 \quad \text { (complementarity conditions). }
+\end{array}\right.</script><p>KKT condition通过 <strong><em>Farkas Lemma</em></strong>证明的，这一证明可以参考berserkas的教科书。</p>
 <p>从以上的描述中我们再强调下这个定理说描述的事情，若在一个x*处满足一种“Cconstrained Qualification”，那么就一定有满足KKT的解。也就是说，在x处<font color="Red">若有CQ，则KKT是必要条件</font>。</p>
 <p>那么我们现在需要重新了解下：</p>
-<center><font size="12">什么是CQ？</font>
-<h1>3 Constrained Qualification</h1>
-<p>若要了解constrained qualification 需要先了解“cone”：</p>
-<h2 id="Feasible-set-and-Active-Constrain">Feasible set and Active Constrain</h2>
-<p><font color="#5555FF">Definition 1</font>:<em><strong>Feasible Set and Active Constraints</strong></em><br>
-The set<br>
-$$<br>
-X:=\left{x \in \mathbb{R}^{n}: g(x) \leq 0, h(x)=0\right}<br>
-$$<br>
-is called feasible set of the problem (1). A point $x \in \mathbb{R}^{n}$ is called feasible if we have $x \in X$. For a feasible point $x \in X$, we define the index set of the active constraints $\mathcal{A}(x)$ and the index set of the inactive constraints $\mathcal{I}(x)$ as follows:<br>
-$$<br>
-\begin{aligned}<br>
-\mathcal{A}(x) &amp;:=\left{i \in{1, \ldots, m}: g_{i}(x)=0\right} \<br>
-\mathcal{I}(x) &amp;:={1, \ldots, m} \backslash \mathcal{A}(x)=\left{i \in{1, \ldots, m}: g_{i}(x)&lt;0\right}<br>
-\end{aligned}<br>
-$$</p>
-<p><font color="#5555FF">Definition 2</font>: <em><strong>Tangent Cone</strong></em><br>
-Let $X \subset \mathbb{R}^{n}$ be a nonempty set. The tangent cone (or Bouligand cone) of $X$ at a point $x \in X$ is given by<br>
-$$<br>
-T_{X}(x):=\left{d \in \mathbb{R}^{n}: \exists\left(\eta_{k}\right)<em>{k} \in \mathbb{R}</em>{++},\left(x^{k}\right)<em>{k} \in X \text { such that } x^{k} \rightarrow x, \quad \eta</em>{k}\left(x^{k}-x\right) \rightarrow d\right}<br>
-$$<br>
-<font color="#5555FF">Definition 3</font>: <em><strong>Linealized Tangent Cone</strong></em></p>
-<p>The set<br>
-$$<br>
-T_{\ell}(g, h, x):=\left{d \in \mathbb{R}^{n}: \nabla g_{i}(x)^{\top} d \leq 0 \forall i \in \mathcal{A}(x), \quad \nabla h(x)^{\top} d=0\right}<br>
-$$<br>
-is called the linearized tangent cone at $x \in X$</p>
-<h2 id="几个CQ：">几个CQ：</h2>
-<p><em><strong>ACQ</strong></em><br>
-$$<br>
-T_{\ell}(g, h, x)=T_{X}(x)<br>
-$$<br>
-<em><strong>GCQ</strong></em><br>
-$$<br>
-T_{X}\left(x^{<em>}\right)^{\circ}=T_{\ell}\left(g, h, x^{</em>}\right)^{\circ}\<br>
-\text{where} \<br>
-K^{\circ}:=\left{v \in \mathbb{R}^{n}: v^{\top} d \leq 0 \quad \forall d \in K\right}<br>
-$$<br>
-<font color="#5555FF">Definition 4</font>: <em><strong>Constraint Qualification</strong></em><br>
-Let $x \in X$ be given. A condition that implies the (GCQ) is called Constraint Qualification (CQ) for $x$.</p>
-</center>
+<p><center><font size="12">什么是CQ？</font></center></p>
+<h1 id="3-Constrained-Qualification"><a href="#3-Constrained-Qualification" class="headerlink" title="3 Constrained Qualification"></a>3 Constrained Qualification</h1><p>若要了解constrained qualification 需要先了解“cone”：</p>
+<h2 id="Feasible-set-and-Active-Constrain"><a href="#Feasible-set-and-Active-Constrain" class="headerlink" title="Feasible set and Active Constrain"></a>Feasible set and Active Constrain</h2><p><font color="#5555FF">Definition 1</font>:<strong><em>Feasible Set and Active Constraints</em></strong><br>The set</p>
+<script type="math/tex; mode=display">
+X:=\left\{x \in \mathbb{R}^{n}: g(x) \leq 0, h(x)=0\right\}</script><p>is called feasible set of the problem (1). A point $x \in \mathbb{R}^{n}$ is called feasible if we have $x \in X$. For a feasible point $x \in X$, we define the index set of the active constraints $\mathcal{A}(x)$ and the index set of the inactive constraints $\mathcal{I}(x)$ as follows:</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathcal{A}(x) &:=\left\{i \in\{1, \ldots, m\}: g_{i}(x)=0\right\} \\
+\mathcal{I}(x) &:=\{1, \ldots, m\} \backslash \mathcal{A}(x)=\left\{i \in\{1, \ldots, m\}: g_{i}(x)<0\right\}
+\end{aligned}</script><p><font color="#5555FF">Definition 2</font>: <strong><em>Tangent Cone</em></strong><br>Let $X \subset \mathbb{R}^{n}$ be a nonempty set. The tangent cone (or Bouligand cone) of $X$ at a point $x \in X$ is given by</p>
+<script type="math/tex; mode=display">
+T_{X}(x):=\left\{d \in \mathbb{R}^{n}: \exists\left(\eta_{k}\right)_{k} \in \mathbb{R}_{++},\left(x^{k}\right)_{k} \in X \text { such that } x^{k} \rightarrow x, \quad \eta_{k}\left(x^{k}-x\right) \rightarrow d\right\}</script><p><font color="#5555FF">Definition 3</font>: <strong><em>Linealized Tangent Cone</em></strong></p>
+<p>The set</p>
+<script type="math/tex; mode=display">
+T_{\ell}(g, h, x):=\left\{d \in \mathbb{R}^{n}: \nabla g_{i}(x)^{\top} d \leq 0 \forall i \in \mathcal{A}(x), \quad \nabla h(x)^{\top} d=0\right\}</script><p>is called the linearized tangent cone at $x \in X$</p>
+<h2 id="几个CQ："><a href="#几个CQ：" class="headerlink" title="几个CQ："></a>几个CQ：</h2><p><strong><em>ACQ</em></strong></p>
+<script type="math/tex; mode=display">
+T_{\ell}(g, h, x)=T_{X}(x)</script><p><strong><em>GCQ</em></strong></p>
+<script type="math/tex; mode=display">
+T_{X}\left(x^{*}\right)^{\circ}=T_{\ell}\left(g, h, x^{*}\right)^{\circ}\\
+\text{where} \\
+K^{\circ}:=\left\{v \in \mathbb{R}^{n}: v^{\top} d \leq 0 \quad \forall d \in K\right\}</script><p><font color="#5555FF">Definition 4</font>: <strong><em>Constraint Qualification</em></strong><br>Let $x \in X$ be given. A condition that implies the (GCQ) is called Constraint Qualification (CQ) for $x$.</p>
+
     </div>
 
     

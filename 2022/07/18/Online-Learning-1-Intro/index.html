@@ -257,83 +257,54 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <img src="/2022/07/18/Online-Learning-1-Intro/cover.jpeg" style="zoom:40%;">
+        <p><img src="/2022/07/18/Online-Learning-1-Intro/cover.jpeg" style="zoom:40%;"></p>
 <p>开坑online learning and bandits，一直想着系统地学习下，利用2022 summer争取拿下。🤤🤤🤤</p>
 <a id="more"></a>
-<h2 id="Basic-Setting">Basic Setting</h2>
-<p>A bandit problem is a sequential game between a <strong>learner</strong> and an <strong>environment</strong>.</p>
-<p>The game is played over $n$  rounds, where $n$ is a positive natural number called the horizon. In each round $t \in n$, the learner first chooses an action $A_t$ from a given set $\mathcal{A}$, and the environment then reveals a reward $X_t \in \mathbb{R}$.</p>
-<p>The learner cannot peek into the future when choosing their actions. The action $A_t$ should only depend on the history $$H_{t-1} = \left(A_{1}, X_{1}, \ldots, A_{t-1}, X_{t-1}\right)$$.</p>
-<h2 id="Regret">Regret</h2>
-<blockquote>
+<h2 id="Basic-Setting"><a href="#Basic-Setting" class="headerlink" title="Basic Setting"></a>Basic Setting</h2><p>A bandit problem is a sequential game between a <strong>learner</strong> and an <strong>environment</strong>.</p>
+<p>The game is played over $n$  rounds, where $n$ is a positive natural number called the horizon. In each round $t \in n$, the learner first chooses an action $A_t$ from a given set $\mathcal{A}$, and the environment then reveals a reward $X_t \in \mathbb{R}$. </p>
+<p>The learner cannot peek into the future when choosing their actions. The action $A<em>t$ should only depend on the history $$H</em>{t-1} = \left(A<em>{1}, X</em>{1}, \ldots, A<em>{t-1}, X</em>{t-1}\right)$$.</p>
+<h2 id="Regret"><a href="#Regret" class="headerlink" title="Regret"></a>Regret</h2><blockquote>
 <p><em>DEFINITION : The regret of the learner relative to a policy $\pi$ (not necessarily that followed by the learner) is the difference between the total expected reward using policy $\pi$ for $n$ rounds and the total expected reward collected by the learner over $n$ rounds. The regret relative to a set of policies $\Pi$ is the maximum regret relative to any policy $\pi \in \Pi$ in the set.</em></p>
 </blockquote>
 <p>The set $\Pi$ is often called the <strong>competitor class. ( 与$\Pi$ 中的strategy 对抗)</strong></p>
 <p>Regret measures the performance of the learner relative to the best policy in the competitor class.</p>
 <hr>
 <p>Example:</p>
-<p>Suppose the action set is $$\mathcal{A}={1,2, \ldots, k}$$. An environment is called a stochastic Bernoulli bandit if the reward $$X_{t} \in{0,1}$$ is binary valued and there exists a vector $$\mu \in[0,1]^{k}$$ such that the probability that $$X_{t}=1$$ given the learner chose action $$A_{t}=a$$ is $$\mu_{a}$$. The class of stochastic Bernoulli bandits is the set of all such bandits, which are characterised by their mean vectors. If you knew the mean vector associated with the environment, then the optimal policy is to play the fixed action $$a^{*}=\operatorname{argmax}<em>{a \in \mathcal{A}} \mu</em>{a}$$. This means that for this problem the natural competitor class is the set of $k$ constant polices $$\Pi=\left{\pi_{1}, \ldots, \pi_{k}\right}$$, where $$\pi_{i}$$ chooses action $i$ in every round. The regret over $n$ rounds becomes</p>
-<p>$$<br>
-R_{n}=n \max <em>{a \in \mathcal{A}} \mu</em>{a}-\mathbb{E}\left[\sum_{t=1}^{n} X_{t}\right]<br>
-$$</p>
-<h3 id="Asymptotic-analysis-of-regret">Asymptotic  analysis of regret</h3>
-<p>A good learner achieves sublinear regret. This means that $$R_n =o(n)$$ or $$\lim <em>{n \rightarrow \infty} R</em>{n} / n=0$$. The interesting question is under what circumstances is $$R_{n}=O(\sqrt{n}) \text { or } R_{n}=O(\log (n)) $$?</p>
-<h2 id="Different-settings">Different settings:</h2>
-<h3 id="Stochastic-Stationary-Bandits">S<strong>tochastic Stationary Bandits</strong></h3>
-<p>A simple problem setting is that of <strong>stochastic stationary bandits</strong>. In this case the environment is restricted to generate the reward in response to each action from a distribution that is specific to that action and independent of the previous action choices and rewards.</p>
-<p>$$<br>
-X_{t}=\langle a, \theta\rangle+\eta_{t}<br>
-$$</p>
-<h3 id="Adversarial-bandits">Adversarial bandits</h3>
-<p>An extreme idea is to drop all assumptions on how the rewards are generated, except that they are chosen without knowledge of the learner’s actions and lie in a bounded set.</p>
+<p>Suppose the action set is <script type="math/tex">\mathcal{A}=\{1,2, \ldots, k\}</script>. An environment is called a stochastic Bernoulli bandit if the reward <script type="math/tex">X_{t} \in\{0,1\}</script> is binary valued and there exists a vector <script type="math/tex">\mu \in[0,1]^{k}</script> such that the probability that <script type="math/tex">X_{t}=1</script> given the learner chose action <script type="math/tex">A_{t}=a</script> is <script type="math/tex">\mu_{a}</script>. The class of stochastic Bernoulli bandits is the set of all such bandits, which are characterised by their mean vectors. If you knew the mean vector associated with the environment, then the optimal policy is to play the fixed action <script type="math/tex">a^{*}=\operatorname{argmax}_{a \in \mathcal{A}} \mu_{a}</script>. This means that for this problem the natural competitor class is the set of $k$ constant polices <script type="math/tex">\Pi=\left\{\pi_{1}, \ldots, \pi_{k}\right\}</script>, where <script type="math/tex">\pi_{i}</script> chooses action $i$ in every round. The regret over $n$ rounds becomes </p>
+<script type="math/tex; mode=display">
+R_{n}=n \max _{a \in \mathcal{A}} \mu_{a}-\mathbb{E}\left[\sum_{t=1}^{n} X_{t}\right]</script><h3 id="Asymptotic-analysis-of-regret"><a href="#Asymptotic-analysis-of-regret" class="headerlink" title="Asymptotic  analysis of regret"></a>Asymptotic  analysis of regret</h3><p>A good learner achieves sublinear regret. This means that <script type="math/tex">R_n =o(n)</script> or <script type="math/tex">\lim _{n \rightarrow \infty} R_{n} / n=0</script>. The interesting question is under what circumstances is <script type="math/tex">R_{n}=O(\sqrt{n}) \text { or } R_{n}=O(\log (n))</script>?</p>
+<h2 id="Different-settings"><a href="#Different-settings" class="headerlink" title="Different settings:"></a>Different settings:</h2><h3 id="Stochastic-Stationary-Bandits"><a href="#Stochastic-Stationary-Bandits" class="headerlink" title="Stochastic Stationary Bandits"></a>S<strong>tochastic Stationary Bandits</strong></h3><p>A simple problem setting is that of <strong>stochastic stationary bandits</strong>. In this case the environment is restricted to generate the reward in response to each action from a distribution that is specific to that action and independent of the previous action choices and rewards.</p>
+<script type="math/tex; mode=display">
+X_{t}=\langle a, \theta\rangle+\eta_{t}</script><h3 id="Adversarial-bandits"><a href="#Adversarial-bandits" class="headerlink" title="Adversarial bandits"></a>Adversarial bandits</h3><p>An extreme idea is to drop all assumptions on how the rewards are generated, except that they are chosen without knowledge of the learner’s actions and lie in a bounded set.</p>
 <p>The learner is not expected to find the best sequence of actions, which may be like finding a needle in a haystack. Instead, we usually choose Π to be the set of constant policies and demand that the learner is not much worse than any of these. By defining the regret in this way, the stationarity assumption is transported into the definition of regret rather than constraining the environment.</p>
-<h3 id="Reinforcement-Learning">Reinforcement Learning</h3>
-<p>在一般的问题中考虑 learner’s available choices and rewards tomorrow are not affected by their decisions today. 但RL 考虑long term profit</p>
-<h3 id="Partial-Monitoring">Partial Monitoring</h3>
-<p>The setting where the reward is not observed is called <strong>partial monitoring.</strong></p>
-<h2 id="Application">Application</h2>
-<ul>
-<li>
-<h3 id="A-B-Testing">A/B Testing</h3>
-</li>
+<h3 id="Reinforcement-Learning"><a href="#Reinforcement-Learning" class="headerlink" title="Reinforcement Learning"></a>Reinforcement Learning</h3><p>在一般的问题中考虑 learner’s available choices and rewards tomorrow are not affected by their decisions today. 但RL 考虑long term profit</p>
+<h3 id="Partial-Monitoring"><a href="#Partial-Monitoring" class="headerlink" title="Partial Monitoring"></a>Partial Monitoring</h3><p>The setting where the reward is not observed is called <strong>partial monitoring.</strong></p>
+<h2 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h2><ul>
+<li><h3 id="A-B-Testing"><a href="#A-B-Testing" class="headerlink" title="A/B Testing"></a>A/B Testing</h3></li>
 </ul>
 <p>The designers of a company website are trying to decide whether the ‘buy it now’ button should be placed at the top of the product page or at the bottom.</p>
 <p>One way to apply bandits to this problem is to view the two versions of the site as actions. Each time t a user makes a request, a bandit algorithm is used to choose an action $A_t \in \mathcal{A} = [Site_A, Site_B]$, and the reward is $X_t = 1$ if the user purchases the product and  $X_t = 0$ otherwise.</p>
 <ul>
-<li>
-<h3 id="Advert-Placement">Advert Placement</h3>
-<p>In advert placement, each round corresponds to a user visiting a website, and the set of actions $\mathcal{A}$ is the set of all available adverts. One could treat this as a standard multi-armed bandit problem, where in each round a policy chooses $$A_{t} \in \mathcal{A}$$, and the reward is $$X_{t}=1$$ if the user clicked on the advert and $$X_{t}=0$$</p>
+<li><h3 id="Advert-Placement"><a href="#Advert-Placement" class="headerlink" title="Advert Placement"></a>Advert Placement</h3><p>In advert placement, each round corresponds to a user visiting a website, and the set of actions $\mathcal{A}$ is the set of all available adverts. One could treat this as a standard multi-armed bandit problem, where in each round a policy chooses <script type="math/tex">A_{t} \in \mathcal{A}</script>, and the reward is <script type="math/tex">X_{t}=1</script> if the user clicked on the advert and <script type="math/tex">X_{t}=0</script></p>
 </li>
-<li>
-<h3 id="Dynamic-Pricing">Dynamic Pricing</h3>
-<p>Users arrive sequentially, and the learner sets the price.</p>
+<li><h3 id="Dynamic-Pricing"><a href="#Dynamic-Pricing" class="headerlink" title="Dynamic Pricing"></a>Dynamic Pricing</h3><p>Users arrive sequentially, and the learner sets the price.</p>
 <ul>
 <li>(a) the learner never actually observes the valuation of the product, only the binary signal that the price was too low/too high, and</li>
 <li>(b) there is a monotonicity structure in the pricing. If a user purchased an item priced at 10, then they would surely purchase it for 5, but whether or not it would sell when priced at 11$ is uncertain.</li>
 </ul>
 </li>
-<li>
-<h3 id="Network-Routing">Network Routing</h3>
-</li>
+<li><h3 id="Network-Routing"><a href="#Network-Routing" class="headerlink" title="Network Routing"></a>Network Routing</h3></li>
 </ul>
 <p>Another problem with an interesting structure is network routing, where the learner tries to direct internet traffic through the shortest path on a network. In each round the learner receives the start/end destinations for a packet of data. The set of actions is the set of all paths starting and ending at the appropriate points on some known graph.</p>
 <ul>
-<li>
-<h3 id="Waiting-Problems">Waiting Problems</h3>
-<p>公交车来的时间、通行时间不确定，但如果坐上了就时间很短。步行时间长，但用时确定。（Learn CDF of uncertain event）</p>
+<li><h3 id="Waiting-Problems"><a href="#Waiting-Problems" class="headerlink" title="Waiting Problems"></a>Waiting Problems</h3><p>公交车来的时间、通行时间不确定，但如果坐上了就时间很短。步行时间长，但用时确定。（Learn CDF of uncertain event）</p>
 <p>应该等多久公车后决定步行？</p>
 </li>
-<li>
-<h3 id="Resource-Allocation">Resource Allocation</h3>
-</li>
-<li>
-<h3 id="Recommendation-类似广告问题，不过问题更复杂">Recommendation(类似广告问题，不过问题更复杂)</h3>
-<p>Netflix has to decide which movies to recommend to customers.</p>
+<li><h3 id="Resource-Allocation"><a href="#Resource-Allocation" class="headerlink" title="Resource Allocation"></a>Resource Allocation</h3></li>
+<li><h3 id="Recommendation-类似广告问题，不过问题更复杂"><a href="#Recommendation-类似广告问题，不过问题更复杂" class="headerlink" title="Recommendation(类似广告问题，不过问题更复杂)"></a>Recommendation(类似广告问题，不过问题更复杂)</h3><p>Netflix has to decide which movies to recommend to customers.</p>
 <p>The reward can be measured as some function of (a) whether or not you watched a movie and (b) whether or not you rated it positively.</p>
 </li>
-<li>
-<h3 id="Tree-Search">Tree Search (?)</h3>
-</li>
+<li><h3 id="Tree-Search"><a href="#Tree-Search" class="headerlink" title="Tree Search (?)"></a>Tree Search (?)</h3></li>
 </ul>
 
     </div>

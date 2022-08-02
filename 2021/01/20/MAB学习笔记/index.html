@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"www.vvindsky.xyz","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":null},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="​	Multi Armed Bandit(MAB) is a simple but very powerful framework for algorithms that make decisions over time under uncertainty. An enormous body of work has accumulated over the years.">
+  <meta name="description" content="​    Multi Armed Bandit(MAB) is a simple but very powerful framework for algorithms that make decisions over time under uncertainty. An enormous body of work has accumulated over the years.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MAB学习笔记">
 <meta property="og:url" content="http://www.vvindsky.xyz/2021/01/20/MAB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Wind and Sky">
-<meta property="og:description" content="​	Multi Armed Bandit(MAB) is a simple but very powerful framework for algorithms that make decisions over time under uncertainty. An enormous body of work has accumulated over the years.">
+<meta property="og:description" content="​    Multi Armed Bandit(MAB) is a simple but very powerful framework for algorithms that make decisions over time under uncertainty. An enormous body of work has accumulated over the years.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://www.vvindsky.xyz/2021/01/20/MAB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/sample.png">
 <meta property="article:published_time" content="2021-01-20T03:25:37.000Z">
@@ -256,72 +256,53 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <img src="/2021/01/20/MAB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/sample.png" alt="新建" style="zoom:=40%;">
-<p>​	<strong>M</strong>ulti <strong>A</strong>rmed <strong>B</strong>andit(<strong>MAB</strong>) is a simple but very powerful framework for algorithms that make decisions over time under uncertainty. An enormous body of work has accumulated over the years.</p>
+        <p><img src="/2021/01/20/MAB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/sample.png" alt="新建" style="zoom:=40%;"></p>
+<p>​    <strong>M</strong>ulti <strong>A</strong>rmed <strong>B</strong>andit(<strong>MAB</strong>) is a simple but very powerful framework for algorithms that make decisions over time under uncertainty. An enormous body of work has accumulated over the years.</p>
 <a id="more"></a>
-<h1>简介</h1>
-<p>​</p>
-<p>​	与多臂老虎机相类似的问题还有餐馆选择问题，当我们到达一个新地方不久，是每次去我们熟悉的最好吃的餐馆还是去探索新餐馆找可能更好吃的菜品。</p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>​    </p>
+<p>​    与多臂老虎机相类似的问题还有餐馆选择问题，当我们到达一个新地方不久，是每次去我们熟悉的最好吃的餐馆还是去探索新餐馆找可能更好吃的菜品。</p>
 <p>下面是摘自wiki的一段描述:</p>
-<p>​	In probability theory, the multi-armed bandit problem (sometimes called the K-or N-armed bandit problem) is a problem in which a fixed limited set of resources must be allocated between competing (alternative) choices in a way that maximizes their expected gain, when each choice’s properties are only partially known at the time of allocation, and may become better understood as time passes or by allocating resources to the choice.</p>
-<p>​	通俗点讲,当我们在玩老虎机时，老虎机有多个摇臂可供选择，每个摇臂对应的收益分布是固定但未知的，玩家需要在有限次的次数下做出最合适的选择。那么极端地想，我们每次摇臂就有两种倾向：</p>
+<p>​    In probability theory, the multi-armed bandit problem (sometimes called the K-or N-armed bandit problem) is a problem in which a fixed limited set of resources must be allocated between competing (alternative) choices in a way that maximizes their expected gain, when each choice’s properties are only partially known at the time of allocation, and may become better understood as time passes or by allocating resources to the choice.</p>
+<p>​    通俗点讲,当我们在玩老虎机时，老虎机有多个摇臂可供选择，每个摇臂对应的收益分布是固定但未知的，玩家需要在有限次的次数下做出最合适的选择。那么极端地想，我们每次摇臂就有两种倾向：</p>
 <ul>
-<li>
-<p>尝试新的“老虎臂”，也许会得到比之前更好的结果(Explore)</p>
-</li>
-<li>
-<p>利用已知的老虎臂做最好的选择(Exploit)</p>
-</li>
+<li>尝试新的“老虎臂”，也许会得到比之前更好的结果(Explore)</li>
+</ul>
+<ul>
+<li>利用已知的老虎臂做最好的选择(Exploit)</li>
 </ul>
 <p>下面介绍一些基本的算法</p>
-<h1>1. Unioform Exploration</h1>
-<h2 id="基本介绍">基本介绍</h2>
-<p>​	这个均匀探索算法的思想很简单，是一个 <em>Explore-first</em> 的算法。首先确定好Exploration Phase 和 Exploitation Phase的大小，然后在Exploration Phase中均匀地探索每个摇臂，用期望来描述这个摇臂对应的收益，之后在Exploitation Phase中根据之前的最大收益选择进行游戏。</p>
-<p>​	大体流程如下:</p>
+<h1 id="1-Unioform-Exploration"><a href="#1-Unioform-Exploration" class="headerlink" title="1. Unioform Exploration"></a>1. Unioform Exploration</h1><h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>​    这个均匀探索算法的思想很简单，是一个 <em>Explore-first</em> 的算法。首先确定好Exploration Phase 和 Exploitation Phase的大小，然后在Exploration Phase中均匀地探索每个摇臂，用期望来描述这个摇臂对应的收益，之后在Exploitation Phase中根据之前的最大收益选择进行游戏。</p>
+<p>​    大体流程如下:</p>
 <ol>
 <li>Exploration Phase: try  each arm N times</li>
-<li>Select the arm $\hat{\alpha}$ with the highest reward</li>
+<li>Select the arm $\hat{\alpha}$ with the highest reward </li>
 <li>Explotiation Phase: play arm $\hat{\alpha}$  in all remaining rounds</li>
 </ol>
-<h2 id="Regret-analysis">Regret analysis</h2>
-<p>​	在进行exploit的时候我们会用之前explore得到的收益的平均值$\bar{\mu}(\alpha)$ 作为对真实期望$\mu(\alpha)$的估计，如果想要最后分析得到的结果准确我们应使这两个结果之间的差值尽量小，我们这里使用Hoeffding inequality对其进行分析。</p>
-<p>​	By defining the confidence radius $r(\alpha) = \sqrt{\frac{2logT}{N}}$ , using  Hoeffding inequality, we get :<br>
-$$<br>
-\operatorname{Pr}{|\bar{\mu}(a)-\mu(a)| \leq r(a)} \geq 1-\frac{2}{T^{4}}<br>
-$$<br>
-​	我们定义$\bar{\mu}(\alpha)$ 在这个范围内为 <strong>clean event</strong>, 反之为 <strong>bad event</strong>.可以看到bad event的order 为 $T^{-4}$可以忽略不计，在后面的推导证明中，可以姑且不考虑bad event的影响。</p>
-<p>​	后面的证明推导将采用英文QAQ。</p>
-<p>​	For simplicity, let us start with the case of K = 2 arms. Consider the clean event. We will show that if we chose the worse arm, it is not so bad because the expected rewards for the two arms would be close.</p>
-<p>​	Let the best arm be $\alpha^{✳️}$ and suppose the algorithm chooses the other arm $a \neq a^{✳️} .$ This must have been because its average reward was better than that of $a^{✳️} ;$ in other words, $\bar{\mu}(a)&gt;\bar{\mu}\left(a^{✳️}\right) .$ Since this is a clean event, we have:<br>
-$$<br>
-\mu(a)+r(a) \geq \bar{\mu}(a)&gt;\bar{\mu}\left(a^{<em>}\right) \geq \mu\left(a^{</em>}\right)-r\left(a^{<em>}\right)<br>
-$$<br>
-​	Re-arranging the terms, it follows that<br>
-$$<br>
-\mu\left(a^{</em>}\right)-\mu(a) \leq r(a)+r\left(a^{*}\right)=O\left(\sqrt{\frac{\log T}{N}}\right)<br>
-$$</p>
-<p>​	Thus, each round in the exploitation phase contributes at most $O\left(\sqrt{\frac{\log T}{N}}\right)$ to regret. And each round in exploration trivially contributes at most $1 .$ We derive an upper bound on the regret, which consists of two parts: for the first N rounds of exploration, and then for the remaining T - 2N rounds of exploitation:</p>
-<p>​	Recall that we can select any value for $N,$ as long as it is known to the algorithm before the first round. So, we can choose $N$ so as to (approximately) minimize the right-hand side. Noting that the two summands are, resp., monotonically increasing and monotonically decreasing in $N,$ <strong>we set $N$ so that they are (approximately) equal</strong>. For $N=T^{2 / 3}(\log T)^{1 / 3},$ we obtain:<br>
-$$<br>
-R(T) \leq O\left(T^{2 / 3}(\log T)^{1 / 3}\right)<br>
-$$<br>
-​	To complete the proof, we have to analyze the case of the “bad event”. Since regret can be at most T (because each round contributes at most 1), and the bad event happens with a very small probability (1/T 4), the (expected) regret from this case can be neglected. Formally,<br>
-$$<br>
-\begin{aligned}<br>
-\mathbb{E}[R(T)] &amp;=\mathbb{E}[R(T) \mid \text { clean event }] \times \operatorname{Pr}[\text { clean event }]+\mathbb{E}[R(T) \mid \text { bad event }] \times \operatorname{Pr}[\text { bad event }] \<br>
-&amp; \leq \mathbb{E}[R(T) \mid \text { clean event }]+T \times O\left(T^{-4}\right) \<br>
-&amp; \leq O\left(\sqrt{\log T} \times T^{2 / 3}\right)<br>
-\end{aligned}<br>
-$$</p>
-<p>​	This complete the proff of K=2 arms.</p>
-<p>​	For $K&gt;2$ arms, we have to apply the union bound for (1) over the $K$ arms, and then follow the same argument as above. Note that the value of $T$ is greater than $K,$ since we need to explore each arm at least once. For the final regret computation, we will need to take into account the dependence on $K$ :<br>
-specifically, regret accumulated in exploration phase is now upper-bounded by $K N .$ Working through the proof, we obtain $R(T) \leq N K+O\left(\sqrt{\frac{\log T}{N}} \times T\right) .$ As before, we approximately minimize it by approximately minimizing the two summands. Specifically, we plug in $N=(T / K)^{2 / 3} \cdot O(\log T)^{1 / 3} .$ Completing the proof same way as in $(5)$ we obtain:</p>
-<p><em><strong>Explore First Algortihm achieves regret:</strong></em>$\mathbb{E}[R(T)] \leq T^{2 / 3} \times O(K \log T)^{1 / 3}$</p>
-<h1>2 Adaptive Exploration</h1>
-<p>​	Both exploration-first and epsilon-greedy have a big flaw that the exploration schedule does not depend on the history of the observed rewards. Whereas it is usually better to adapt exploration to the observed rewards. Informally, we refer to this distinction as adaptive vs non-adaptive exploration. In the remainder of this article we present two algorithms that implement adaptive exploration and achieve better regret.</p>
-<p>​	Let’s start with the case of $K=2$ arms. One natural idea is to alternate them until we find that one armi s much better than the other, at which time we abandon the inferior one. But how to define “one arm is much better” exactly?</p>
-<h2 id="Clean-evnt-and-confidence-bounds">Clean evnt and confidence bounds</h2>
-<p>​	Let us flesh out the idea mentioned above; this would also set up the stage for some other algorithms. Fix round $t .$ Let $n_{t}(a)$ be the number of samples from $\operatorname{arm} a$ in round $1,2, \ldots, t . \bar{\mu}_{t}(a)$ be the average reward of arm $a$ so far. We would like to use Hoeffding Inequality to derive</p>
+<h2 id="Regret-analysis"><a href="#Regret-analysis" class="headerlink" title="Regret analysis"></a>Regret analysis</h2><p>​    在进行exploit的时候我们会用之前explore得到的收益的平均值$\bar{\mu}(\alpha)$ 作为对真实期望$\mu(\alpha)$的估计，如果想要最后分析得到的结果准确我们应使这两个结果之间的差值尽量小，我们这里使用Hoeffding inequality对其进行分析。</p>
+<p>​    By defining the confidence radius $r(\alpha) = \sqrt{\frac{2logT}{N}}$ , using  Hoeffding inequality, we get :</p>
+<script type="math/tex; mode=display">
+\operatorname{Pr}\{|\bar{\mu}(a)-\mu(a)| \leq r(a)\} \geq 1-\frac{2}{T^{4}}</script><p>​    我们定义$\bar{\mu}(\alpha)$ 在这个范围内为 <strong>clean event</strong>, 反之为 <strong>bad event</strong>.可以看到bad event的order 为 $T^{-4}$可以忽略不计，在后面的推导证明中，可以姑且不考虑bad event的影响。</p>
+<p>​    后面的证明推导将采用英文QAQ。</p>
+<p>​    For simplicity, let us start with the case of K = 2 arms. Consider the clean event. We will show that if we chose the worse arm, it is not so bad because the expected rewards for the two arms would be close.</p>
+<p>​    Let the best arm be $\alpha^{✳️}$ and suppose the algorithm chooses the other arm $a \neq a^{✳️} .$ This must have been because its average reward was better than that of $a^{✳️} ;$ in other words, $\bar{\mu}(a)&gt;\bar{\mu}\left(a^{✳️}\right) .$ Since this is a clean event, we have:</p>
+<script type="math/tex; mode=display">
+\mu(a)+r(a) \geq \bar{\mu}(a)>\bar{\mu}\left(a^{*}\right) \geq \mu\left(a^{*}\right)-r\left(a^{*}\right)</script><p>​    Re-arranging the terms, it follows that</p>
+<script type="math/tex; mode=display">
+\mu\left(a^{*}\right)-\mu(a) \leq r(a)+r\left(a^{*}\right)=O\left(\sqrt{\frac{\log T}{N}}\right)</script><p>​    Thus, each round in the exploitation phase contributes at most $O\left(\sqrt{\frac{\log T}{N}}\right)$ to regret. And each round in exploration trivially contributes at most $1 .$ We derive an upper bound on the regret, which consists of two parts: for the first N rounds of exploration, and then for the remaining T - 2N rounds of exploitation:</p>
+<p>​    Recall that we can select any value for $N,$ as long as it is known to the algorithm before the first round. So, we can choose $N$ so as to (approximately) minimize the right-hand side. Noting that the two summands are, resp., monotonically increasing and monotonically decreasing in $N,$ <strong>we set $N$ so that they are (approximately) equal</strong>. For $N=T^{2 / 3}(\log T)^{1 / 3},$ we obtain:</p>
+<script type="math/tex; mode=display">
+R(T) \leq O\left(T^{2 / 3}(\log T)^{1 / 3}\right)</script><p>​    To complete the proof, we have to analyze the case of the “bad event”. Since regret can be at most T (because each round contributes at most 1), and the bad event happens with a very small probability (1/T 4), the (expected) regret from this case can be neglected. Formally,</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathbb{E}[R(T)] &=\mathbb{E}[R(T) \mid \text { clean event }] \times \operatorname{Pr}[\text { clean event }]+\mathbb{E}[R(T) \mid \text { bad event }] \times \operatorname{Pr}[\text { bad event }] \\
+& \leq \mathbb{E}[R(T) \mid \text { clean event }]+T \times O\left(T^{-4}\right) \\
+& \leq O\left(\sqrt{\log T} \times T^{2 / 3}\right)
+\end{aligned}</script><p>​    This complete the proff of K=2 arms.</p>
+<p>​    For $K&gt;2$ arms, we have to apply the union bound for (1) over the $K$ arms, and then follow the same argument as above. Note that the value of $T$ is greater than $K,$ since we need to explore each arm at least once. For the final regret computation, we will need to take into account the dependence on $K$ :<br>specifically, regret accumulated in exploration phase is now upper-bounded by $K N .$ Working through the proof, we obtain $R(T) \leq N K+O\left(\sqrt{\frac{\log T}{N}} \times T\right) .$ As before, we approximately minimize it by approximately minimizing the two summands. Specifically, we plug in $N=(T / K)^{2 / 3} \cdot O(\log T)^{1 / 3} .$ Completing the proof same way as in $(5)$ we obtain:</p>
+<p><strong><em>Explore First Algortihm achieves regret:</em></strong>$\mathbb{E}[R(T)] \leq T^{2 / 3} \times O(K \log T)^{1 / 3}$</p>
+<h1 id="2-Adaptive-Exploration"><a href="#2-Adaptive-Exploration" class="headerlink" title="2 Adaptive Exploration"></a>2 Adaptive Exploration</h1><p>​    Both exploration-first and epsilon-greedy have a big flaw that the exploration schedule does not depend on the history of the observed rewards. Whereas it is usually better to adapt exploration to the observed rewards. Informally, we refer to this distinction as adaptive vs non-adaptive exploration. In the remainder of this article we present two algorithms that implement adaptive exploration and achieve better regret. </p>
+<p>​    Let’s start with the case of $K=2$ arms. One natural idea is to alternate them until we find that one armi s much better than the other, at which time we abandon the inferior one. But how to define “one arm is much better” exactly?</p>
+<h2 id="Clean-evnt-and-confidence-bounds"><a href="#Clean-evnt-and-confidence-bounds" class="headerlink" title="Clean evnt and confidence bounds"></a>Clean evnt and confidence bounds</h2><p>​    Let us flesh out the idea mentioned above; this would also set up the stage for some other algorithms. Fix round $t .$ Let $n<em>{t}(a)$ be the number of samples from $\operatorname{arm} a$ in round $1,2, \ldots, t . \bar{\mu}</em>{t}(a)$ be the average reward of arm $a$ so far. We would like to use Hoeffding Inequality to derive</p>
 
     </div>
 
